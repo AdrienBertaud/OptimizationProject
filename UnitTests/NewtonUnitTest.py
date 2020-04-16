@@ -1,7 +1,13 @@
 import unittest # https://docs.python.org/3/library/unittest.html
-from importlib import reload
+
+import sys
+sys.path.append("..") # Adds higher directory to python modules path.
+
 import Newton
-reload(Newton)
+
+from importlib import reload
+reload(Newton) # Relaod the module, in case it has changed
+
 from Newton import newton
 
 class TestNewton(unittest.TestCase):
