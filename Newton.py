@@ -13,7 +13,7 @@ def newton(f, df, x0, N, verbose=True):
         
         x0 = x0 - f(x0)/derivative
         if verbose:
-            print("Racine = ", x0)
-            print("Erreur = ", f(x0))
+            print("Root = ", x0)
+            print("Error = ", f(x0))
     
     return x0
