@@ -24,5 +24,8 @@ class TestNewton(unittest.TestCase):
     def test_x2_10_iter(self):
         self.assertAlmostEqual(newton(lambda x:x**2, lambda x:2*x, 1, 10, False), 0.0, places =2)
         
+    def test_verbose(self):
+        self.assertEqual(newton(lambda x:x**2, lambda x:2*x, 1, 2), 0.25)
+        
 if __name__ == '__main__':
     unittest.main()

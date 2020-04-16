@@ -9,6 +9,7 @@ def newton(f, df, x0, N, verbose=True):
         
         if derivative == 0:
             print("Error in newton : derivative is equal to 0")
+            print("Stopping at the actual value.")
             break;
         
         x0 = x0 - f(x0)/derivative
