@@ -1,4 +1,4 @@
-def newton(f, df, x0, N, verbose=True):
+def newton(f, df, x0, N, verbose=True, debug=False):
     
     if verbose:
         print("*** Newton-Raphson method ***")
@@ -13,8 +13,11 @@ def newton(f, df, x0, N, verbose=True):
             break;
         
         x0 = x0 - f(x0)/derivative
+        
         if verbose:
             print("Root = ", x0)
+            
+        if debug:
             print("Error = ", f(x0))
     
     return x0
