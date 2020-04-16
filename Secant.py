@@ -39,7 +39,7 @@ def secant(f, x0, x1, N, verbose=True, debug=False):
         if debug:
             print("f(x2)  = ", error)
             
-        if(error < 0):
+        if(error <= 0):
             print("f(x2) <= 0, stopping at the closest value.")
             
             if(abs(f(x1)) < abs(error)):
