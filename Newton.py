@@ -1,9 +1,19 @@
-def newton(f, df, x0, N):
+def newton(f, df, x0, N, verbose=True):
     
-    print("*** Newton-Raphson method ***")
-          
+    if verbose:
+        print("*** Newton-Raphson method ***")
+                  
     for i in range(N):
-        x0 = x0 - f(x0)/df(x0)
-        print("Racine = ", x0)
-        print("Erreur = ", f(x0))
         
+        derivative = df(x0)
+        
+        if derivative == 0:
+            print("Error in newton : derivative is equal to 0")
+            break;
+        
+        x0 = x0 - f(x0)/derivative
+        if verbose:
+            print("Racine = ", x0)
+            print("Erreur = ", f(x0))
+    
+    return x0
