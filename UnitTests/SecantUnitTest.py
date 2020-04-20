@@ -10,6 +10,8 @@ reload(Secant) # Relaod the module, in case it has changed
 
 from Secant import secant
 
+import numpy as np
+
 class Testsecant(unittest.TestCase):
         
     def test_const(self):
@@ -28,13 +30,19 @@ class Testsecant(unittest.TestCase):
         self.assertAlmostEqual(secant(lambda x:x**2, 1, 1.1, 10, False), 0, places =1)
         
     def test_x3_10_iter(self):
-        self.assertAlmostEqual(secant(lambda x:x**3, 1, 1.1, 10, False), 0.1, places =1)
-        
+        self.assertAlmostEqual(secant(lambda x:x**3, 1, 1.1, 10, 
+                                      False, debug = False), 0.1, places =1)
     def test_verbose(self):
         self.assertAlmostEqual(secant(lambda x:x**2, 1, 1.1, N=2), 0.35, places =1)
         
     def test_debug(self):
-        self.assertAlmostEqual(secant(lambda x:x**2, 1, 1.1, N=2, debug = True), 0.35, places =1)
+        self.assertAlmostEqual(secant(lambda x:x**2, 1, 1.1, N=2, debug = False), 0.35, places =1)
+    
+    def test_tanh(self):
+        self.assertAlmostEqual(first=secant(lambda x:np.tanh(x),
+                                            x0=-10, x1=5, N=10, 
+                                            verbose=False, plot = True, debug = False), 
+                               second=0, places=0)
                 
 if __name__ == '__main__':
     unittest.main()

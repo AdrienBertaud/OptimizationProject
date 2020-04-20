@@ -1,4 +1,5 @@
-def quasiNewton(f, df, x0, N, verbose=True, debug=False):
+#Source: http://apmonitor.com/me575/index.php/Main/QuasiNewton
+def quasiNewton_1(f, df, x0, N, verbose=True, debug=False):
     
     # Use this alpha for every line search
     alpha = np.linspace(0.1,1.0,N)
