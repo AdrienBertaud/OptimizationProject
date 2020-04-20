@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import unittest # https://docs.python.org/3/library/unittest.html
 
 import sys
@@ -26,6 +28,9 @@ class TestNewton(unittest.TestCase):
         
     def test_verbose(self):
         self.assertEqual(newton(lambda x:x**2, lambda x:2*x, 1, 2), 0.25)
+        
+    def test_plot(self):
+        self.assertEqual(newton(lambda x:x**2, lambda x:2*x, 1, N=5, plot=True), 0.25)
         
 if __name__ == '__main__':
     unittest.main()

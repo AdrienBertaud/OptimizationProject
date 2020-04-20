@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import numpy as np
 import Newton
 import Secant
@@ -18,8 +20,8 @@ def df(x):
 # Initializing the values.
 nbIter = 10
 x0 = 1
-x1 = -x0 
+x1 = -x0
 
 # Running methods.
-newton(f, df, x0, nbIter)
+newton(f, df, x0, nbIter, plot=True)
 secant(f, x0, -x0, nbIter, plot=True);

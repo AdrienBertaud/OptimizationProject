@@ -7,6 +7,7 @@ import Secant
 
 from importlib import reload
 reload(Secant) # Relaod the module, in case it has changed
+# -*- coding: utf-8 -*-
 
 from Secant import secant
 
@@ -29,7 +30,7 @@ class Testsecant(unittest.TestCase):
     def test_x2_10_iter(self):
         self.assertAlmostEqual(secant(lambda x:x**2, 1, 1.1, 10, False), 0, places =1)
         
-    def test_x3_10_iter(self):
+    def test_x3(self):
         self.assertAlmostEqual(secant(lambda x:x**3, 1, 1.1, 10, 
                                       False, debug = False), 0.1, places =1)
     def test_verbose(self):

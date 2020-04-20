@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import unittest # https://docs.python.org/3/library/unittest.html
 
 import sys

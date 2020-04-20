@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 #Source: http://apmonitor.com/me575/index.php/Main/QuasiNewton
 def quasiNewton_1(f, df, x0, N, verbose=True, debug=False):
     
