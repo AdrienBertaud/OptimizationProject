@@ -12,22 +12,36 @@ reload(QuasiNewton) # Relaod the module, in case it has changed
 
 from QuasiNewton import quasiNewton_1
 
+# define objective function
+def f(x):
+    x1 = x[0]
+    x2 = x[1]
+    f = x1**2 - 2.0 * x1 * x2 + 4 * x2**2
+    return f
+
+# define objective gradient
+def grad(x):
+    x1 = x[0]
+    x2 = x[1]
+    grad = []
+    grad.append(2.0 * x1 - 2.0 * x2)
+    grad.append(-2.0 * x1 + 8.0 * x2)
+    return grad
+
+#initialize hessian
+h0 = [[1, 0.0],[0.0, 1]]
+
+# Start location
+start = [-3.0, 2.0]
+
 class TestNewton(unittest.TestCase):
-                
-    def test_const(self):
-        self.assertEqual(quasiNewton_1(lambda x:1, lambda x:0, 1.3, 1, False), 1.3)
-    
-    def test_identity(self):
-        self.assertEqual(quasiNewton_1(lambda x:x, lambda x:1, 1, 1, False), 0.0)
-        
-    def test_x2_1_iter(self):
-        self.assertEqual(quasiNewton_1(lambda x:x**2, lambda x:2*x, 1, 1, False), 0.5)
-        
-    def test_x2_10_iter(self):
-        self.assertAlmostEqual(quasiNewton_1(lambda x:x**2, lambda x:2*x, 1, 10, False), 0.0, places =2)
-        
-    def test_verbose(self):
-        self.assertEqual(quasiNewton_1(lambda x:x**2, lambda x:2*x, 1, 2), 0.25)
-        
+
+    def test(self):
+        result = quasiNewton_1(f, grad, h0, start, N=10,
+                                       verbose=True, plot=True, debug=True)
+
+        self.assertAlmostEqual(result[0], 0, places=1)
+        self.assertAlmostEqual(result[1], 0, places=1)
+
 if __name__ == '__main__':
     unittest.main()
