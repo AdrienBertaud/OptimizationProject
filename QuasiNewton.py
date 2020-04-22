@@ -7,8 +7,11 @@ import matplotlib.pyplot as plt
 def quasiNewton_1(f, grad, h0, X0, N, verbose=True, plot=False, debug=False):
 
     """
-        A quasi-Nexton method in dim 2.
+        A quasi-Nexton method in dimension 2.
     """
+
+    if verbose:
+        print("*** A quasi-Newton method in dimension 2 ***")
 
     # Use this alpha for every line search
     alpha = np.linspace(0.1,1.0,N)

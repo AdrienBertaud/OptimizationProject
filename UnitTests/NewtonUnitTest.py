@@ -11,8 +11,9 @@ from importlib import reload
 reload(Newton) # Relaod the module, in case it has changed
 
 from Newton import newton
+from Newton import newtonDim2
 
-class TestNewton(unittest.TestCase):
+class TestNewton_1Dim(unittest.TestCase):
 
     def test_identity(self):
         self.assertEqual(newton(lambda x:x, lambda x:1, 1, 1, False), 0.0)
@@ -31,6 +32,38 @@ class TestNewton(unittest.TestCase):
 
     def test_plot(self):
         self.assertAlmostEqual(newton(lambda x:x**2, lambda x:2*x, 1, N=5, plot=True), 0.03, places =2)
+
+# define objective function
+def f(x):
+    x1 = x[0]
+    x2 = x[1]
+    f = x1**2 - 2.0 * x1 * x2 + 4 * x2**2
+    return f
+
+# define objective gradient
+def grad(x):
+    x1 = x[0]
+    x2 = x[1]
+    grad = []
+    grad.append(2.0 * x1 - 2.0 * x2)
+    grad.append(-2.0 * x1 + 8.0 * x2)
+    return grad
+
+# Exact hessian
+def H(x):
+    return [[2.0, -2.0],[-2.0, 8.0]]
+
+# Start location
+start = [-3.0, 2.0]
+
+class TestNewton_2Dim(unittest.TestCase):
+
+    def test(self):
+        result = newtonDim2(f, grad, H, start, N=10,
+                                       verbose=True, plot=True, debug=True)
+
+        self.assertAlmostEqual(result[0], 0, places=1)
+        self.assertAlmostEqual(result[1], 0, places=1)
 
 if __name__ == '__main__':
     unittest.main()
