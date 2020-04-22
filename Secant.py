@@ -83,7 +83,7 @@ def secant(f, x0, x1, N, verbose=True, plot=False, debug=False):
             print("x : ", x)
             print("y : ", y)
 
-        plotIterations(f, x, y)
+        plotIterations(f, x, y, "secant")
 
     return x2
 

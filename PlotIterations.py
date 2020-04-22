@@ -3,7 +3,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def plotIterations(f, x, y, debug = False):
+def plotIterations(f, x, y, name="", debug = False):
 
     plt.figure()
     plt.plot(x, y, 'kx')
@@ -21,5 +21,8 @@ def plotIterations(f, x, y, debug = False):
 
     for i in range(len(x)):
         plt.text(x[i], y[i], str(i), {'color': 'red', 'fontsize': 14})
+
+    # Save the figure as a PNG
+    plt.savefig(name + '.png')
 
     plt.show()
