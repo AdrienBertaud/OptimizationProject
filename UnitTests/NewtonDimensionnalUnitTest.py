@@ -14,32 +14,6 @@ from NewtonDimensionnal import newtond
 
 from numpy import array
 
-# class TestNewton_1Dim(unittest.TestCase):
-
-    # def test_identity(self):
-        # self.assertEqual(newtond(lambda x:array([x**2/2]), lambda x:array([x]),
-        #                          lambda x:array([1]), array([1]), 1, False), 0.0)
-
-    # def test_const(self):
-    #     self.assertEqual(newtond(lambda x:[x], lambda x:[1], lambda x:[0], [1.3],
-    #                              1, False), 1.3)
-
-    # def test_x2_1_iter(self):
-    #     self.assertEqual(newtond(lambda x:[x**3/3], lambda x:[x**2], lambda x:[2*x],
-    #                              [1], 1, False), 0.5)
-
-    # def test_x2_10_iter(self):
-    #     self.assertAlmostEqual(newtond(lambda x:[x**3/3,lambda x:[x**2], lambda x:[2*x],
-    #                                              [1], 10, False), 0.0, places =2)
-
-    # def test_verbose(self):
-    #     self.assertEqual(newtond(lambda x:[x**3/3,lambda x:[x**2], lambda x:[2*x],
-    #                              [1], 2), 0.25)
-
-    # def test_plot(self):
-    #     self.assertAlmostEqual(newtond(lambda x:x**3/3,lambda x:x**2], lambda x:[2*x],
-    #                                    [1], N=5, plot=True), 0.03, places =2)
-
 # define objective function
 def f(x):
     x1 = x[0]
@@ -63,14 +37,27 @@ def H(x):
 # Start location
 start = [-3.0, 2.0]
 
+# Non invertible hessian
+def HNonInv(x):
+    return [[0.0, 0.0],[-2.0, 0.0]]
+
+# Start location
+start = [-3.0, 2.0]
+
 class TestNewton_2Dim(unittest.TestCase):
 
-    def test(self):
+    def testQuadratic(self):
         result = newtond(f, grad, H, start, N=10,
-                                        verbose=True, plot=False, debug=True)
-
+                                        verbose=True,  debug=True)
         self.assertAlmostEqual(result[0], 0, places=1)
         self.assertAlmostEqual(result[1], 0, places=1)
+
+    def testNonInvertible(self):
+        result = newtond(f, grad, HNonInv, start, N=10,
+                                        verbose=True,  debug=True)
+
+        self.assertAlmostEqual(result[0], start[0], places=1)
+        self.assertAlmostEqual(result[1], start[1], places=1)
 
 if __name__ == '__main__':
     unittest.main()
