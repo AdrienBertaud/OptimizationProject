@@ -26,7 +26,7 @@ import argparse
 parser = argparse.ArgumentParser()
 
 #defaultNumOfIter = 200
-defaultNumOfIter = 2
+defaultNumOfIter = 1
 
 parser.add_argument('--storage', '-m', default=10, help='The Memory Storage')
 parser.add_argument('--mini_batch','-minibatch', default=1000,help='minibatch size')
@@ -57,9 +57,18 @@ iter_num = 0
 ###############################################################################
 ######################## MNIST DATA ###########################################
 ###############################################################################
-import input_MNIST_data
-from input_MNIST_data import shuffle_data
-data = input_MNIST_data.read_data_sets("./data/", one_hot=True)
+import sys
+
+# Adds directories to python modules path.
+sys.path.append("./Utils")
+
+import Utils.input_MNIST_data
+from importlib import reload
+reload(Utils.input_MNIST_data) # Relaod the module, in case it has changed
+import Utils.input_MNIST_data
+from Utils.input_MNIST_data import shuffle_data
+
+data = Utils.input_MNIST_data.read_data_sets("../data/", one_hot=True)
 X_train, y_train = shuffle_data(data)
 # input and output shape
 n_input   = data.train.images.shape[1]  # here MNIST data input (28,28)
