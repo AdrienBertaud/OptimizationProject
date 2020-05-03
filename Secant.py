@@ -9,6 +9,8 @@ import Utils.PlotIterations
 from importlib import reload
 reload(Utils.PlotIterations) # Relaod the module, in case it has changed
 
+from Utils.PlotIterations import plotIterations
+
 # source: https://www.codewithc.com/secant-method-matlab-program/
 
 def secant(f, x0, x1, N, verbose=True, plot=False, debug=False):
