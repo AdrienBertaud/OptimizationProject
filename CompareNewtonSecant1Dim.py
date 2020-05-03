@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
-
+import sys
 import numpy as np
-import Newton
-import Secant
 from importlib import reload
-reload(Newton)
-reload(Secant)
-from Newton import newton
-from Secant import secant
+
+sys.path.append("./Methods")
+import Methods.Newton
+import Methods.Secant
+reload(Methods.Newton)
+reload(Methods.Secant)
+from Methods.Newton import newton
+from Methods.Secant import secant
 
 # Function to find its root.
 def f(x):
