@@ -4,11 +4,11 @@ import numpy as np
 from importlib import reload
 
 sys.path.append("./Methods")
-import Methods.Newton
+import Methods.Newton1Dim
 import Methods.Secant
-reload(Methods.Newton)
+reload(Methods.Newton1Dim)
 reload(Methods.Secant)
-from Methods.Newton import newton
+from Methods.Newton1Dim import newton
 from Methods.Secant import secant
 
 # Function to find its root.

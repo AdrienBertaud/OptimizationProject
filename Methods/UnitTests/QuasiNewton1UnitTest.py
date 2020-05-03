@@ -5,12 +5,12 @@ import unittest # https://docs.python.org/3/library/unittest.html
 import sys
 sys.path.append("..") # Adds higher directory to python modules path.
 
-import QuasiNewton
+import QuasiNewton1
 
 from importlib import reload
-reload(QuasiNewton) # Relaod the module, in case it has changed
+reload(QuasiNewton1) # Relaod the module, in case it has changed
 
-from QuasiNewton import quasiNewton_1
+from QuasiNewton1 import quasiNewton_1
 
 # define objective function
 def f(x):
