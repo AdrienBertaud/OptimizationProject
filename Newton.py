@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import matplotlib.pyplot as plt
-import PlotIterations
+
+import sys
+# Adds directories to python modules path.
+sys.path.append("./Utils")
+
+import Utils.PlotIterations
 
 from importlib import reload
-reload(PlotIterations) # Relaod the module, in case it has changed
+reload(Utils.PlotIterations) # Relaod the module, in case it has changed
 
-from PlotIterations import plotIterations
+from Utils.PlotIterations import plotIterations
 
 def newton(f, df, x0, N, verbose=True, plot=False, debug=False):
 

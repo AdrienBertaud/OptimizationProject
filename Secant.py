@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 
-import PlotIterations
+import sys
+# Adds directories to python modules path.
+sys.path.append("./Utils")
+
+import Utils.PlotIterations
 
 from importlib import reload
-reload(PlotIterations) # Relaod the module, in case it has changed
-
-from PlotIterations import plotIterations
+reload(Utils.PlotIterations) # Relaod the module, in case it has changed
 
 # source: https://www.codewithc.com/secant-method-matlab-program/
 
