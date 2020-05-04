@@ -7,19 +7,19 @@ Created on Thu Apr 30 10:41:58 2020
 
 import numpy as np
 
-def Greenstadt(f, df, x0, N, M):
+def Greenstadt(f, df, x0, M, N):
     d = x0.shape[0]
 
     sigma = []
     y = []
     x = []
-    f = []
+    f_ = []
     H = np.eye(d)
     df0 = df(x0)
 
     for i in range(N):
         x.append(x0)
-        f.append(f(x0))
+        f_.append(f(x0))
 
         x1 = x0 - np.dot(H, df0)
         df1 = df(x1)
@@ -34,5 +34,8 @@ def Greenstadt(f, df, x0, N, M):
 
         x0 = x1
         df0 = df1
+
+    x.append(x0)
+    f_.append(f(x0))
 
     return x, f

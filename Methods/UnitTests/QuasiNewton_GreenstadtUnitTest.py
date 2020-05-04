@@ -15,15 +15,15 @@ reload(QuasiNewton_Greenstadt)
 reload(Functions2D)
 
 from QuasiNewton_Greenstadt import Greenstadt
-from Functions2D import f, grad, start
+from Functions2D import f, grad, start, H
 
 class TestNewtonG(unittest.TestCase):
 
-    # def testQuadratic(self):
-    #     result = Greenstadt(f, grad, H, start, N=10,
-    #                                     verbose=True,  debug=True)
-    #     self.assertAlmostEqual(result[0], 0, places=1)
-    #     self.assertAlmostEqual(result[1], 0, places=1)
+    def testQuadratic(self):
+        H0 = H(start)
+        result = Greenstadt(f, grad, start, H0, N=10)
+        self.assertAlmostEqual(result[-1][0], 0, places=1)
+        self.assertAlmostEqual(result[-1][1], 0, places=1)
 
 if __name__ == '__main__':
     unittest.main()

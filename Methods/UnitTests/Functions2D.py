@@ -6,7 +6,7 @@ def f(x):
     x1 = x[0]
     x2 = x[1]
     f = x1**2 - 2.0 * x1 * x2 + 4 * x2**2
-    return f
+    return array(f)
 
 # define objective gradient
 def grad(x):
@@ -21,12 +21,9 @@ def grad(x):
 def H(x):
     return [[2.0, -2.0],[-2.0, 8.0]]
 
-# Start location
-start = [-3.0, 2.0]
-
 # Non invertible hessian
 def HNonInv(x):
     return [[0.0, 0.0],[-2.0, 0.0]]
 
 # Start location
-start = [-3.0, 2.0]
+start = array([-3.0, 2.0])
