@@ -38,4 +38,4 @@ def Greenstadt(f, df, x0, M, N):
     x.append(x0)
     f_.append(f(x0))
 
-    return x, f
+    return x, f_
