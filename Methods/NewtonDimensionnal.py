@@ -7,29 +7,29 @@ Created on Sun Apr 26 11:23:23 2020
 
 import numpy.linalg as linalg
 
-def newtond(f, df, d2f, x0, N, verbose=True, debug=False):
+def newtond(f, df, d2f, X, N, verbose=True, debug=False):
 
     if verbose:
         print("*** Newton-Raphson method for optimization***")
 
     for i in range(N):
 
-        gradient = df(x0)
-        hessian = d2f(x0)
+        gradient = df(X)
+        hessian = d2f(X)
         d = gradient.shape[0]
 
         if linalg.matrix_rank(hessian) < d:
             print("Error in newton : hessian is not invertible. Stopping at the actual value.")
             break;
 
-        deltax = linalg.solve(hessian, gradient)
+        deltax = linalg.solve(hessian, gradient)#TODO: shouldn't we inverse hessian?
 
-        x0 = x0 - deltax
+        X = X - deltax
 
         if verbose:
-            print("Root = ", x0)
+            print("Root = ", X)
 
         if debug:
             print("Error = ", linalg.norm(gradient))
 
-    return x0
+    return X

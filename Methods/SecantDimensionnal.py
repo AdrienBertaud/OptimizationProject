@@ -5,37 +5,45 @@ Created on Sun Apr 26 12:02:22 2020
 @author: yanis
 """
 
-import PlotIterations
-
-from importlib import reload
-reload(PlotIterations) # Relaod the module, in case it has changed
-
-from PlotIterations import plotIterations
-
-
 import numpy as np
 import numpy.linalg as linalg
 
-def secantd(f, df, x0, x1, N, verbose=True, plot=False, debug=False):
-    
+def secantD(f, grad, x0, x1, N, verbose=True, debug=False):
+
     if verbose:
-        print("*** Secant method ***")
+        print("*** Secant method in multiple dimensions***")
 
-    x = []
-    y = []
+    x2 = x0
 
-    if plot:
-        x.append(x0)
-        y.append(f(x0))
-        x.append(x1)
-        y.append(f(x1))
+    for i in range(N):
 
-    x2 = x1
-    
-    for n in range(N):
-        
-        if debug:
-            print("x0 = ", x0)
-            print("x1 = ", x1)
-        
-        
+        grad1 = grad(x1)
+
+        d = grad1.shape[0]
+
+
+
+
+        H = np.empty([d,d])
+
+        H[0:] = grad1 - grad(x0)
+
+        Denom = np.empty([d,d])
+
+        Denom[:0] = x1 - x0
+
+        np.divide(H,Denom.T)
+
+        if linalg.matrix_rank(H) < d:
+            print("Error: hessian is not invertible. Stopping at the actual value.")
+            break;
+
+        HInv = linalg.inv(H)
+
+        x2 = x1 - HInv.T.dot(grad1)#TODO: is transpose right?
+
+    if verbose:
+        print("Root = ", x2)
+
+    return x0
+
