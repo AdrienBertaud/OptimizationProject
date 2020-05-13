@@ -16,11 +16,12 @@ reload(Functions2D)
 
 from SecantDimensionnal import secantD
 from Functions2D import f, grad, start
+from numpy import array
 
 class TestSecantD(unittest.TestCase):
 
     def testQuadratic(self):
-        result = secantD(f, grad, start, -start, N=10,
+        result = secantD(f, grad, start, array([-2.0, 1.0]), N=10,
                                         verbose=True,  debug=True)
         self.assertAlmostEqual(result[0], 0, places=1)
         self.assertAlmostEqual(result[1], 0, places=1)

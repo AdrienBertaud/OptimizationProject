@@ -6,36 +6,100 @@ Created on Thu Apr 30 10:41:58 2020
 """
 
 import numpy as np
+import numpy.linalg as linalg
 
-def Greenstadt(f, df, x0, M, N):
+def Greenstadt(f, df, x0, H0, M, N, verbose=True, debug=False):
+
+    """
+    Greenstadt method with parameter M
+    TODO: how to define parameter M? Is it different at any step?
+
+    f: function from R^d to R
+    df: gradient of f
+    x0: starting point
+    M: a symmetric and invertible matrix used as a parameter, that can be hessian at x0
+    N: number of iteration
+    """
+
+    # intialize H
+    H = H0 # TODO: how to initialize H?
+
+    # compute x1
+    x1 = x0 - np.dot(H, df(x0))
+
+    if verbose:
+        print("x0 = ", x0)
+        print("x1 = ", x1)
+
+    # create a list to store points
+    xList = []
+    xList.append(x0)
+    xList.append(x1)
+
+    # get the number of dimensions
     d = x0.shape[0]
 
-    sigma = []
-    y = []
-    x = []
-    f_ = []
-    H = np.eye(d)
-    df0 = df(x0)
+    # ensure that M is symmetric and invertible
+    if linalg.matrix_rank(M) < d:
+        print("Error: M is not invertible. Stopping at the actual value.")
+        return x1, xList
+
+    tolerance = 1e-05
+    if not np.all(np.abs(M-M.T) < tolerance):
+        print("Error: M is not symmetric.")
+        return x1, xList
 
     for i in range(N):
-        x.append(x0)
-        f_.append(f(x0))
 
-        x1 = x0 - np.dot(H, df0)
+        # initialize values
+        s = x1 - x0
+        df0 = df(x0)
         df1 = df(x1)
-        sigma.append(x1 - x0)
-        y.append(df1 - df0)
+        y = df1 - df0
 
-        st = sigma[-1]
-        yt = y[-1]
+        # E = yTHy
+        E = np.dot(np.dot(y.T, H), y)
 
-        Et = 1/(np.dot(np.dot(yt.T, M), yt))*(np.dot(np.dot(st, yt.T), M) + np.dot(np.dot(M, yt), st.T) - np.dot(np.dot(H, yt), np.dot(yt.T, M)) - np.dot(np.dot(M, yt), np.dot(yt.T, H)) - 1/(np.dot(np.dot(yt.T, M), yt)) * (np.dot(yt.T, st) - np.dot(np.dot(yt.T, H), yt)) * np.dot(np.dot(M, yt), np.dot(yt.T, M)))
-        H = H + Et
+        # E = yTHy - yTs
+        E -= (np.dot(y.T, s))
 
+        # E = (yTHy - yTs) MyyTM
+        E *= np.dot(np.dot(M, y), np.dot(y.T, M))
+
+        # E = - 1/(yTMy) (yTs - yTHy) MyyTM
+        E /= - np.dot(np.dot(y.T, M), y)
+
+        # E = sytM - 1/(yTMy) (yTs - yTHy) MyyTM
+        E += np.dot(np.dot(s, y.T), M)
+
+        # E = sytM + MysT - 1/(yTMy) (yTs - yTHy) MyyTM
+        E += np.dot(np.dot(M, y), s.T)
+
+        # E = sytM + MysT - HyyTM - 1/(yTMy) (yTs - yTHy) MyyTM
+        E -= np.dot(np.dot(H, y), np.dot(y.T, M))
+
+        # E = sytM + MysT - HyyTM - MyyTH - 1/(yTMy) (yTs - yTHy) MyyTM
+        E -= np.dot(np.dot(M, y), np.dot(y.T, H))
+
+        # E = 1/ytMy [sytM + MysT - HyyTM - MyyTH - 1/(yTMy) (yTs - yTHy) MyyTM]
+        E /= np.dot(np.dot(y.T, M), y)
+
+        # update estimation of hessian
+        H = H + E
+        if debug:
+            print("E = ", E)
+            print("H = ", H)
+
+        # compute next point
+        x2 = x1 - np.dot(H, df1)
+
+        # update values for next iteration
         x0 = x1
-        df0 = df1
+        x1 = x2
 
-    x.append(x0)
-    f_.append(f(x0))
+        if verbose:
+            print("x = ", x2)
 
-    return x, f_
+        xList.append(x1)
+
+    return x2, xList
