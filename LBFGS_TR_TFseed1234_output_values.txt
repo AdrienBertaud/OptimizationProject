@@ -1,0 +1,21 @@
+defaultNumOfIter = 3
+tf.compat.v1.set_random_seed(1234)
+
+------------------------------------------------------------
+iteration: 0
+LOSS     - train: 2.3690, validation: 2.3634, test: 2.3664
+ACCURACY - train: 0.0994, validation: 0.1035, test: 0.1000
+norm of g = 0.9761
+Backtracking line search satisfied for alpha = 0.5905
+initial gamma = 4.0459
+weights are updated
+------------------------------------------------------------
+iteration: 0
+LOSS     - train: 2.3376, validation: 2.3420, test: 2.3378
+ACCURACY - train: 0.1119, validation: 0.1090, test: 0.1135
+norm of g = 1.0717
+gamma = 8.0531
+weights are updated
+------------------------------------------------------------
+iteration: 1
+Traceback (most recent call last):

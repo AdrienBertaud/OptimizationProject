@@ -25,8 +25,11 @@ ops.reset_default_graph()
 import argparse
 parser = argparse.ArgumentParser()
 
+tf.compat.v1.set_random_seed(1234)
+#tf.random.set_seed(1234)#tf v2
+
 #defaultNumOfIter = 200
-defaultNumOfIter = 1
+defaultNumOfIter = 3
 
 parser.add_argument('--storage', '-m', default=10, help='The Memory Storage')
 parser.add_argument('--mini_batch','-minibatch', default=1000,help='minibatch size')
