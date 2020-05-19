@@ -1,21 +1,999 @@
-defaultNumOfIter = 3
-tf.compat.v1.set_random_seed(1234)
+-----------------------------------------------------------
+iteration: 33
+LOSS     - train: 0.3283, validation: 0.3169, test: 0.3126
+ACCURACY - train: 0.9013, validation: 0.9053, test: 0.9026
+norm of g = 0.4421
+gamma = 17.3749
+weights are updated
+------------------------------------------------------------
+iteration: 34
+LOSS     - train: 0.3172, validation: 0.3087, test: 0.3047
+ACCURACY - train: 0.9042, validation: 0.9077, test: 0.9060
+norm of g = 0.5841
+gamma = 16.0403
+weights are updated
+------------------------------------------------------------
+iteration: 35
+LOSS     - train: 0.3023, validation: 0.2912, test: 0.2880
+ACCURACY - train: 0.9119, validation: 0.9157, test: 0.9136
+norm of g = 0.7612
+gamma = 20.9180
+weights are updated
+------------------------------------------------------------
+iteration: 36
+LOSS     - train: 0.2887, validation: 0.2761, test: 0.2678
+ACCURACY - train: 0.9145, validation: 0.9192, test: 0.9211
+norm of g = 0.7809
+gamma = 32.9508
+weights are updated
+------------------------------------------------------------
+iteration: 37
+LOSS     - train: 0.2635, validation: 0.2597, test: 0.2484
+ACCURACY - train: 0.9200, validation: 0.9258, test: 0.9261
+norm of g = 0.4389
+gamma = 22.5986
+weights are updated
+------------------------------------------------------------
+iteration: 38
+LOSS     - train: 0.2584, validation: 0.2523, test: 0.2384
+ACCURACY - train: 0.9226, validation: 0.9268, test: 0.9273
+norm of g = 0.4999
+gamma = 28.9399
+weights are updated
+------------------------------------------------------------
+iteration: 39
+LOSS     - train: 0.2557, validation: 0.2493, test: 0.2322
+ACCURACY - train: 0.9237, validation: 0.9285, test: 0.9297
+norm of g = 0.4904
+gamma = 28.0818
+weights are updated
+------------------------------------------------------------
+iteration: 40
+LOSS     - train: 0.2492, validation: 0.2444, test: 0.2291
+ACCURACY - train: 0.9272, validation: 0.9292, test: 0.9313
+norm of g = 0.3150
+gamma = 20.5848
+weights are updated
+------------------------------------------------------------
+iteration: 41
+LOSS     - train: 0.2420, validation: 0.2372, test: 0.2252
+ACCURACY - train: 0.9260, validation: 0.9312, test: 0.9316
+norm of g = 0.3146
+gamma = 11.5056
+weights are updated
+------------------------------------------------------------
+iteration: 42
+LOSS     - train: 0.2270, validation: 0.2269, test: 0.2165
+ACCURACY - train: 0.9299, validation: 0.9348, test: 0.9345
+norm of g = 0.4946
+gamma = 16.1646
+weights are updated
+------------------------------------------------------------
+iteration: 43
+LOSS     - train: 0.2122, validation: 0.2099, test: 0.2001
+ACCURACY - train: 0.9353, validation: 0.9397, test: 0.9386
+norm of g = 0.5918
+gamma = 30.1444
+weights are updated
+------------------------------------------------------------
+iteration: 44
+LOSS     - train: 0.2023, validation: 0.1999, test: 0.1883
+ACCURACY - train: 0.9390, validation: 0.9442, test: 0.9423
+norm of g = 0.6238
+gamma = 36.0771
+weights are updated
+------------------------------------------------------------
+iteration: 45
+LOSS     - train: 0.1937, validation: 0.1914, test: 0.1790
+ACCURACY - train: 0.9415, validation: 0.9452, test: 0.9463
+norm of g = 0.4110
+gamma = 27.5576
+weights are updated
+------------------------------------------------------------
+iteration: 46
+LOSS     - train: 0.1940, validation: 0.1874, test: 0.1746
+ACCURACY - train: 0.9408, validation: 0.9465, test: 0.9468
+norm of g = 0.2466
+gamma = 11.8849
+weights are updated
+------------------------------------------------------------
+iteration: 47
+LOSS     - train: 0.1845, validation: 0.1823, test: 0.1684
+ACCURACY - train: 0.9426, validation: 0.9485, test: 0.9480
+norm of g = 0.3588
+gamma = 23.6705
+weights are updated
+------------------------------------------------------------
+iteration: 48
+LOSS     - train: 0.1800, validation: 0.1778, test: 0.1599
+ACCURACY - train: 0.9468, validation: 0.9503, test: 0.9527
+norm of g = 0.5570
+gamma = 29.2973
+weights are updated
+------------------------------------------------------------
+iteration: 49
+LOSS     - train: 0.1711, validation: 0.1696, test: 0.1517
+ACCURACY - train: 0.9491, validation: 0.9512, test: 0.9553
+norm of g = 0.2916
+gamma = 10.3725
+weights are updated
+------------------------------------------------------------
+iteration: 50
+LOSS     - train: 0.1629, validation: 0.1648, test: 0.1483
+ACCURACY - train: 0.9520, validation: 0.9522, test: 0.9569
+norm of g = 0.2490
+gamma = 11.3384
+weights are updated
+------------------------------------------------------------
+iteration: 51
+LOSS     - train: 0.1617, validation: 0.1595, test: 0.1445
+ACCURACY - train: 0.9525, validation: 0.9547, test: 0.9587
+norm of g = 0.3376
+gamma = 22.5898
+weights are updated
+------------------------------------------------------------
+iteration: 52
+LOSS     - train: 0.1542, validation: 0.1535, test: 0.1396
+ACCURACY - train: 0.9550, validation: 0.9573, test: 0.9598
+norm of g = 0.3589
+gamma = 21.9019
+weights are updated
+------------------------------------------------------------
+iteration: 53
+LOSS     - train: 0.1508, validation: 0.1498, test: 0.1343
+ACCURACY - train: 0.9546, validation: 0.9587, test: 0.9622
+norm of g = 0.2397
+gamma = 16.2867
+weights are updated
+------------------------------------------------------------
+iteration: 54
+LOSS     - train: 0.1431, validation: 0.1455, test: 0.1284
+ACCURACY - train: 0.9579, validation: 0.9613, test: 0.9639
+norm of g = 0.3097
+gamma = 14.2254
+weights are updated
+------------------------------------------------------------
+iteration: 55
+LOSS     - train: 0.1365, validation: 0.1412, test: 0.1244
+ACCURACY - train: 0.9617, validation: 0.9633, test: 0.9648
+norm of g = 0.4047
+gamma = 13.1379
+weights are updated
+------------------------------------------------------------
+iteration: 56
+LOSS     - train: 0.1371, validation: 0.1358, test: 0.1199
+ACCURACY - train: 0.9594, validation: 0.9617, test: 0.9647
+norm of g = 0.3609
+gamma = 27.3677
+weights are updated
+------------------------------------------------------------
+iteration: 57
+LOSS     - train: 0.1312, validation: 0.1326, test: 0.1155
+ACCURACY - train: 0.9603, validation: 0.9640, test: 0.9646
+norm of g = 0.2356
+gamma = 13.6092
+weights are updated
+------------------------------------------------------------
+iteration: 58
+LOSS     - train: 0.1270, validation: 0.1297, test: 0.1119
+ACCURACY - train: 0.9615, validation: 0.9660, test: 0.9658
+norm of g = 0.2890
+gamma = 13.7315
+weights are updated
+------------------------------------------------------------
+iteration: 59
+LOSS     - train: 0.1207, validation: 0.1281, test: 0.1096
+ACCURACY - train: 0.9643, validation: 0.9672, test: 0.9668
+norm of g = 0.2742
+gamma = 20.1439
+weights are updated
+------------------------------------------------------------
+iteration: 60
+LOSS     - train: 0.1175, validation: 0.1244, test: 0.1072
+ACCURACY - train: 0.9646, validation: 0.9682, test: 0.9675
+norm of g = 0.2711
+gamma = 23.1273
+weights are updated
+------------------------------------------------------------
+iteration: 61
+LOSS     - train: 0.1211, validation: 0.1220, test: 0.1059
+ACCURACY - train: 0.9642, validation: 0.9668, test: 0.9685
+norm of g = 0.2007
+gamma = 4.0568
+weights are updated
+------------------------------------------------------------
+iteration: 62
+LOSS     - train: 0.1186, validation: 0.1199, test: 0.1036
+ACCURACY - train: 0.9640, validation: 0.9673, test: 0.9691
+norm of g = 0.2694
+gamma = 19.6221
+weights are updated
+------------------------------------------------------------
+iteration: 63
+LOSS     - train: 0.1152, validation: 0.1178, test: 0.1040
+ACCURACY - train: 0.9656, validation: 0.9690, test: 0.9687
+norm of g = 0.6561
+gamma = 37.7819
+weights are updated
+------------------------------------------------------------
+iteration: 64
+LOSS     - train: 0.1080, validation: 0.1138, test: 0.0981
+ACCURACY - train: 0.9678, validation: 0.9690, test: 0.9710
+norm of g = 0.2005
+gamma = 8.9984
+weights are updated
+------------------------------------------------------------
+iteration: 65
+LOSS     - train: 0.1066, validation: 0.1123, test: 0.0969
+ACCURACY - train: 0.9684, validation: 0.9695, test: 0.9717
+norm of g = 0.2137
+gamma = 13.9425
+weights are updated
+------------------------------------------------------------
+iteration: 66
+LOSS     - train: 0.1069, validation: 0.1089, test: 0.0944
+ACCURACY - train: 0.9691, validation: 0.9685, test: 0.9712
+norm of g = 0.1962
+gamma = 14.2214
+weights are updated
+------------------------------------------------------------
+iteration: 67
+LOSS     - train: 0.1043, validation: 0.1074, test: 0.0924
+ACCURACY - train: 0.9690, validation: 0.9698, test: 0.9725
+norm of g = 0.2730
+gamma = 13.5022
+weights are updated
+------------------------------------------------------------
+iteration: 68
+LOSS     - train: 0.0988, validation: 0.1043, test: 0.0898
+ACCURACY - train: 0.9700, validation: 0.9708, test: 0.9720
+norm of g = 0.1787
+gamma = 14.4425
+weights are updated
+------------------------------------------------------------
+iteration: 69
+LOSS     - train: 0.0952, validation: 0.1041, test: 0.0883
+ACCURACY - train: 0.9710, validation: 0.9708, test: 0.9724
+norm of g = 0.1865
+gamma = 14.3031
+weights are updated
+------------------------------------------------------------
+iteration: 70
+LOSS     - train: 0.0948, validation: 0.1029, test: 0.0871
+ACCURACY - train: 0.9707, validation: 0.9720, test: 0.9727
+norm of g = 0.2681
+gamma = 15.4400
+weights are updated
+------------------------------------------------------------
+iteration: 71
+LOSS     - train: 0.0949, validation: 0.0991, test: 0.0847
+ACCURACY - train: 0.9716, validation: 0.9715, test: 0.9732
+norm of g = 0.2231
+gamma = 14.6039
+weights are updated
+------------------------------------------------------------
+iteration: 72
+LOSS     - train: 0.0932, validation: 0.0970, test: 0.0824
+ACCURACY - train: 0.9712, validation: 0.9722, test: 0.9741
+norm of g = 0.2190
+gamma = 16.4061
+weights are updated
+------------------------------------------------------------
+iteration: 73
+LOSS     - train: 0.0911, validation: 0.0963, test: 0.0806
+ACCURACY - train: 0.9723, validation: 0.9723, test: 0.9753
+norm of g = 0.1530
+gamma = 25.7205
+weights are updated
+------------------------------------------------------------
+iteration: 74
+LOSS     - train: 0.0887, validation: 0.0967, test: 0.0801
+ACCURACY - train: 0.9725, validation: 0.9727, test: 0.9748
+norm of g = 0.1581
+gamma = 6.7618
+weights are updated
+------------------------------------------------------------
+iteration: 75
+LOSS     - train: 0.0884, validation: 0.0963, test: 0.0795
+ACCURACY - train: 0.9732, validation: 0.9730, test: 0.9749
+norm of g = 0.2658
+gamma = 19.8368
+weights are updated
+------------------------------------------------------------
+iteration: 76
+LOSS     - train: 0.0889, validation: 0.0930, test: 0.0798
+ACCURACY - train: 0.9730, validation: 0.9730, test: 0.9740
+norm of g = 0.3973
+gamma = 21.4835
+weights are updated
+------------------------------------------------------------
+iteration: 77
+LOSS     - train: 0.0847, validation: 0.0897, test: 0.0753
+ACCURACY - train: 0.9732, validation: 0.9745, test: 0.9758
+norm of g = 0.2100
+gamma = 7.9319
+weights are updated
+------------------------------------------------------------
+iteration: 78
+LOSS     - train: 0.0797, validation: 0.0868, test: 0.0713
+ACCURACY - train: 0.9760, validation: 0.9750, test: 0.9764
+norm of g = 0.1195
+gamma = 7.7903
+weights are updated
+------------------------------------------------------------
+iteration: 79
+LOSS     - train: 0.0771, validation: 0.0873, test: 0.0706
+ACCURACY - train: 0.9766, validation: 0.9762, test: 0.9773
+norm of g = 0.1790
+gamma = 14.6408
+weights are updated
+------------------------------------------------------------
+iteration: 80
+LOSS     - train: 0.0782, validation: 0.0865, test: 0.0698
+ACCURACY - train: 0.9767, validation: 0.9760, test: 0.9768
+norm of g = 0.2763
+gamma = 22.1654
+weights are updated
+------------------------------------------------------------
+iteration: 81
+LOSS     - train: 0.0796, validation: 0.0847, test: 0.0703
+ACCURACY - train: 0.9758, validation: 0.9762, test: 0.9785
+norm of g = 0.1570
+gamma = 4.3578
+weights are updated
+------------------------------------------------------------
+iteration: 82
+LOSS     - train: 0.0763, validation: 0.0833, test: 0.0687
+ACCURACY - train: 0.9762, validation: 0.9770, test: 0.9775
+norm of g = 0.1618
+gamma = 18.7867
+weights are updated
+------------------------------------------------------------
+iteration: 83
+LOSS     - train: 0.0748, validation: 0.0845, test: 0.0683
+ACCURACY - train: 0.9777, validation: 0.9768, test: 0.9790
+norm of g = 0.4356
+gamma = 24.8703
+weights are updated
+------------------------------------------------------------
+iteration: 84
+LOSS     - train: 0.0724, validation: 0.0837, test: 0.0659
+ACCURACY - train: 0.9783, validation: 0.9765, test: 0.9792
+norm of g = 0.1805
+gamma = 10.3945
+weights are updated
+------------------------------------------------------------
+iteration: 85
+LOSS     - train: 0.0724, validation: 0.0825, test: 0.0648
+ACCURACY - train: 0.9782, validation: 0.9770, test: 0.9794
+norm of g = 0.1522
+gamma = 8.5239
+weights are updated
+------------------------------------------------------------
+iteration: 86
+LOSS     - train: 0.0728, validation: 0.0808, test: 0.0647
+ACCURACY - train: 0.9787, validation: 0.9773, test: 0.9794
+norm of g = 0.1804
+gamma = 11.8082
+weights are updated
+------------------------------------------------------------
+iteration: 87
+LOSS     - train: 0.0685, validation: 0.0800, test: 0.0628
+ACCURACY - train: 0.9782, validation: 0.9782, test: 0.9795
+norm of g = 0.1849
+gamma = 10.0359
+weights are updated
+------------------------------------------------------------
+iteration: 88
+LOSS     - train: 0.0671, validation: 0.0791, test: 0.0614
+ACCURACY - train: 0.9787, validation: 0.9788, test: 0.9801
+norm of g = 0.1602
+gamma = 15.5693
+weights are updated
+------------------------------------------------------------
+iteration: 89
+LOSS     - train: 0.0685, validation: 0.0810, test: 0.0612
+ACCURACY - train: 0.9785, validation: 0.9783, test: 0.9801
+norm of g = 0.1690
+gamma = 8.3607
+weights are updated
+------------------------------------------------------------
+iteration: 90
+LOSS     - train: 0.0678, validation: 0.0800, test: 0.0608
+ACCURACY - train: 0.9790, validation: 0.9782, test: 0.9804
+norm of g = 0.1512
+gamma = 14.2910
+weights are updated
+------------------------------------------------------------
+iteration: 91
+LOSS     - train: 0.0683, validation: 0.0776, test: 0.0617
+ACCURACY - train: 0.9788, validation: 0.9787, test: 0.9800
+norm of g = 0.1802
+gamma = 10.4194
+weights are updated
+------------------------------------------------------------
+iteration: 92
+LOSS     - train: 0.0648, validation: 0.0769, test: 0.0597
+ACCURACY - train: 0.9793, validation: 0.9782, test: 0.9806
+norm of g = 0.1814
+gamma = 15.0995
+weights are updated
+------------------------------------------------------------
+iteration: 93
+LOSS     - train: 0.0638, validation: 0.0771, test: 0.0586
+ACCURACY - train: 0.9797, validation: 0.9788, test: 0.9811
+norm of g = 0.1991
+gamma = 14.8062
+weights are updated
+------------------------------------------------------------
+iteration: 94
+LOSS     - train: 0.0646, validation: 0.0770, test: 0.0578
+ACCURACY - train: 0.9797, validation: 0.9800, test: 0.9813
+norm of g = 0.1632
+gamma = 5.9041
+weights are updated
+------------------------------------------------------------
+iteration: 95
+LOSS     - train: 0.0629, validation: 0.0749, test: 0.0574
+ACCURACY - train: 0.9807, validation: 0.9802, test: 0.9814
+norm of g = 0.1548
+gamma = 21.1135
+weights are updated
+------------------------------------------------------------
+iteration: 96
+LOSS     - train: 0.0653, validation: 0.0726, test: 0.0607
+ACCURACY - train: 0.9798, validation: 0.9802, test: 0.9804
+norm of g = 0.4045
+gamma = 19.1549
+weights are updated
+------------------------------------------------------------
+iteration: 97
+LOSS     - train: 0.0598, validation: 0.0717, test: 0.0565
+ACCURACY - train: 0.9809, validation: 0.9810, test: 0.9814
+norm of g = 0.1625
+gamma = 9.4418
+weights are updated
+------------------------------------------------------------
+iteration: 98
+LOSS     - train: 0.0593, validation: 0.0724, test: 0.0556
+ACCURACY - train: 0.9813, validation: 0.9810, test: 0.9819
+norm of g = 0.0960
+gamma = 6.8885
+weights are updated
+------------------------------------------------------------
+iteration: 99
+LOSS     - train: 0.0603, validation: 0.0722, test: 0.0553
+ACCURACY - train: 0.9814, validation: 0.9812, test: 0.9830
+norm of g = 0.1457
+gamma = 9.7585
+weights are updated
+------------------------------------------------------------
+iteration: 100
+LOSS     - train: 0.0600, validation: 0.0720, test: 0.0564
+ACCURACY - train: 0.9816, validation: 0.9815, test: 0.9821
+norm of g = 0.2352
+gamma = 13.4706
+weights are updated
+------------------------------------------------------------
+iteration: 101
+LOSS     - train: 0.0616, validation: 0.0675, test: 0.0572
+ACCURACY - train: 0.9804, validation: 0.9813, test: 0.9818
+norm of g = 0.2143
+gamma = 5.9006
+weights are updated
+------------------------------------------------------------
+iteration: 102
+LOSS     - train: 0.0559, validation: 0.0676, test: 0.0538
+ACCURACY - train: 0.9824, validation: 0.9812, test: 0.9821
+norm of g = 0.1166
+gamma = 6.4054
+weights are updated
+------------------------------------------------------------
+iteration: 103
+LOSS     - train: 0.0557, validation: 0.0683, test: 0.0535
+ACCURACY - train: 0.9830, validation: 0.9817, test: 0.9837
+norm of g = 0.1499
+gamma = 16.2564
+weights are updated
+------------------------------------------------------------
+iteration: 104
 
-------------------------------------------------------------
-iteration: 0
-LOSS     - train: 2.3690, validation: 2.3634, test: 2.3664
-ACCURACY - train: 0.0994, validation: 0.1035, test: 0.1000
-norm of g = 0.9761
-Backtracking line search satisfied for alpha = 0.5905
-initial gamma = 4.0459
+
+ACCURACY - train: 0.9858, validation: 0.9833, test: 0.9847
+norm of g = 0.1162
+gamma = 8.5682
 weights are updated
 ------------------------------------------------------------
-iteration: 0
-LOSS     - train: 2.3376, validation: 2.3420, test: 2.3378
-ACCURACY - train: 0.1119, validation: 0.1090, test: 0.1135
-norm of g = 1.0717
-gamma = 8.0531
+iteration: 131
+LOSS     - train: 0.0468, validation: 0.0588, test: 0.0486
+ACCURACY - train: 0.9863, validation: 0.9822, test: 0.9849
+norm of g = 0.1592
+gamma = 10.0576
 weights are updated
 ------------------------------------------------------------
-iteration: 1
-Traceback (most recent call last):
+iteration: 132
+LOSS     - train: 0.0445, validation: 0.0610, test: 0.0473
+ACCURACY - train: 0.9864, validation: 0.9820, test: 0.9849
+norm of g = 0.1152
+gamma = 3.9567
+weights are updated
+------------------------------------------------------------
+iteration: 133
+LOSS     - train: 0.0422, validation: 0.0619, test: 0.0486
+ACCURACY - train: 0.9865, validation: 0.9828, test: 0.9856
+norm of g = 0.0843
+shrinking trust region radius
+------------------------------
+No update in this iteration
+------------------------------------------------------------
+iteration: 134
+norm of g = 0.0843
+gamma = 14.0406
+weights are updated
+------------------------------------------------------------
+iteration: 135
+LOSS     - train: 0.0473, validation: 0.0662, test: 0.0510
+ACCURACY - train: 0.9851, validation: 0.9822, test: 0.9843
+norm of g = 0.2528
+gamma = 13.4025
+weights are updated
+------------------------------------------------------------
+iteration: 136
+LOSS     - train: 0.0462, validation: 0.0610, test: 0.0481
+ACCURACY - train: 0.9860, validation: 0.9827, test: 0.9847
+norm of g = 0.1212
+gamma = 3.6545
+weights are updated
+------------------------------------------------------------
+iteration: 137
+LOSS     - train: 0.0441, validation: 0.0584, test: 0.0466
+ACCURACY - train: 0.9872, validation: 0.9837, test: 0.9854
+norm of g = 0.0660
+gamma = 12.1431
+weights are updated
+------------------------------------------------------------
+iteration: 138
+LOSS     - train: 0.0430, validation: 0.0596, test: 0.0461
+ACCURACY - train: 0.9865, validation: 0.9827, test: 0.9851
+norm of g = 0.1831
+gamma = 8.0422
+weights are updated
+------------------------------------------------------------
+iteration: 139
+LOSS     - train: 0.0408, validation: 0.0598, test: 0.0466
+ACCURACY - train: 0.9872, validation: 0.9828, test: 0.9858
+norm of g = 0.0970
+expanding trust region radius
+gamma = 6.8837
+weights are updated
+------------------------------------------------------------
+iteration: 140
+LOSS     - train: 0.0440, validation: 0.0617, test: 0.0483
+ACCURACY - train: 0.9860, validation: 0.9825, test: 0.9852
+norm of g = 0.1351
+gamma = 4.3986
+weights are updated
+------------------------------------------------------------
+iteration: 141
+LOSS     - train: 0.0434, validation: 0.0594, test: 0.0479
+ACCURACY - train: 0.9868, validation: 0.9833, test: 0.9845
+norm of g = 0.1172
+shrinking trust region radius
+------------------------------
+No update in this iteration
+------------------------------------------------------------
+iteration: 142
+norm of g = 0.1172
+gamma = 10.8516
+weights are updated
+------------------------------------------------------------
+iteration: 143
+LOSS     - train: 0.0442, validation: 0.0578, test: 0.0464
+ACCURACY - train: 0.9865, validation: 0.9835, test: 0.9854
+norm of g = 0.1106
+gamma = 8.4599
+weights are updated
+------------------------------------------------------------
+iteration: 144
+LOSS     - train: 0.0425, validation: 0.0574, test: 0.0454
+ACCURACY - train: 0.9865, validation: 0.9835, test: 0.9856
+norm of g = 0.0939
+gamma = 7.7417
+weights are updated
+------------------------------------------------------------
+iteration: 145
+LOSS     - train: 0.0399, validation: 0.0572, test: 0.0452
+ACCURACY - train: 0.9876, validation: 0.9843, test: 0.9859
+norm of g = 0.0932
+expanding trust region radius
+gamma = 10.2989
+weights are updated
+------------------------------------------------------------
+iteration: 146
+LOSS     - train: 0.0409, validation: 0.0575, test: 0.0457
+ACCURACY - train: 0.9871, validation: 0.9842, test: 0.9854
+norm of g = 0.1020
+gamma = 10.3590
+weights are updated
+------------------------------------------------------------
+iteration: 147
+LOSS     - train: 0.0418, validation: 0.0573, test: 0.0455
+ACCURACY - train: 0.9872, validation: 0.9843, test: 0.9853
+norm of g = 0.1000
+gamma = 3.8031
+weights are updated
+------------------------------------------------------------
+iteration: 148
+LOSS     - train: 0.0410, validation: 0.0554, test: 0.0443
+ACCURACY - train: 0.9878, validation: 0.9838, test: 0.9855
+norm of g = 0.0859
+gamma = 16.0385
+weights are updated
+------------------------------------------------------------
+iteration: 149
+LOSS     - train: 0.0410, validation: 0.0586, test: 0.0438
+ACCURACY - train: 0.9871, validation: 0.9837, test: 0.9862
+norm of g = 0.2282
+gamma = 9.6875
+weights are updated
+------------------------------------------------------------
+iteration: 150
+LOSS     - train: 0.0368, validation: 0.0559, test: 0.0428
+ACCURACY - train: 0.9885, validation: 0.9845, test: 0.9868
+norm of g = 0.0962
+gamma = 2.7860
+weights are updated
+------------------------------------------------------------
+iteration: 151
+LOSS     - train: 0.0390, validation: 0.0566, test: 0.0443
+ACCURACY - train: 0.9876, validation: 0.9847, test: 0.9859
+norm of g = 0.0709
+gamma = 10.7413
+weights are updated
+------------------------------------------------------------
+iteration: 152
+LOSS     - train: 0.0407, validation: 0.0570, test: 0.0441
+ACCURACY - train: 0.9877, validation: 0.9840, test: 0.9851
+norm of g = 0.2246
+expanding trust region radius
+gamma = 9.9426
+weights are updated
+------------------------------------------------------------
+iteration: 153
+LOSS     - train: 0.0389, validation: 0.0536, test: 0.0426
+ACCURACY - train: 0.9887, validation: 0.9848, test: 0.9862
+norm of g = 0.1228
+gamma = 4.1064
+weights are updated
+------------------------------------------------------------
+iteration: 154
+LOSS     - train: 0.0367, validation: 0.0549, test: 0.0413
+ACCURACY - train: 0.9886, validation: 0.9847, test: 0.9865
+norm of g = 0.0873
+gamma = 2.6402
+weights are updated
+------------------------------------------------------------
+iteration: 155
+LOSS     - train: 0.0345, validation: 0.0561, test: 0.0435
+ACCURACY - train: 0.9893, validation: 0.9852, test: 0.9858
+norm of g = 0.1001
+shrinking trust region radius
+------------------------------
+No update in this iteration
+------------------------------------------------------------
+iteration: 156
+norm of g = 0.1001
+gamma = 13.8589
+weights are updated
+------------------------------------------------------------
+iteration: 157
+LOSS     - train: 0.0417, validation: 0.0606, test: 0.0455
+ACCURACY - train: 0.9870, validation: 0.9833, test: 0.9837
+norm of g = 0.2846
+expanding trust region radius
+gamma = 14.9574
+weights are updated
+------------------------------------------------------------
+iteration: 158
+LOSS     - train: 0.0411, validation: 0.0553, test: 0.0424
+ACCURACY - train: 0.9880, validation: 0.9845, test: 0.9860
+norm of g = 0.1197
+gamma = 2.6215
+weights are updated
+------------------------------------------------------------
+iteration: 159
+LOSS     - train: 0.0360, validation: 0.0534, test: 0.0406
+ACCURACY - train: 0.9894, validation: 0.9853, test: 0.9868
+norm of g = 0.0715
+shrinking trust region radius
+------------------------------
+No update in this iteration
+------------------------------------------------------------
+iteration: 160
+norm of g = 0.0715
+gamma = 14.2140
+weights are updated
+------------------------------------------------------------
+iteration: 161
+LOSS     - train: 0.0352, validation: 0.0540, test: 0.0416
+ACCURACY - train: 0.9890, validation: 0.9848, test: 0.9864
+norm of g = 0.1805
+gamma = 13.7140
+weights are updated
+------------------------------------------------------------
+iteration: 162
+LOSS     - train: 0.0339, validation: 0.0534, test: 0.0409
+ACCURACY - train: 0.9893, validation: 0.9852, test: 0.9862
+norm of g = 0.0977
+gamma = 9.5833
+weights are updated
+------------------------------------------------------------
+iteration: 163
+LOSS     - train: 0.0366, validation: 0.0540, test: 0.0407
+ACCURACY - train: 0.9884, validation: 0.9843, test: 0.9863
+norm of g = 0.0756
+expanding trust region radius
+gamma = 8.8015
+weights are updated
+------------------------------------------------------------
+iteration: 164
+LOSS     - train: 0.0374, validation: 0.0532, test: 0.0405
+ACCURACY - train: 0.9890, validation: 0.9853, test: 0.9863
+norm of g = 0.1032
+expanding trust region radius
+gamma = 8.5198
+weights are updated
+------------------------------------------------------------
+iteration: 165
+LOSS     - train: 0.0348, validation: 0.0523, test: 0.0400
+ACCURACY - train: 0.9897, validation: 0.9857, test: 0.9864
+norm of g = 0.0699
+gamma = 3.8334
+weights are updated
+------------------------------------------------------------
+iteration: 166
+LOSS     - train: 0.0339, validation: 0.0524, test: 0.0399
+ACCURACY - train: 0.9900, validation: 0.9855, test: 0.9858
+norm of g = 0.1092
+gamma = 7.2370
+weights are updated
+------------------------------------------------------------
+iteration: 167
+LOSS     - train: 0.0320, validation: 0.0541, test: 0.0415
+ACCURACY - train: 0.9903, validation: 0.9843, test: 0.9856
+norm of g = 0.2007
+gamma = 11.3859
+weights are updated
+------------------------------------------------------------
+iteration: 168
+LOSS     - train: 0.0368, validation: 0.0541, test: 0.0425
+ACCURACY - train: 0.9885, validation: 0.9855, test: 0.9857
+norm of g = 0.1297
+gamma = 6.5289
+weights are updated
+------------------------------------------------------------
+iteration: 169
+LOSS     - train: 0.0365, validation: 0.0521, test: 0.0401
+ACCURACY - train: 0.9893, validation: 0.9850, test: 0.9870
+norm of g = 0.0902
+gamma = 3.6723
+weights are updated
+------------------------------------------------------------
+iteration: 170
+LOSS     - train: 0.0329, validation: 0.0505, test: 0.0398
+ACCURACY - train: 0.9903, validation: 0.9853, test: 0.9864
+norm of g = 0.1082
+shrinking trust region radius
+------------------------------
+No update in this iteration
+------------------------------------------------------------
+iteration: 171
+norm of g = 0.1082
+shrinking trust region radius
+------------------------------
+No update in this iteration
+------------------------------------------------------------
+iteration: 172
+norm of g = 0.1082
+gamma = 17.7028
+weights are updated
+------------------------------------------------------------
+iteration: 173
+LOSS     - train: 0.0329, validation: 0.0518, test: 0.0392
+ACCURACY - train: 0.9902, validation: 0.9855, test: 0.9865
+norm of g = 0.0968
+gamma = 15.0971
+weights are updated
+------------------------------------------------------------
+iteration: 174
+LOSS     - train: 0.0318, validation: 0.0514, test: 0.0391
+ACCURACY - train: 0.9902, validation: 0.9853, test: 0.9867
+norm of g = 0.0955
+gamma = 12.4051
+weights are updated
+------------------------------------------------------------
+iteration: 175
+LOSS     - train: 0.0333, validation: 0.0514, test: 0.0390
+ACCURACY - train: 0.9894, validation: 0.9853, test: 0.9866
+norm of g = 0.0528
+expanding trust region radius
+gamma = 8.9271
+weights are updated
+------------------------------------------------------------
+iteration: 176
+LOSS     - train: 0.0332, validation: 0.0514, test: 0.0388
+ACCURACY - train: 0.9900, validation: 0.9855, test: 0.9870
+norm of g = 0.0844
+gamma = 11.2846
+weights are updated
+------------------------------------------------------------
+iteration: 177
+LOSS     - train: 0.0323, validation: 0.0509, test: 0.0390
+ACCURACY - train: 0.9903, validation: 0.9850, test: 0.9869
+norm of g = 0.0579
+expanding trust region radius
+gamma = 8.6638
+weights are updated
+------------------------------------------------------------
+iteration: 178
+LOSS     - train: 0.0322, validation: 0.0510, test: 0.0388
+ACCURACY - train: 0.9904, validation: 0.9853, test: 0.9870
+norm of g = 0.0684
+gamma = 6.6236
+weights are updated
+------------------------------------------------------------
+iteration: 179
+LOSS     - train: 0.0305, validation: 0.0508, test: 0.0386
+ACCURACY - train: 0.9905, validation: 0.9850, test: 0.9870
+norm of g = 0.0706
+expanding trust region radius
+gamma = 8.0243
+weights are updated
+------------------------------------------------------------
+iteration: 180
+LOSS     - train: 0.0326, validation: 0.0517, test: 0.0387
+ACCURACY - train: 0.9901, validation: 0.9848, test: 0.9872
+norm of g = 0.0754
+expanding trust region radius
+gamma = 8.5025
+weights are updated
+------------------------------------------------------------
+iteration: 181
+LOSS     - train: 0.0335, validation: 0.0507, test: 0.0390
+ACCURACY - train: 0.9901, validation: 0.9847, test: 0.9873
+norm of g = 0.1309
+gamma = 3.9256
+weights are updated
+------------------------------------------------------------
+iteration: 182
+LOSS     - train: 0.0312, validation: 0.0501, test: 0.0383
+ACCURACY - train: 0.9907, validation: 0.9852, test: 0.9873
+norm of g = 0.0617
+gamma = 9.8966
+weights are updated
+------------------------------------------------------------
+iteration: 183
+LOSS     - train: 0.0325, validation: 0.0499, test: 0.0382
+ACCURACY - train: 0.9899, validation: 0.9867, test: 0.9873
+norm of g = 0.1973
+gamma = 8.0991
+weights are updated
+------------------------------------------------------------
+iteration: 184
+LOSS     - train: 0.0296, validation: 0.0509, test: 0.0381
+ACCURACY - train: 0.9910, validation: 0.9855, test: 0.9868
+norm of g = 0.0891
+gamma = 5.0490
+weights are updated
+------------------------------------------------------------
+iteration: 185
+LOSS     - train: 0.0324, validation: 0.0519, test: 0.0399
+ACCURACY - train: 0.9899, validation: 0.9845, test: 0.9871
+norm of g = 0.0832
+gamma = 2.8382
+weights are updated
+------------------------------------------------------------
+iteration: 186
+LOSS     - train: 0.0321, validation: 0.0501, test: 0.0388
+ACCURACY - train: 0.9907, validation: 0.9852, test: 0.9874
+norm of g = 0.0908
+gamma = 3.5165
+weights are updated
+------------------------------------------------------------
+iteration: 187
+LOSS     - train: 0.0304, validation: 0.0496, test: 0.0379
+ACCURACY - train: 0.9914, validation: 0.9865, test: 0.9876
+norm of g = 0.0889
+gamma = 10.3485
+weights are updated
+------------------------------------------------------------
+iteration: 188
+LOSS     - train: 0.0327, validation: 0.0516, test: 0.0375
+ACCURACY - train: 0.9898, validation: 0.9857, test: 0.9881
+norm of g = 0.1898
+gamma = 5.3048
+weights are updated
+------------------------------------------------------------
+iteration: 189
+LOSS     - train: 0.0295, validation: 0.0497, test: 0.0371
+ACCURACY - train: 0.9907, validation: 0.9862, test: 0.9879
+norm of g = 0.0758
+gamma = 2.6382
+weights are updated
+------------------------------------------------------------
+iteration: 190
+LOSS     - train: 0.0310, validation: 0.0507, test: 0.0391
+ACCURACY - train: 0.9902, validation: 0.9855, test: 0.9874
+norm of g = 0.0661
+gamma = 9.9528
+weights are updated
+------------------------------------------------------------
+iteration: 191
+LOSS     - train: 0.0323, validation: 0.0530, test: 0.0397
+ACCURACY - train: 0.9900, validation: 0.9837, test: 0.9866
+norm of g = 0.2258
+gamma = 10.6203
+weights are updated
+------------------------------------------------------------
+iteration: 192
+LOSS     - train: 0.0304, validation: 0.0490, test: 0.0380
+ACCURACY - train: 0.9909, validation: 0.9862, test: 0.9881
+norm of g = 0.0844
+expanding trust region radius
+gamma = 3.3634
+weights are updated
+------------------------------------------------------------
+iteration: 193
+LOSS     - train: 0.0307, validation: 0.0492, test: 0.0366
+ACCURACY - train: 0.9907, validation: 0.9865, test: 0.9882
+norm of g = 0.0809
+gamma = 4.5157
+weights are updated
+------------------------------------------------------------
+iteration: 194
+LOSS     - train: 0.0296, validation: 0.0497, test: 0.0386
+ACCURACY - train: 0.9907, validation: 0.9863, test: 0.9880
+norm of g = 0.1507
+gamma = 9.0727
+weights are updated
+------------------------------------------------------------
+iteration: 195
+LOSS     - train: 0.0349, validation: 0.0573, test: 0.0424
+ACCURACY - train: 0.9897, validation: 0.9847, test: 0.9858
+norm of g = 0.2315
+gamma = 5.7857
+weights are updated
+------------------------------------------------------------
+iteration: 196
+LOSS     - train: 0.0315, validation: 0.0507, test: 0.0394
+ACCURACY - train: 0.9910, validation: 0.9850, test: 0.9875
+norm of g = 0.1236
+gamma = 7.2220
+weights are updated
+------------------------------------------------------------
+iteration: 197
+LOSS     - train: 0.0314, validation: 0.0542, test: 0.0407
+ACCURACY - train: 0.9901, validation: 0.9852, test: 0.9858
+norm of g = 0.2843
+gamma = 13.2216
+weights are updated
+------------------------------------------------------------
+iteration: 198
+LOSS     - train: 0.0316, validation: 0.0502, test: 0.0370
+ACCURACY - train: 0.9903, validation: 0.9865, test: 0.9883
+norm of g = 0.1783
+gamma = 3.7838
+weights are updated
+------------------------------------------------------------
+iteration: 199
+LOSS     - train: 0.0279, validation: 0.0501, test: 0.0377
+ACCURACY - train: 0.9914, validation: 0.9857, test: 0.9879
+norm of g = 0.0586
+gamma = 2.0014
+weights are updated
+------------------------------------------------------------
+iteration: 200
+LOSS     - train: 0.0307, validation: 0.0529, test: 0.0402
+ACCURACY - train: 0.9902, validation: 0.9850, test: 0.9865
+norm of g = 0.0965
+reached to the max num iteration -- BREAK
