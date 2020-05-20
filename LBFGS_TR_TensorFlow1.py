@@ -36,7 +36,7 @@ parser.add_argument('--storage', '-m', default=10, help='The Memory Storage')
 parser.add_argument('--mini_batch','-minibatch', default=1000,help='minibatch size')
 parser.add_argument('--num_batch_in_data', '-num-batch',default=5,
         							help='number of batches with overlap')
-parser.add_argument('--method', '-method',default='L-BFGS',
+parser.add_argument('--method', '-method',default='L-BFGS-trust-region',
         	help="""Method of optimization ['SGD', 'Newton',L-BFGS','L-BFGS-line-search','L-BFGS-trust-region']""")
 parser.add_argument(
         '--whole_gradient','-use-whole-data', action='store_true',default=False,
@@ -217,7 +217,9 @@ def lenet5_model(x,_w):
 							padding = 'VALID')
 	# Fully connected layer
 	# Reshape conv2 output to fit fully connected layer
+	print("conv2 = ", conv2)
 	fc = tf.contrib.layers.flatten(conv2)
+	print("fc = ", fc)
 	fc = tf.nn.relu(tf.matmul(fc, _w['3_w_fc']) + _w['3_b_fc'])
 	# fc = tf.nn.dropout(fc, dropout_rate)
 

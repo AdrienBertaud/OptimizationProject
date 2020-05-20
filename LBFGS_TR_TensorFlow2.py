@@ -6,8 +6,9 @@
 # http://rafati.net
 
 ###############################################################################
-# THIS SCRIPT IS ONLY COMPATIBLE WITH TENSORFLOW 1 (1.13.1 / 1.14.0)
-# AND SHOULD BE MIGRATED TO VERSION 2
+# Ran command :
+# tf_upgrade_v2 --infile LBFGS_TR_TensorFlow1.py --outfile LBFGS_TR_TensorFlow2.py
+# Some modifications must still be done manually. Listed in : "report.txt".
 ###############################################################################
 
 import numpy as np
@@ -36,7 +37,7 @@ parser.add_argument('--storage', '-m', default=10, help='The Memory Storage')
 parser.add_argument('--mini_batch','-minibatch', default=1000,help='minibatch size')
 parser.add_argument('--num_batch_in_data', '-num-batch',default=5,
         							help='number of batches with overlap')
-parser.add_argument('--method', '-method',default='L-BFGS',
+parser.add_argument('--method', '-method',default='L-BFGS-line-search',
         	help="""Method of optimization ['SGD', 'Newton',L-BFGS','L-BFGS-line-search','L-BFGS-trust-region']""")
 parser.add_argument(
         '--whole_gradient','-use-whole-data', action='store_true',default=False,
@@ -187,6 +188,7 @@ w_initializer = tf.compat.v1.keras.initializers.VarianceScaling(scale=1.0, mode=
 
 w_tf = {}
 for key, _ in dim_w.items():
+	# 	WARNING: tf.get_variable requires manual check. tf.get_variable returns ResourceVariables by default in 2.0, which have well-defined semantics and are stricter about shapes. You can disable this behavior by passing use_resource=False, or by calling tf.compat.v1.disable_resource_variables().
 	w_tf[key] = tf.compat.v1.get_variable(key, shape=dim_w[key],
 											initializer=w_initializer)
 
@@ -215,9 +217,19 @@ def lenet5_model(x,_w):
 							ksize = [1, F4, F4, 1],
 							strides = [1, S4, S4, 1],
 							padding = 'VALID')
+
 	# Fully connected layer
 	# Reshape conv2 output to fit fully connected layer
-	fc = tf.contrib.layers.flatten(conv2)
+	# ERROR: Using member tf.contrib.layers.flatten in deprecated module tf.contrib. tf.contrib.layers.flatten cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository such as tensorflow/addons, or fork the required code.
+	#fc = tf.contrib.layers.flatten(conv2)
+	# https://stackoverflow.com/questions/49406654/tf-reshape-vs-tf-contrib-layers-flatten
+	print("conv2 = ", conv2)
+	#fc = tf.reshape(conv2, [tf.shape(conv2)[0], -1])
+	conv2_shape = conv2.get_shape().as_list()
+	print("conv2_shape = ", conv2_shape)
+	fc = tf.reshape(conv2, [-1, conv2_shape[1] * conv2_shape[2] * conv2_shape[3]])
+	print("fc = ", fc)
+
 	fc = tf.nn.relu(tf.matmul(fc, _w['3_w_fc']) + _w['3_b_fc'])
 	# fc = tf.nn.dropout(fc, dropout_rate)
 
@@ -253,6 +265,7 @@ for layer, _ in w_tf.items():
 aux_w = {}
 for layer, _ in w_tf.items():
 	name = layer + 'aux_w_'
+	# tf.get_variable requires manual check. tf.get_variable returns ResourceVariables by default in 2.0, which have well-defined semantics and are stricter about shapes. You can disable this behavior by passing use_resource=False, or by calling tf.compat.v1.disable_resource_variables().
 	aux_w[layer] = tf.compat.v1.get_variable(name=name,
 					shape=w_tf[layer].get_shape(), initializer=w_initializer)
 
