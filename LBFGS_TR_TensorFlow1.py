@@ -5,10 +5,10 @@
 # Electrical Engineering and Computer Science, Univeristy of California, Merced
 # http://rafati.net
 
-#####################################################
-# THIS SCRIPT IS ONLY COMPATIBLE WITH TENSORFLOW 1
+###############################################################################
+# THIS SCRIPT IS ONLY COMPATIBLE WITH TENSORFLOW 1 (1.13.1 / 1.14.0)
 # AND SHOULD BE MIGRATED TO VERSION 2
-################################################☻####
+###############################################################################
 
 import numpy as np
 from numpy.linalg import inv, qr, eig, norm
@@ -16,6 +16,7 @@ from math import isclose, sqrt
 #from tqdm import tqdm
 import time
 import tensorflow as tf# module 'tensorflow' has no attribute 'placeholder'
+print("tensorflow: ", tf.__version__)
 # import tensorflow.compat.v1 as tf
 # tf.disable_v2_behavior()
 #tf.reset_default_graph()# module 'tensorflow' has no attribute 'reset_default_graph'
@@ -35,8 +36,8 @@ parser.add_argument('--storage', '-m', default=10, help='The Memory Storage')
 parser.add_argument('--mini_batch','-minibatch', default=1000,help='minibatch size')
 parser.add_argument('--num_batch_in_data', '-num-batch',default=5,
         							help='number of batches with overlap')
-parser.add_argument('--method', '-method',default='trust-region',
-        	help="""Method of optimization ['line-search','trust-region']""")
+parser.add_argument('--method', '-method',default='L-BFGS',
+        	help="""Method of optimization ['SGD', 'Newton',L-BFGS','L-BFGS-line-search','L-BFGS-trust-region']""")
 parser.add_argument(
         '--whole_gradient','-use-whole-data', action='store_true',default=False,
         help='Compute the gradient using all data')
@@ -751,6 +752,14 @@ def set_multi_batch(num_batch_in_data, iteration):
 
 	return
 
+def SGD(sess,max_num_iter=max_num_iter):
+    return
+
+def newton(sess,max_num_iter=max_num_iter):
+    return
+
+def lbfgs(sess,max_num_iter=max_num_iter):
+    return
 
 def lbfgs_line_search_algorithm(sess,max_num_iter=max_num_iter):
 	tolerance = 1E-5
@@ -806,7 +815,6 @@ def lbfgs_line_search_algorithm(sess,max_num_iter=max_num_iter):
 
 		k += 1
 	return
-
 
 def lbfgs_trust_region_algorithm(sess,max_num_iter=max_num_iter):
 	#--------- LOOP PARAMS ------------
@@ -908,9 +916,15 @@ start = time.time()
 with tf.Session() as sess:
 	sess.run(init)
 
-	if method == 'trust-region':
+	if method == 'SGD':
+		SGD(sess)
+	if method == 'Newton':
+		lbfgs(sess)
+	elif method == 'L-BFGS':
+		lbfgs(sess)
+	elif method == 'L-BFGS-trust-region':
 		lbfgs_trust_region_algorithm(sess)
-	elif method == 'line-search':
+	elif method == 'L-BFGS-line-search':
 		lbfgs_line_search_algorithm(sess)
 	else:
 		print('Error! No proper method is defined')
