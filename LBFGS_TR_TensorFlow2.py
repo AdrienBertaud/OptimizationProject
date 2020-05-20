@@ -19,8 +19,11 @@ import time
 import tensorflow as tf# module 'tensorflow' has no attribute 'placeholder'
 print("tensorflow: ", tf.__version__)
 # import tensorflow.compat.v1 as tf
-# tf.disable_v2_behavior()
+#tf.compat.v1.disable_v2_behavior
 #tf.reset_default_graph()# module 'tensorflow' has no attribute 'reset_default_graph'
+
+tf.compat.v1.disable_eager_execution()#tf.compat.v1.placeholder(tf.float32, [None, n_input]) is not compatible with eager execution
+
 from tensorflow.python.framework import ops
 ops.reset_default_graph()
 
@@ -30,14 +33,14 @@ parser = argparse.ArgumentParser()
 tf.compat.v1.set_random_seed(1234)
 #tf.random.set_seed(1234)#tf v2
 
-#defaultNumOfIter = 200
-defaultNumOfIter = 3
+defaultNumOfIter = 200
+#defaultNumOfIter = 3
 
 parser.add_argument('--storage', '-m', default=10, help='The Memory Storage')
 parser.add_argument('--mini_batch','-minibatch', default=1000,help='minibatch size')
 parser.add_argument('--num_batch_in_data', '-num-batch',default=5,
         							help='number of batches with overlap')
-parser.add_argument('--method', '-method',default='L-BFGS-line-search',
+parser.add_argument('--method', '-method',default='L-BFGS-trust-region',
         	help="""Method of optimization ['SGD', 'Newton',L-BFGS','L-BFGS-line-search','L-BFGS-trust-region']""")
 parser.add_argument(
         '--whole_gradient','-use-whole-data', action='store_true',default=False,

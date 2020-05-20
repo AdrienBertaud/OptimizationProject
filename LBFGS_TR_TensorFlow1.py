@@ -15,7 +15,8 @@ from numpy.linalg import inv, qr, eig, norm
 from math import isclose, sqrt
 #from tqdm import tqdm
 import time
-import tensorflow as tf# module 'tensorflow' has no attribute 'placeholder'
+import tensorflow as tf
+
 print("tensorflow: ", tf.__version__)
 # import tensorflow.compat.v1 as tf
 # tf.disable_v2_behavior()
