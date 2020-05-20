@@ -6,7 +6,7 @@
 # http://rafati.net
 
 ###############################################################################
-# THIS SCRIPT IS ONLY COMPATIBLE WITH TENSORFLOW 1 (1.13.1)
+# THIS SCRIPT IS ONLY COMPATIBLE WITH TENSORFLOW 1 (1.13.1 / 1.14.0)
 # AND SHOULD BE MIGRATED TO VERSION 2
 ###############################################################################
 
@@ -16,8 +16,7 @@ from math import isclose, sqrt
 #from tqdm import tqdm
 import time
 import tensorflow as tf# module 'tensorflow' has no attribute 'placeholder'
-print("Version of Tensorflow: ", tf.__version__)
-
+print("tensorflow: ", tf.__version__)
 # import tensorflow.compat.v1 as tf
 # tf.disable_v2_behavior()
 #tf.reset_default_graph()# module 'tensorflow' has no attribute 'reset_default_graph'
@@ -30,14 +29,14 @@ parser = argparse.ArgumentParser()
 tf.compat.v1.set_random_seed(1234)
 #tf.random.set_seed(1234)#tf v2
 
-defaultNumOfIter = 200
-#defaultNumOfIter = 3
+#defaultNumOfIter = 200
+defaultNumOfIter = 3
 
 parser.add_argument('--storage', '-m', default=10, help='The Memory Storage')
 parser.add_argument('--mini_batch','-minibatch', default=1000,help='minibatch size')
 parser.add_argument('--num_batch_in_data', '-num-batch',default=5,
         							help='number of batches with overlap')
-parser.add_argument('--method', '-method',default='L-BFGS-line-search',
+parser.add_argument('--method', '-method',default='L-BFGS',
         	help="""Method of optimization ['SGD', 'Newton',L-BFGS','L-BFGS-line-search','L-BFGS-trust-region']""")
 parser.add_argument(
         '--whole_gradient','-use-whole-data', action='store_true',default=False,
@@ -175,8 +174,8 @@ for key, value in n_W.items():
 ######################## f(x;w) ###############################################
 ###############################################################################
 # TODO: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
-x = tf.placeholder(tf.float32, [None, n_input])
-y = tf.placeholder(tf.float32, [None, n_classes])
+x = tf.compat.v1.placeholder(tf.float32, [None, n_input])
+y = tf.compat.v1.placeholder(tf.float32, [None, n_classes])
 
 # TODO: The TensorFlow contrib module will not be included in TensorFlow 2.0.
 # For more information, please see:
@@ -184,11 +183,11 @@ y = tf.placeholder(tf.float32, [None, n_classes])
 #   * https://github.com/tensorflow/addons
 #   * https://github.com/tensorflow/io (for I/O related ops)
 # If you depend on functionality not listed there, please file an issue.
-w_initializer = tf.contrib.layers.xavier_initializer()
+w_initializer = tf.compat.v1.keras.initializers.VarianceScaling(scale=1.0, mode="fan_avg", distribution="uniform")
 
 w_tf = {}
 for key, _ in dim_w.items():
-	w_tf[key] = tf.get_variable(key, shape=dim_w[key],
+	w_tf[key] = tf.compat.v1.get_variable(key, shape=dim_w[key],
 											initializer=w_initializer)
 
 def lenet5_model(x,_w):
@@ -196,23 +195,23 @@ def lenet5_model(x,_w):
 	x = tf.reshape(x, shape = input_shape)
 	# LAYER 1 -- Convolution Layer
 	conv1 = tf.nn.relu(tf.nn.conv2d(input = x,
-									filter =_w['1_w_conv'],
+									filters =_w['1_w_conv'],
 									strides = [1,S1,S1,1],
 									padding = 'VALID') + _w['1_b_conv'])
 	# Layer 2 -- max pool
     # TODO: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
-	conv1 = tf.nn.max_pool(	value = conv1,
+	conv1 = tf.nn.max_pool2d(	input = conv1,
 							ksize = [1, F2, F2, 1],
 							strides = [1, S2, S2, 1],
 							padding = 'VALID')
 
 	# LAYER 3 -- Convolution Layer
 	conv2 = tf.nn.relu(tf.nn.conv2d(input = conv1,
-									filter =_w['2_w_conv'],
+									filters =_w['2_w_conv'],
 									strides = [1,S3,S3,1],
 									padding = 'VALID') + _w['2_b_conv'])
 	# Layer 4 -- max pool
-	conv2 = tf.nn.max_pool(	value = conv2 ,
+	conv2 = tf.nn.max_pool2d(	input = conv2 ,
 							ksize = [1, F4, F4, 1],
 							strides = [1, S4, S4, 1],
 							padding = 'VALID')
@@ -236,10 +235,10 @@ y_ = model(x,w_tf)
 # into the labels input on backprop by default.
 # See `tf.nn.softmax_cross_entropy_with_logits_v2`.
 loss = tf.reduce_mean(
-	tf.nn.softmax_cross_entropy_with_logits(labels = y, logits = y_))
+	input_tensor=tf.nn.softmax_cross_entropy_with_logits(labels = tf.stop_gradient( y), logits = y_))
 
-correct_prediction = tf.equal(tf.argmax(y_, 1), tf.argmax(y, 1))
-accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+correct_prediction = tf.equal(tf.argmax(input=y_, axis=1), tf.argmax(input=y, axis=1))
+accuracy = tf.reduce_mean(input_tensor=tf.cast(correct_prediction, tf.float32))
 
 ###############################################################################
 ######################## TF GRADIENTS #########################################
@@ -254,12 +253,12 @@ for layer, _ in w_tf.items():
 aux_w = {}
 for layer, _ in w_tf.items():
 	name = layer + 'aux_w_'
-	aux_w[layer] = tf.get_variable(name=name,
+	aux_w[layer] = tf.compat.v1.get_variable(name=name,
 					shape=w_tf[layer].get_shape(), initializer=w_initializer)
 
 aux_w_placeholder = {}
 for layer, _ in w_tf.items():
-	aux_w_placeholder[layer] = tf.placeholder(dtype="float",
+	aux_w_placeholder[layer] = tf.compat.v1.placeholder(dtype="float",
 										shape=w_tf[layer].get_shape())
 aux_w_init = {}
 for layer, _ in w_tf.items():
@@ -267,7 +266,7 @@ for layer, _ in w_tf.items():
 
 aux_output = model(x,aux_w)
 aux_loss = tf.reduce_mean(
-	tf.nn.softmax_cross_entropy_with_logits(labels = y, logits = aux_output))
+	input_tensor=tf.nn.softmax_cross_entropy_with_logits(labels = tf.stop_gradient( y), logits = aux_output))
 aux_grad_w = {}
 for layer, _ in w_tf.items():
 	aux_grad_w[layer] = tf.gradients(xs=aux_w[layer], ys=aux_loss)
@@ -275,7 +274,7 @@ for layer, _ in w_tf.items():
 update_w = {}
 update_w_placeholder = {}
 for layer, _ in w_tf.items():
-	update_w_placeholder[layer] = tf.placeholder(dtype="float",
+	update_w_placeholder[layer] = tf.compat.v1.placeholder(dtype="float",
 										shape=w_tf[layer].get_shape())
 for layer, _ in w_tf.items():
 	update_w[layer] = w_tf[layer].assign(update_w_placeholder[layer])
@@ -283,9 +282,9 @@ for layer, _ in w_tf.items():
 ###############################################################################
 ###############################################################################
 # TODO: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
-saver = tf.train.Saver()
+saver = tf.compat.v1.train.Saver()
 #TODO: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
-init = tf.global_variables_initializer()
+init = tf.compat.v1.global_variables_initializer()
 ###############################################################################
 ###############################################################################
 
@@ -914,7 +913,7 @@ def lbfgs_trust_region_algorithm(sess,max_num_iter=max_num_iter):
 start = time.time()
 
 #TODO: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
-with tf.Session() as sess:
+with tf.compat.v1.Session() as sess:
 	sess.run(init)
 
 	if method == 'SGD':
