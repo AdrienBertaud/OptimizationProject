@@ -1,0 +1,533 @@
+------------------------------------------------------------
+iteration: 0
+LOSS     - train: 2.3690, validation: 2.3634, test: 2.3664
+ACCURACY - train: 0.0994, validation: 0.1035, test: 0.1000
+norm of g = 0.9761
+WOLFE_COND_1 NOT SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE_COND_1 NOT SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE_COND_1 NOT SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE_COND_1 NOT SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE_COND_1 NOT SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 0.5905
+gamma = 4.0460
+weights are updated
+------------------------------------------------------------
+iteration: 1
+LOSS     - train: 2.3376, validation: 2.3420, test: 2.3378
+ACCURACY - train: 0.1119, validation: 0.1090, test: 0.1135
+norm of g = 1.0717
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 8.5770
+weights are updated
+
+
+LOSS     - train: 0.3603, validation: 0.3526, test: 0.3453
+ACCURACY - train: 0.8909, validation: 0.8903, test: 0.8949
+norm of g = 0.9563
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 47.0120
+weights are updated
+------------------------------------------------------------
+iteration: 35
+LOSS     - train: 0.3397, validation: 0.3313, test: 0.3248
+ACCURACY - train: 0.8968, validation: 0.8985, test: 0.8996
+norm of g = 0.6169
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 15.5647
+weights are updated
+------------------------------------------------------------
+iteration: 36
+LOSS     - train: 0.3285, validation: 0.3169, test: 0.3115
+ACCURACY - train: 0.8997, validation: 0.9055, test: 0.9041
+norm of g = 0.5605
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 14.8115
+weights are updated
+------------------------------------------------------------
+iteration: 37
+LOSS     - train: 0.3090, validation: 0.2988, test: 0.2959
+ACCURACY - train: 0.9065, validation: 0.9115, test: 0.9094
+norm of g = 0.6738
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 53.9787
+weights are updated
+------------------------------------------------------------
+iteration: 38
+LOSS     - train: 0.3016, validation: 0.2869, test: 0.2904
+ACCURACY - train: 0.9067, validation: 0.9130, test: 0.9099
+norm of g = 1.0823
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 69.4739
+weights are updated
+------------------------------------------------------------
+iteration: 39
+LOSS     - train: 0.2948, validation: 0.2802, test: 0.2810
+ACCURACY - train: 0.9103, validation: 0.9170, test: 0.9149
+norm of g = 0.5562
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 42.2636
+weights are updated
+------------------------------------------------------------
+iteration: 40
+LOSS     - train: 0.2843, validation: 0.2736, test: 0.2715
+ACCURACY - train: 0.9124, validation: 0.9197, test: 0.9194
+norm of g = 0.4145
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 18.8181
+weights are updated
+------------------------------------------------------------
+iteration: 41
+LOSS     - train: 0.2771, validation: 0.2666, test: 0.2617
+ACCURACY - train: 0.9159, validation: 0.9238, test: 0.9216
+norm of g = 0.4895
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 7.7409
+weights are updated
+------------------------------------------------------------
+iteration: 42
+LOSS     - train: 0.2627, validation: 0.2560, test: 0.2481
+ACCURACY - train: 0.9232, validation: 0.9260, test: 0.9267
+norm of g = 0.5282
+WOLFE_COND_1 NOT SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE_COND_1 NOT SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 0.8100
+gamma = 33.8690
+weights are updated
+------------------------------------------------------------
+iteration: 43
+LOSS     - train: 0.2581, validation: 0.2520, test: 0.2447
+ACCURACY - train: 0.9203, validation: 0.9247, test: 0.9247
+norm of g = 1.1448
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 41.6562
+weights are updated
+------------------------------------------------------------
+iteration: 44
+LOSS     - train: 0.2455, validation: 0.2375, test: 0.2290
+ACCURACY - train: 0.9231, validation: 0.9312, test: 0.9312
+norm of g = 0.4683
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 24.9435
+weights are updated
+------------------------------------------------------------
+iteration: 45
+LOSS     - train: 0.2348, validation: 0.2289, test: 0.2200
+ACCURACY - train: 0.9262, validation: 0.9320, test: 0.9331
+norm of g = 0.2918
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 18.0740
+weights are updated
+------------------------------------------------------------
+iteration: 46
+LOSS     - train: 0.2292, validation: 0.2212, test: 0.2123
+ACCURACY - train: 0.9284, validation: 0.9347, test: 0.9362
+norm of g = 0.3445
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 20.9648
+weights are updated
+------------------------------------------------------------
+iteration: 47
+LOSS     - train: 0.2191, validation: 0.2122, test: 0.2045
+ACCURACY - train: 0.9324, validation: 0.9360, test: 0.9377
+norm of g = 0.5635
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 32.0847
+weights are updated
+------------------------------------------------------------
+iteration: 48
+LOSS     - train: 0.2106, validation: 0.2053, test: 0.1988
+ACCURACY - train: 0.9369, validation: 0.9373, test: 0.9418
+norm of g = 0.4486
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 42.3930
+weights are updated
+------------------------------------------------------------
+iteration: 49
+LOSS     - train: 0.2114, validation: 0.2015, test: 0.1960
+ACCURACY - train: 0.9357, validation: 0.9393, test: 0.9421
+norm of g = 0.3032
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 27.6068
+weights are updated
+------------------------------------------------------------
+iteration: 50
+LOSS     - train: 0.2041, validation: 0.1963, test: 0.1910
+ACCURACY - train: 0.9380, validation: 0.9423, test: 0.9442
+norm of g = 0.3743
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 22.4004
+weights are updated
+------------------------------------------------------------
+iteration: 51
+LOSS     - train: 0.1984, validation: 0.1898, test: 0.1840
+ACCURACY - train: 0.9402, validation: 0.9450, test: 0.9457
+norm of g = 0.5220
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 14.0553
+weights are updated
+------------------------------------------------------------
+iteration: 52
+LOSS     - train: 0.1876, validation: 0.1824, test: 0.1757
+ACCURACY - train: 0.9445, validation: 0.9480, test: 0.9475
+norm of g = 0.6415
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 24.3049
+weights are updated
+------------------------------------------------------------
+iteration: 53
+LOSS     - train: 0.1800, validation: 0.1763, test: 0.1686
+ACCURACY - train: 0.9460, validation: 0.9490, test: 0.9498
+norm of g = 0.7248
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 44.3990
+weights are updated
+------------------------------------------------------------
+iteration: 54
+LOSS     - train: 0.1788, validation: 0.1710, test: 0.1625
+ACCURACY - train: 0.9460, validation: 0.9508, test: 0.9519
+norm of g = 0.3088
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 30.9620
+weights are updated
+------------------------------------------------------------
+iteration: 55
+LOSS     - train: 0.1748, validation: 0.1689, test: 0.1592
+ACCURACY - train: 0.9470, validation: 0.9518, test: 0.9525
+norm of g = 0.2997
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 24.6803
+weights are updated
+------------------------------------------------------------
+iteration: 56
+LOSS     - train: 0.1737, validation: 0.1666, test: 0.1564
+ACCURACY - train: 0.9470, validation: 0.9515, test: 0.9533
+norm of g = 0.3132
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 22.9714
+weights are updated
+------------------------------------------------------------
+iteration: 57
+LOSS     - train: 0.1638, validation: 0.1624, test: 0.1504
+ACCURACY - train: 0.9513, validation: 0.9522, test: 0.9559
+norm of g = 0.3599
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 11.2554
+weights are updated
+------------------------------------------------------------
+iteration: 58
+LOSS     - train: 0.1579, validation: 0.1579, test: 0.1459
+ACCURACY - train: 0.9536, validation: 0.9522, test: 0.9563
+norm of g = 0.5429
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 28.4002
+weights are updated
+------------------------------------------------------------
+iteration: 59
+LOSS     - train: 0.1582, validation: 0.1553, test: 0.1405
+ACCURACY - train: 0.9538, validation: 0.9550, test: 0.9597
+norm of g = 0.7349
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 45.7062
+weights are updated
+------------------------------------------------------------
+iteration: 60
+LOSS     - train: 0.1508, validation: 0.1477, test: 0.1353
+ACCURACY - train: 0.9548, validation: 0.9592, test: 0.9602
+norm of g = 0.3137
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 29.8325
+weights are updated
+------------------------------------------------------------
+iteration: 61
+LOSS     - train: 0.1496, validation: 0.1454, test: 0.1336
+ACCURACY - train: 0.9545, validation: 0.9602, test: 0.9602
+norm of g = 0.1933
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 22.3207
+weights are updated
+------------------------------------------------------------
+iteration: 62
+LOSS     - train: 0.1443, validation: 0.1447, test: 0.1326
+ACCURACY - train: 0.9578, validation: 0.9605, test: 0.9604
+norm of g = 0.2780
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 13.4938
+weights are updated
+------------------------------------------------------------
+iteration: 63
+LOSS     - train: 0.1408, validation: 0.1430, test: 0.1310
+ACCURACY - train: 0.9582, validation: 0.9612, test: 0.9614
+norm of g = 0.3827
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 14.3664
+weights are updated
+------------------------------------------------------------
+iteration: 64
+LOSS     - train: 0.1398, validation: 0.1383, test: 0.1254
+ACCURACY - train: 0.9568, validation: 0.9628, test: 0.9642
+norm of g = 0.3252
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 9.0248
+weights are updated
+------------------------------------------------------------
+iteration: 65
+LOSS     - train: 0.1313, validation: 0.1330, test: 0.1184
+ACCURACY - train: 0.9606, validation: 0.9638, test: 0.9660
+norm of g = 0.3277
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 20.0108
+weights are updated
+------------------------------------------------------------
+iteration: 66
+LOSS     - train: 0.1263, validation: 0.1317, test: 0.1144
+ACCURACY - train: 0.9618, validation: 0.9625, test: 0.9668
+norm of g = 0.4158
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 39.6701
+weights are updated
+------------------------------------------------------------
+iteration: 67
+LOSS     - train: 0.1211, validation: 0.1286, test: 0.1110
+ACCURACY - train: 0.9638, validation: 0.9647, test: 0.9679
+norm of g = 0.2396
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 13.5354
+weights are updated
+------------------------------------------------------------
+iteration: 68
+LOSS     - train: 0.1209, validation: 0.1257, test: 0.1080
+ACCURACY - train: 0.9648, validation: 0.9653, test: 0.9684
+norm of g = 0.2742
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 16.0882
+weights are updated
+------------------------------------------------------------
+iteration: 69
+LOSS     - train: 0.1216, validation: 0.1211, test: 0.1053
+ACCURACY - train: 0.9639, validation: 0.9643, test: 0.9685
+norm of g = 0.2698
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 5.8470
+weights are updated
+------------------------------------------------------------
+iteration: 70
+LOSS     - train: 0.1154, validation: 0.1180, test: 0.1026
+ACCURACY - train: 0.9648, validation: 0.9658, test: 0.9692
+norm of g = 0.3196
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 14.7454
+weights are updated
+------------------------------------------------------------
+iteration: 71
+LOSS     - train: 0.1082, validation: 0.1156, test: 0.0990
+ACCURACY - train: 0.9667, validation: 0.9668, test: 0.9707
+norm of g = 0.4012
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 31.9567
+weights are updated
+------------------------------------------------------------
+iteration: 72
+LOSS     - train: 0.1070, validation: 0.1149, test: 0.0980
+ACCURACY - train: 0.9672, validation: 0.9667, test: 0.9688
+norm of g = 0.4039
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 29.2648
+weights are updated
+------------------------------------------------------------
+iteration: 73
+LOSS     - train: 0.1054, validation: 0.1124, test: 0.0959
+ACCURACY - train: 0.9696, validation: 0.9678, test: 0.9700
+norm of g = 0.2555
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 29.3269
+weights are updated
+------------------------------------------------------------
+iteration: 74
+LOSS     - train: 0.1065, validation: 0.1105, test: 0.0949
+ACCURACY - train: 0.9687, validation: 0.9682, test: 0.9710
+norm of g = 0.1480
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 9.6271
+weights are updated
+------------------------------------------------------------
+iteration: 75
+LOSS     - train: 0.1021, validation: 0.1097, test: 0.0942
+ACCURACY - train: 0.9683, validation: 0.9690, test: 0.9714
+norm of g = 0.2030
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 18.2560
+weights are updated
+------------------------------------------------------------
+iteration: 76
+LOSS     - train: 0.0990, validation: 0.1061, test: 0.0913
+ACCURACY - train: 0.9689, validation: 0.9705, test: 0.9719
+norm of g = 0.2985
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 4.1963
+weights are updated
+------------------------------------------------------------
+iteration: 77
+LOSS     - train: 0.0965, validation: 0.1032, test: 0.0875
+ACCURACY - train: 0.9706, validation: 0.9707, test: 0.9720
+norm of g = 0.2634
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 11.5247
+weights are updated
+------------------------------------------------------------
+iteration: 78
+LOSS     - train: 0.0920, validation: 0.0989, test: 0.0831
+ACCURACY - train: 0.9722, validation: 0.9733, test: 0.9755
+norm of g = 0.4456
+WOLFE_COND_1 SATISFIED
+WOLFE_COND_2 SATISFIED
+WOLFE CONDITIONS SATISFIED
+alpha = 1.0000
+gamma = 19.1258
+weights are updated
+------------------------------------------------------------
+iteration: 79
