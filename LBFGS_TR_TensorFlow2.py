@@ -1,26 +1,12 @@
 # source: https://rafati.net/lbfgs-tr/
-# Related to publication 1909.01994
-# Quasi-Newton Optimization Methods For Deep Learning Applications
-# Jacob Rafati
-# Electrical Engineering and Computer Science, Univeristy of California, Merced
-# http://rafati.net
-
-###############################################################################
-# Ran command :
-# tf_upgrade_v2 --infile LBFGS_TR_TensorFlow1.py --outfile LBFGS_TR_TensorFlow2.py
-# Some modifications must still be done manually. Listed in : "report.txt".
-###############################################################################
+# converted from Tensorflow 1 to Tensorflow2
 
 import numpy as np
 from numpy.linalg import inv, qr, eig, norm
 from math import isclose, sqrt
-#from tqdm import tqdm
 import time
-import tensorflow as tf# module 'tensorflow' has no attribute 'placeholder'
+import tensorflow as tf
 print("tensorflow: ", tf.__version__)
-# import tensorflow.compat.v1 as tf
-#tf.compat.v1.disable_v2_behavior
-#tf.reset_default_graph()# module 'tensorflow' has no attribute 'reset_default_graph'
 
 tf.compat.v1.disable_eager_execution()#tf.compat.v1.placeholder(tf.float32, [None, n_input]) is not compatible with eager execution
 
@@ -40,7 +26,7 @@ parser.add_argument('--storage', '-m', default=10, help='The Memory Storage')
 parser.add_argument('--mini_batch','-minibatch', default=1000,help='minibatch size')
 parser.add_argument('--num_batch_in_data', '-num-batch',default=5,
         							help='number of batches with overlap')
-parser.add_argument('--method', '-method',default='L-BFGS-trust-region',
+parser.add_argument('--method', '-method',default='L-BFGS-line-search',
         	help="""Method of optimization ['SGD', 'Newton',L-BFGS','L-BFGS-line-search','L-BFGS-trust-region']""")
 parser.add_argument(
         '--whole_gradient','-use-whole-data', action='store_true',default=False,
@@ -154,7 +140,6 @@ H4 = (H3 - F4) // S4 + 1
 layer4_ksize = [1,F4,F4,1]
 layer4_strides = [1,S4,S4,1]
 
-
 # Layer 5 -- fully connected
 n_in_fc = W4 * H4 * D4
 n_hidden = 500
@@ -170,23 +155,15 @@ n_W['4_b_fc'] = n_classes
 dim_w['4_w_fc'] = [n_hidden,n_classes]
 dim_w['4_b_fc'] = [n_classes]
 
-
 for key, value in n_W.items():
 	n_W[key] = int(value)
 
 ###############################################################################
 ######################## f(x;w) ###############################################
 ###############################################################################
-# TODO: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
 x = tf.compat.v1.placeholder(tf.float32, [None, n_input])
 y = tf.compat.v1.placeholder(tf.float32, [None, n_classes])
 
-# TODO: The TensorFlow contrib module will not be included in TensorFlow 2.0.
-# For more information, please see:
-#   * https://github.com/tensorflow/community/blob/master/rfcs/20180907-contrib-sunset.md
-#   * https://github.com/tensorflow/addons
-#   * https://github.com/tensorflow/io (for I/O related ops)
-# If you depend on functionality not listed there, please file an issue.
 w_initializer = tf.compat.v1.keras.initializers.VarianceScaling(scale=1.0, mode="fan_avg", distribution="uniform")
 
 w_tf = {}
@@ -204,7 +181,6 @@ def lenet5_model(x,_w):
 									strides = [1,S1,S1,1],
 									padding = 'VALID') + _w['1_b_conv'])
 	# Layer 2 -- max pool
-    # TODO: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
 	conv1 = tf.nn.max_pool2d(	input = conv1,
 							ksize = [1, F2, F2, 1],
 							strides = [1, S2, S2, 1],
@@ -223,16 +199,8 @@ def lenet5_model(x,_w):
 
 	# Fully connected layer
 	# Reshape conv2 output to fit fully connected layer
-	# ERROR: Using member tf.contrib.layers.flatten in deprecated module tf.contrib. tf.contrib.layers.flatten cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository such as tensorflow/addons, or fork the required code.
-	#fc = tf.contrib.layers.flatten(conv2)
-	# https://stackoverflow.com/questions/49406654/tf-reshape-vs-tf-contrib-layers-flatten
-	print("conv2 = ", conv2)
-	#fc = tf.reshape(conv2, [tf.shape(conv2)[0], -1])
 	conv2_shape = conv2.get_shape().as_list()
-	print("conv2_shape = ", conv2_shape)
 	fc = tf.reshape(conv2, [-1, conv2_shape[1] * conv2_shape[2] * conv2_shape[3]])
-	print("fc = ", fc)
-
 	fc = tf.nn.relu(tf.matmul(fc, _w['3_w_fc']) + _w['3_b_fc'])
 	# fc = tf.nn.dropout(fc, dropout_rate)
 
@@ -297,9 +265,7 @@ for layer, _ in w_tf.items():
 
 ###############################################################################
 ###############################################################################
-# TODO: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
 saver = tf.compat.v1.train.Saver()
-#TODO: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
 init = tf.compat.v1.global_variables_initializer()
 ###############################################################################
 ###############################################################################
@@ -347,7 +313,6 @@ def phi_bar_prime_func(sigma):
 	phi_bar_prime = u ** (-3/2) * u_prime
 
 	return phi_bar_prime
-
 
 def solve_newton_equation_to_find_sigma(delta):
 	# tolerance
@@ -416,7 +381,6 @@ def lbfgs_line_search_subproblem_solver(sess, g):
 
 	return alpha * p
 
-
 def satisfy_wolfe_condition(sess, p):
 	alpha = 1
 	rho_ls = 0.9
@@ -453,7 +417,6 @@ def satisfy_wolfe_condition(sess, p):
 			break
 		alpha = alpha * rho_ls
 	return alpha
-
 
 def lbfgs_trust_region_subproblem_solver(delta, g):
 	# size of w = g.size
@@ -567,7 +530,6 @@ def update_S_Y(new_s_val,new_y_val):
 	Y = Ytmp
 	return
 
-
 def dict_of_weight_matrices_to_single_linear_vec(x_dict):
 	x_vec = np.array([])
 	for key in sorted(w_tf.keys()):
@@ -650,12 +612,10 @@ def eval_accuracy_test(sess):
 	accuracy_val = compute_multibatch_tensor(sess,accuracy, X_test, y_test)
 	return accuracy_val
 
-
 def eval_accuracy_validation(sess):
 	accuracy_val = compute_multibatch_tensor(sess,accuracy,
 													X_validation,y_validation)
 	return accuracy_val
-
 
 def eval_w_dict(sess):
 	w_dict = sess.run(w_tf)
@@ -703,7 +663,6 @@ def eval_aux_gradient_vec(sess):
 ###############################################################################
 ######################## TRUST REGION ALGORITHM ###############################
 ###############################################################################
-
 
 # save training results
 loss_train_results = []
@@ -928,7 +887,6 @@ def lbfgs_trust_region_algorithm(sess,max_num_iter=max_num_iter):
 
 start = time.time()
 
-#TODO: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
 with tf.compat.v1.Session() as sess:
 	sess.run(init)
 
