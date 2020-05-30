@@ -1,0 +1,16 @@
+
+(base) dave@snail:~/src/git/Satellite$ python LeNet_base.py
+torch version :  1.4.0
+device :  cpu
+Loading 80 images
+Loading 80 groundtruth images
+Procssing 80 images with transformation
+Loading 50000 patches completed
+Loading 20 images
+Loading 20 groundtruth images
+Procssing 20 images with transformation
+Loading 12500 patches completed
+training on  cpu
+epoch 1, loss 0.5664, train acc 0.731, train f1 score 0.731, test acc 0.776, test f1score 0.776, best f1 score 0.776, time 4072.8 sec
+Running prediction on test set
+Killed

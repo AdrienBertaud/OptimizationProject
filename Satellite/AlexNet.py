@@ -22,8 +22,8 @@ import torch
 from torch import nn, optim
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-print(torch.__version__)
-print(device)
+print("torch version : ", torch.__version__)
+print("device : ", device)
 
 # Initialize parameters
 root_dir = "Datasets/training"

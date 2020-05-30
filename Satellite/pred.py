@@ -5,10 +5,10 @@ from imag_processing import label_to_img
 
 
 def get_prediction(net,test_iter,window_size,stride,IMG_PATCH_SIZE, test_w, test_h, device):  #For prediction, stride need to be 16
-  """
-  Generate mask image for prediction given device type, window size, test image size and specified model. 
-  For prediction, stride need set to 16. 
-  """
+    """
+    Generate mask image for prediction given device type, window size, test image size and specified model.
+    For prediction, stride need set to 16.
+    """
 
     Y_np = np.empty([(test_w//IMG_PATCH_SIZE)*(test_h//IMG_PATCH_SIZE)])
     i = 0
@@ -24,7 +24,7 @@ def get_prediction(net,test_iter,window_size,stride,IMG_PATCH_SIZE, test_w, test
             Y_np[i:i+len(X)] = Y_np_buf
             #print(Y_np[i:i+len(X)])
             i = i+len(X)
-            
+
     img_prediction = label_to_img(test_w, test_h, IMG_PATCH_SIZE, IMG_PATCH_SIZE, Y_np)
 
     return img_prediction
