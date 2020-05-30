@@ -21,7 +21,7 @@ def load_img(root_dir, num_traset):
     """Load image and convert it into the form of numpy array given image path and number of images will be loaded """
     image_dir = root_dir + "/images/"
     files = os.listdir(image_dir)
-    n = min(num_traset,len(files))
+    n = min(num_traset,len(files)) 
     print("Loading " + str(n) + " images")
     imgs = np.asarray([load_image(image_dir + files[i]) for i in range(n)])
     print(files[0])
@@ -29,7 +29,7 @@ def load_img(root_dir, num_traset):
     print("Loading " + str(n) + " images")
     gt_imgs = np.asarray([load_image(gt_dir + files[i]) for i in range(n)])
     print(files[0])
-
+        
     return imgs, gt_imgs
 
 def img_float_to_uint8(img):
@@ -47,7 +47,7 @@ def concatenate_images(img, gt_img):
         cimg = np.concatenate((img, gt_img), axis=1)
     else:
         gt_img_3c = np.zeros((w, h, 3), dtype=np.uint8)
-        gt_img8 = img_float_to_uint8(gt_img)
+        gt_img8 = img_float_to_uint8(gt_img)          
         gt_img_3c[:,:,0] = gt_img8
         gt_img_3c[:,:,1] = gt_img8
         gt_img_3c[:,:,2] = gt_img8
@@ -82,7 +82,7 @@ def label_to_img(imgwidth, imgheight, w, h, labels):
 
 def make_img_overlay(img, predicted_img):
     """
-    Generate overlay images given aerial image and predicted image in form of numpy array.
+    Generate overlay images given aerial image and predicted image in form of numpy array. 
     """
     w = img.shape[0]
     h = img.shape[1]
@@ -119,25 +119,25 @@ def extract_img_features(filename):
 
 def value_to_class(v):
     """Assign labels due to threshold given predicted value """
-   # percentage of pixels > 1 required to assign a foreground label to a patch
-    foreground_threshold = 0.25
+   # percentage of pixels > 1 required to assign a foreground label to a patch 
+    foreground_threshold = 0.25 
     df = np.sum(v)
     if df > foreground_threshold:
         return 1
     else:
         return 0
-
+    
 def value_to_class_ts(v):
     """Assign labels due to threshold given predicted value in tensor form """
-    foreground_threshold = 0.25
+    foreground_threshold = 0.25 
     df = torch.sum(v)
     if df > foreground_threshold:
         return 1
     else:
         return 0
-
+    
 def get_rotated_images(images, angles):
-    """
+        """
     Rotate images with given angles.
     images: list of numpy arrays of the images
     angles: angle list to rotation
@@ -173,7 +173,7 @@ def get_flipped_images(images, direction):
     return flipped_images
 
 def get_shifted_images(images):
-    """
+        """
     images: list of numpy arrays of the images
 
     return:
@@ -203,7 +203,7 @@ def pad_image(data, padding):
         # RGB image
         data = np.lib.pad(data, ((padding, padding), (padding, padding), (0,0)), 'reflect')
     return data
-
+    
 
 def img_crop_stride(im, w, h, stride):
     """Crop image into patches with specified width and height using given stride """
@@ -219,8 +219,8 @@ def img_crop_stride(im, w, h, stride):
                 im_patch = im[j:j+w, i:i+h, :]
             list_patches.append(im_patch)
     return list_patches
-
-
+    
+    
 
 
 
