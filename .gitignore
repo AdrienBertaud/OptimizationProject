@@ -4,4 +4,6 @@ Methods/UnitTests/__pycache__
 Methods/Utils/__pycache__
 Data/__pycache__
 Data/MNIST
+Satellite/__pycache__
 *.png
+
