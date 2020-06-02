@@ -22,13 +22,19 @@ def train(model, criterion, optimizer, optimizerName, dataloader, batch_size, n_
             loss,acc = compute_minibatch_gradient(model, criterion, dataloader, dataloader.batch_size)
         else:
             optimizer.zero_grad()
-            loss,acc = compute_minibatch_gradient(model, criterion, dataloader, batch_size)
+
+            if optimizerName == "gd"
+                batch_size_used = dataloader.batch_size
+            else:
+                batch_size_used = batch_size
+
+            loss,acc = compute_minibatch_gradient(model, criterion, dataloader, batch_size_used)
             optimizer.step()
 
         acc_avg = 0.9 * acc_avg + 0.1 * acc if acc_avg > 0 else acc
         loss_avg = 0.9 * loss_avg + 0.1 * loss if loss_avg > 0 else loss
 
-        if iter_now%1 == 0 and verbose:
+        if iter_now%20 == 0 and verbose:
             now = time.time()
             print('%d/%d, took %.0f seconds, train_loss: %.1e, train_acc: %.2f'%(
                     iter_now+1, n_iters, now-since, loss_avg, acc_avg))
