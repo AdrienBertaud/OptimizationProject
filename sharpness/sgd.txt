@@ -1,0 +1,128 @@
+runfile('C:/Users/berta/Documents/Perso/IA/EPFL/OML/othersProj/sgd.stability/train.py', wdir='C:/Users/berta/Documents/Perso/IA/EPFL/OML/othersProj/sgd.stability')
+===> Config:
+{
+  "gpuid": "0,",
+  "dataset": "fashionmnist",
+  "n_samples": 1000,
+  "load_size": 1000,
+  "optimizer": "sgd",
+  "n_iters": 10000,
+  "batch_size": 1000,
+  "learning_rate": 0.1,
+  "momentum": 0.0,
+  "model_file": "fnn.pkl"
+}
+SGD (
+Parameter Group 0
+    dampening: 0
+    lr: 0.1
+    momentum: 0.0
+    nesterov: False
+    weight_decay: 0
+)
+===> Architecture:
+FNN(
+  (net): Sequential(
+    (0): Linear(in_features=784, out_features=500, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=500, out_features=500, bias=True)
+    (3): ReLU()
+    (4): Linear(in_features=500, out_features=500, bias=True)
+    (5): ReLU()
+    (6): Linear(in_features=500, out_features=10, bias=True)
+  )
+)
+===> Start training
+1/10000, took 0 seconds, train_loss: 9.9e-02, train_acc: 12.40
+201/10000, took 20 seconds, train_loss: 6.9e-02, train_acc: 59.92
+401/10000, took 21 seconds, train_loss: 5.3e-02, train_acc: 67.54
+601/10000, took 20 seconds, train_loss: 4.4e-02, train_acc: 73.13
+801/10000, took 19 seconds, train_loss: 3.9e-02, train_acc: 77.11
+1001/10000, took 19 seconds, train_loss: 3.6e-02, train_acc: 79.98
+1201/10000, took 20 seconds, train_loss: 3.3e-02, train_acc: 82.47
+1401/10000, took 20 seconds, train_loss: 3.0e-02, train_acc: 84.06
+1601/10000, took 19 seconds, train_loss: 2.8e-02, train_acc: 86.47
+1801/10000, took 19 seconds, train_loss: 2.6e-02, train_acc: 87.60
+2001/10000, took 19 seconds, train_loss: 2.5e-02, train_acc: 88.79
+2201/10000, took 19 seconds, train_loss: 2.3e-02, train_acc: 89.30
+2401/10000, took 19 seconds, train_loss: 2.2e-02, train_acc: 90.09
+2601/10000, took 19 seconds, train_loss: 2.0e-02, train_acc: 91.29
+2801/10000, took 19 seconds, train_loss: 1.9e-02, train_acc: 92.15
+3001/10000, took 19 seconds, train_loss: 1.8e-02, train_acc: 92.94
+3201/10000, took 20 seconds, train_loss: 1.7e-02, train_acc: 94.00
+3401/10000, took 19 seconds, train_loss: 1.6e-02, train_acc: 94.60
+3601/10000, took 19 seconds, train_loss: 1.5e-02, train_acc: 95.20
+3801/10000, took 19 seconds, train_loss: 1.5e-02, train_acc: 95.83
+4001/10000, took 19 seconds, train_loss: 1.4e-02, train_acc: 96.29
+4201/10000, took 19 seconds, train_loss: 1.3e-02, train_acc: 96.68
+4401/10000, took 19 seconds, train_loss: 1.3e-02, train_acc: 97.11
+4601/10000, took 19 seconds, train_loss: 1.2e-02, train_acc: 97.31
+4801/10000, took 19 seconds, train_loss: 1.1e-02, train_acc: 97.56
+5001/10000, took 19 seconds, train_loss: 1.1e-02, train_acc: 97.85
+5201/10000, took 19 seconds, train_loss: 1.0e-02, train_acc: 98.00
+5401/10000, took 19 seconds, train_loss: 9.5e-03, train_acc: 98.20
+5601/10000, took 19 seconds, train_loss: 9.0e-03, train_acc: 98.38
+5801/10000, took 19 seconds, train_loss: 8.5e-03, train_acc: 98.85
+6001/10000, took 19 seconds, train_loss: 8.0e-03, train_acc: 98.99
+6201/10000, took 19 seconds, train_loss: 7.6e-03, train_acc: 99.16
+6401/10000, took 19 seconds, train_loss: 7.3e-03, train_acc: 99.19
+6601/10000, took 19 seconds, train_loss: 6.7e-03, train_acc: 99.26
+6801/10000, took 19 seconds, train_loss: 7.1e-03, train_acc: 99.40
+7001/10000, took 19 seconds, train_loss: 6.0e-03, train_acc: 99.67
+7201/10000, took 19 seconds, train_loss: 5.9e-03, train_acc: 99.75
+7401/10000, took 19 seconds, train_loss: 5.5e-03, train_acc: 99.79
+7601/10000, took 19 seconds, train_loss: 5.3e-03, train_acc: 99.79
+7801/10000, took 19 seconds, train_loss: 5.3e-03, train_acc: 99.79
+8001/10000, took 19 seconds, train_loss: 5.0e-03, train_acc: 99.85
+8201/10000, took 19 seconds, train_loss: 4.5e-03, train_acc: 99.94
+8401/10000, took 19 seconds, train_loss: 4.3e-03, train_acc: 99.94
+8601/10000, took 19 seconds, train_loss: 4.0e-03, train_acc: 99.91
+8801/10000, took 19 seconds, train_loss: 3.6e-03, train_acc: 99.95
+9001/10000, took 19 seconds, train_loss: 3.6e-03, train_acc: 100.00
+9201/10000, took 19 seconds, train_loss: 3.4e-03, train_acc: 100.00
+9401/10000, took 19 seconds, train_loss: 3.3e-03, train_acc: 99.96
+9601/10000, took 21 seconds, train_loss: 2.9e-03, train_acc: 100.00
+9801/10000, took 20 seconds, train_loss: 3.0e-03, train_acc: 99.96
+===> Solution: 
+         train loss: 2.86e-03, acc: 100.00
+         test loss: 3.33e-02, acc: 80.66
+
+runfile('C:/Users/berta/Documents/Perso/IA/EPFL/OML/othersProj/sgd.stability/diagnose.py', wdir='C:/Users/berta/Documents/Perso/IA/EPFL/OML/othersProj/sgd.stability')
+Reloaded modules: src.trainer, src.utils, src.models.vgg, src.models.mnist, src.data, src.linalg
+===> Config:
+{
+  "gpuid": "0,",
+  "dataset": "fashionmnist",
+  "n_samples": 1000,
+  "batch_size": 1000,
+  "model_file": "fnn.pkl"
+}
+===> Basic information of the given model: 
+         train loss: 2.86e-03, acc: 100.00
+         test loss: 3.33e-02, acc: 80.66
+===> Compute sharpness:
+1-th step takes 0 seconds,       2.10e-04
+2-th step takes 0 seconds,       1.59e+01
+3-th step takes 0 seconds,       1.79e+01
+4-th step takes 0 seconds,       1.82e+01
+5-th step takes 0 seconds,       1.85e+01
+6-th step takes 0 seconds,       1.87e+01
+7-th step takes 0 seconds,       1.88e+01
+8-th step takes 0 seconds,       1.90e+01
+9-th step takes 0 seconds,       1.91e+01
+10-th step takes 0 seconds,      1.92e+01
+Sharpness is 1.92e+01
+
+===> Compute non-uniformity:
+1-th step takes 34 seconds,      3.99e-03
+2-th step takes 33 seconds,      9.75e+02
+3-th step takes 32 seconds,      1.32e+03
+4-th step takes 31 seconds,      1.40e+03
+5-th step takes 32 seconds,      1.46e+03
+6-th step takes 31 seconds,      1.51e+03
+7-th step takes 30 seconds,      1.54e+03
+8-th step takes 31 seconds,      1.56e+03
+9-th step takes 30 seconds,      1.58e+03
+10-th step takes 30 seconds,     1.59e+03
+Non-uniformity is 3.99e+01
+
