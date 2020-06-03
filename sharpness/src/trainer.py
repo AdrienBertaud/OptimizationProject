@@ -23,7 +23,7 @@ def train(model, criterion, optimizer, optimizerName, dataloader, batch_size, n_
         else:
             optimizer.zero_grad()
 
-            if optimizerName == "gd"
+            if optimizerName == 'gd':
                 batch_size_used = dataloader.batch_size
             else:
                 batch_size_used = batch_size

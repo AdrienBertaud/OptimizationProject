@@ -31,7 +31,7 @@ def get_args():
     argparser.add_argument('--optimizer',
                             default=optimizerName, help='optimizer, [sgd]')
     argparser.add_argument('--n_iters', type=int,
-                            default=100, help='number of iteration used to train nets, [10000]')
+                            default=100000, help='number of iteration used to train nets, [10000]')
     argparser.add_argument('--batch_size', type=int,
                             default=1000, help='batch size, [1000]')
     argparser.add_argument('--learning_rate', type=float,
@@ -70,12 +70,12 @@ def main():
     args = get_args()
 
     optimizerList = []
-    optimizerList.append('gd')
+    # optimizerList.append('gd')
     optimizerList.append('sgd')
-    optimizerList.append('adam')
-    optimizerList.append('adagrad')
-    optimizerList.append('lbfgs')
-    optimizerList.append('adamw')
+    # optimizerList.append('adam')
+    # optimizerList.append('adagrad')
+    # optimizerList.append('lbfgs')
+    # optimizerList.append('adamw')
 
     for item in optimizerList:
 
