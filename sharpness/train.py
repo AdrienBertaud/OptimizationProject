@@ -13,12 +13,7 @@ from src.trainer import train
 from src.utils import load_net, load_data, eval_accuracy
 from diagnose import diagnose
 
-
-# print('__file__={0:<35} | __name__={1:<20} |  __package__={2:<20}'.format(__file__,__name__,str(__package__)))
-
 def get_args():
-    optimizerName = 'adamw'
-
     argparser = argparse.ArgumentParser(description=__doc__)
     argparser.add_argument('--gpuid',
                           default='0,', help='gpu id, [0] ')
@@ -29,9 +24,9 @@ def get_args():
     argparser.add_argument('--load_size', type=int,
                             default=1000, help='load size for dataset, [1000]')
     argparser.add_argument('--optimizer',
-                            default=optimizerName, help='optimizer, [sgd]')
+                            default='sgd', help='optimizer, [sgd]')
     argparser.add_argument('--n_iters', type=int,
-                            default=100000, help='number of iteration used to train nets, [10000]')
+                            default=10000, help='number of iteration used to train nets, [10000]')
     argparser.add_argument('--batch_size', type=int,
                             default=1000, help='batch size, [1000]')
     argparser.add_argument('--learning_rate', type=float,
@@ -39,7 +34,7 @@ def get_args():
     argparser.add_argument('--momentum', type=float,
                             default='0.0', help='momentum, [0.0]')
     # argparser.add_argument('--model_file',
-    #                         default=optimizerName+'.pkl', help='filename to save the net, fnn.pkl')
+    #                         default='fnn.pkl', help='filename to save the net, fnn.pkl')
 
     args = argparser.parse_args()
     if args.load_size > args.batch_size:

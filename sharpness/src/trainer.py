@@ -12,6 +12,9 @@ def train(model, criterion, optimizer, optimizerName, dataloader, batch_size, n_
     for iter_now in range(n_iters):
 
         if optimizerName == 'lbfgs':
+
+            batch_size_used = 0
+
             def closure():
                 if torch.is_grad_enabled():
                     optimizer.zero_grad()
@@ -21,6 +24,7 @@ def train(model, criterion, optimizer, optimizerName, dataloader, batch_size, n_
             optimizer.step(closure)
             loss,acc = compute_minibatch_gradient(model, criterion, dataloader, dataloader.batch_size)
         else:
+
             optimizer.zero_grad()
 
             if optimizerName == 'gd':
