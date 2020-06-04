@@ -8,8 +8,10 @@ Satellite/__pycache__
 Satellite/.ipynb_checkpoints
 */__pycache__
 sharpness/__pycache__
-sharpness/src/__pycache__
 sharpness/data
+sharpness/src/__pycache__
+sharpness/src/data
+
 
 # Jupyter Notebook
 */.ipynb_checkpoints
