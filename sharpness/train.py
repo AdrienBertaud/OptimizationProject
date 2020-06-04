@@ -28,21 +28,57 @@ def get_optimizer(net, optimizer, learning_rate, momentum):
     elif optimizer == 'lbfgs':
          return torch.optim.LBFGS(net.parameters(), lr=learning_rate)
     elif optimizer == 'adamw':
-          return torch.optim.AdamW(net.parameters(), lr=learning_rate)
+         return torch.optim.AdamW(net.parameters(), lr=learning_rate)
     else:
         raise ValueError('optimizer %s is not supported'%(optimizer))
 
-def main():
-
-    learninRateList = [.01, .05, .1, .5]
-    # gpuid ='0,'
+def compute(n_samples, batch_size, learning_rate, optimizerItem):
     dataset='fashionmnist'
-    n_samples=60
-    batch_size_list= [n_samples, n_samples//2, n_samples//4, n_samples//8, n_samples//16]
-    n_iters=50
+    n_iters=1
     momentum=0.0
     logFrequency=1
     number_of_diagnose_iterations = 10
+
+    print("optimizerItem = ", optimizerItem)
+
+    # criterion = torch.nn.MSELoss().cuda()
+    criterion = torch.nn.MSELoss()
+
+    train_loader, test_loader = load_data(dataset,
+                                          training_size=n_samples,
+                                          batch_size=batch_size)
+    net = load_net(dataset)
+    optimizer = get_optimizer(net, optimizerItem, learning_rate, momentum)
+    print(optimizer)
+
+    print('===> Architecture:')
+    print(net)
+
+    print('===> Start training')
+    train(net, criterion, optimizer, optimizerItem, train_loader, batch_size, n_iters, verbose=True, logFrequency=logFrequency)
+
+    train_loss, train_accuracy = eval_accuracy(net, criterion, train_loader)
+    test_loss, test_accuracy = eval_accuracy(net, criterion, test_loader)
+    print('===> Solution: ')
+    print('\t train loss: %.2e, acc: %.2f' % (train_loss, train_accuracy))
+    print('\t test loss: %.2e, acc: %.2f' % (test_loss, test_accuracy))
+
+    torch.save(net.state_dict(), optimizerItem+'.pkl')
+
+    sharpness, non_uniformity = diagnose(optimizerItem+'.pkl', number_of_diagnose_iterations)
+
+    print("sharpness = ", sharpness)
+    print("non_uniformity = ", non_uniformity)
+
+    return sharpness, non_uniformity
+
+def main():
+    n_samples=1
+    learninRateList = [.01, .05, .1, .5]
+    # gpuid ='0,'
+    batch_size_list= [n_samples, n_samples//2, n_samples//4, n_samples//8, n_samples//16]
+
+    n_samples=1
 
     for batch_size in batch_size_list:
 
@@ -66,38 +102,7 @@ def main():
             # optimizerList.append('adamw')
 
             for optimizerItem in optimizerList:
-
-                print("optimizerItem = ", optimizerItem)
-
-                # criterion = torch.nn.MSELoss().cuda()
-                criterion = torch.nn.MSELoss()
-
-                train_loader, test_loader = load_data(dataset,
-                                                      training_size=n_samples,
-                                                      batch_size=batch_size)
-                net = load_net(dataset)
-                optimizer = get_optimizer(net, optimizerItem, learning_rate, momentum)
-                print(optimizer)
-
-                print('===> Architecture:')
-                print(net)
-
-                print('===> Start training')
-                train(net, criterion, optimizer, optimizerItem, train_loader, batch_size, n_iters, verbose=True, logFrequency=logFrequency)
-
-                train_loss, train_accuracy = eval_accuracy(net, criterion, train_loader)
-                test_loss, test_accuracy = eval_accuracy(net, criterion, test_loader)
-                print('===> Solution: ')
-                print('\t train loss: %.2e, acc: %.2f' % (train_loss, train_accuracy))
-                print('\t test loss: %.2e, acc: %.2f' % (test_loss, test_accuracy))
-
-                torch.save(net.state_dict(), optimizerItem+'.pkl')
-
-                sharpness, non_uniformity = diagnose(optimizerItem+'.pkl', number_of_diagnose_iterations)
-
-                print("sharpness = ", sharpness)
-                print("non_uniformity = ", non_uniformity)
-
+                sharpness, non_uniformity = compute(n_samples, batch_size, learning_rate, optimizerItem)
                 plt.scatter(sharpness, non_uniformity, label=optimizerItem)
 
             plt.legend(loc='best')
