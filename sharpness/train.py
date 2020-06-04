@@ -34,9 +34,9 @@ def get_optimizer(net, optimizer, learning_rate, momentum):
 
 def compute(n_samples, batch_size, learning_rate, optimizerItem):
     dataset='fashionmnist'
-    n_iters=1
     momentum=0.0
-    logFrequency=1
+    n_iters=1000
+    logFrequency=200
     number_of_diagnose_iterations = 10
 
     print("optimizerItem = ", optimizerItem)
@@ -73,12 +73,10 @@ def compute(n_samples, batch_size, learning_rate, optimizerItem):
     return sharpness, non_uniformity
 
 def main():
-    n_samples=1
+    n_samples=1000
     learninRateList = [.01, .05, .1, .5]
     # gpuid ='0,'
     batch_size_list= [n_samples, n_samples//2, n_samples//4, n_samples//8, n_samples//16]
-
-    n_samples=1
 
     for batch_size in batch_size_list:
 
