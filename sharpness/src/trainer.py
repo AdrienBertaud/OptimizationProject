@@ -1,7 +1,7 @@
 import time
 import torch
 
-def train(model, criterion, optimizer, optimizerName, dataloader, batch_size, n_iters=50000, verbose=True, logFrequency=200):
+def train(model, criterion, optimizer, optimizerName, dataloader, batch_size, n_iters=1000, verbose=True, logFrequency=200):
 
     print("optimizer.type = ", optimizerName)
 
@@ -9,6 +9,9 @@ def train(model, criterion, optimizer, optimizerName, dataloader, batch_size, n_
     acc_avg, loss_avg = 0, 0
 
     since = time.time()
+
+    iter_now = 0
+
     for iter_now in range(n_iters):
 
         if optimizerName == 'lbfgs':
@@ -42,6 +45,11 @@ def train(model, criterion, optimizer, optimizerName, dataloader, batch_size, n_
             print('%d/%d, took %.0f seconds, train_loss: %.1e, train_acc: %.2f'%(
                     iter_now+1, n_iters, now-since, loss_avg, acc_avg))
             since = time.time()
+
+        if acc == 100:
+            break;
+
+        return iter_now
 
 def compute_minibatch_gradient(model, criterion, dataloader, batch_size):
     loss,acc = 0,0
