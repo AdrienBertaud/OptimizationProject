@@ -6,7 +6,7 @@ import torchvision.datasets as dsets
 class DataLoader:
 
     def __init__(self,X,y,batch_size):
-        self.X, self.y = X, y 
+        self.X, self.y = X, y
         self.batch_size = batch_size
         self.n_samples = len(y)
         self.idx = 0
@@ -18,7 +18,7 @@ class DataLoader:
         return length
 
     def __iter__(self):
-        return self    
+        return self
 
     def __next__(self):
         if self.idx >= self.n_samples:
@@ -40,10 +40,11 @@ def load_fmnist(training_size, batch_size=100):
     train_X, train_y = train_set.data[0:training_size].float()/255, \
                        to_one_hot(train_set.targets[0:training_size])
     train_loader = DataLoader(train_X, train_y, batch_size)
-
+    print("train_X size : ", train_X.size())
     test_set = dsets.FashionMNIST('data/fashionmnist', train=False,download=True)
     test_X, test_y = test_set.data.float()/255, \
                      to_one_hot(test_set.targets)
+    print("test_X size : ", test_X.size())
     test_loader = DataLoader(test_X, test_y, batch_size)
 
     return train_loader, test_loader
@@ -52,7 +53,7 @@ def load_fmnist(training_size, batch_size=100):
 def load_cifar10(training_size, batch_size=100):
     """
     load cifar10 dataset. Notice that here we only use examples
-    corresponding to label 0 and 1. Thus the training_size is at 
+    corresponding to label 0 and 1. Thus the training_size is at
     most 10000.
     """
     train_set = dsets.CIFAR10('data/cifar10', train=True, download=True)
@@ -79,7 +80,7 @@ def modify_cifar_data(X, y, n_samples=-1):
             X_t[idx,:,:,:] = X[i,:,:,:]
             idx += 1
     X = X_t[0:idx]
-    y = y_t[0:idx] 
+    y = y_t[0:idx]
 
     if n_samples > 1:
         X = X[0:n_samples]
@@ -87,7 +88,7 @@ def modify_cifar_data(X, y, n_samples=-1):
 
     # preprocess the data
     X = X.float()/255.0
-    y = to_one_hot(y) 
+    y = to_one_hot(y)
 
     return X, y
 

@@ -1,7 +1,7 @@
 import time
 import torch
 
-def train(model, criterion, optimizer, optimizerName, dataloader, batch_size, n_iters=50000, verbose=True):
+def train(model, criterion, optimizer, optimizerName, dataloader, batch_size, n_iters=50000, verbose=True, logFrequency=200):
 
     print("optimizer.type = ", optimizerName)
 
@@ -18,54 +18,49 @@ def train(model, criterion, optimizer, optimizerName, dataloader, batch_size, n_
             def closure():
                 if torch.is_grad_enabled():
                     optimizer.zero_grad()
-                loss,acc = compute_minibatch_gradient(model, criterion, dataloader, dataloader.batch_size)
+                loss,acc = compute_minibatch_gradient(model, criterion, dataloader, batch_size)
                 return loss
 
             optimizer.step(closure)
             loss,acc = compute_minibatch_gradient(model, criterion, dataloader, dataloader.batch_size)
         else:
-
             optimizer.zero_grad()
 
-            if optimizerName == 'gd':
-                batch_size_used = dataloader.batch_size
-            else:
-                batch_size_used = batch_size
+            # if optimizerName == 'gd':
+            #     batch_size_used = dataloader.n_samples
+            # else:
+            #     batch_size_used = batch_size
 
-            loss,acc = compute_minibatch_gradient(model, criterion, dataloader, batch_size_used)
+            loss,acc = compute_minibatch_gradient(model, criterion, dataloader, batch_size)
             optimizer.step()
 
         acc_avg = 0.9 * acc_avg + 0.1 * acc if acc_avg > 0 else acc
         loss_avg = 0.9 * loss_avg + 0.1 * loss if loss_avg > 0 else loss
 
-        if iter_now%20 == 0 and verbose:
+        if iter_now%logFrequency == 0 and verbose:
             now = time.time()
             print('%d/%d, took %.0f seconds, train_loss: %.1e, train_acc: %.2f'%(
                     iter_now+1, n_iters, now-since, loss_avg, acc_avg))
             since = time.time()
 
-
 def compute_minibatch_gradient(model, criterion, dataloader, batch_size):
     loss,acc = 0,0
-    n_loads = batch_size // dataloader.batch_size
 
-    for i in range(n_loads):
-        inputs,targets = next(dataloader)
-        #inputs, targets = inputs.cuda(), targets.cuda()
-        inputs, targets = inputs, targets
+    #inputs, targets = inputs.cuda(), targets.cuda()
+    inputs,targets = next(dataloader)
 
-        logits = model(inputs)
-        E = criterion(logits,targets)
-        E.backward()
+    logits = model(inputs)
+    E = criterion(logits,targets)
+    E.backward()
 
-        loss += E.item()
-        acc += accuracy(logits.data,targets)
+    loss = E.item()
+    acc = accuracy(logits.data,targets)
 
-    for p in model.parameters():
-        p.grad.data /= n_loads
+    # TODO: ?
+    # for p in model.parameters():
+    #     p.grad.data /= batch_size
 
-    return loss/n_loads, acc/n_loads
-
+    return loss, acc
 
 def accuracy(logits, targets):
     n = logits.shape[0]
