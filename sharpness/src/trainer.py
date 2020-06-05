@@ -1,5 +1,9 @@
 import time
 import torch
+import src.utils
+from importlib import reload
+reload(src.utils)
+from src.utils import accuracy
 
 def train(model, criterion, optimizer, optimizerName, dataloader, batch_size, n_iters=1000, verbose=True, logFrequency=200):
 
@@ -65,12 +69,8 @@ def compute_minibatch_gradient(model, criterion, dataloader, batch_size):
 
     return loss, acc
 
-def accuracy(y_hat, targets):
 
-    y_hat_indices = torch.argmax(y_hat,1)
-    acc = (targets==y_hat_indices).float()
 
-    return torch.mean(acc)*100.0
 
 
 

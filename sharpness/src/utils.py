@@ -2,8 +2,8 @@ import math
 from .models.vgg import vgg11
 from .models.mnist import fnn
 from .data import load_fmnist,load_cifar10
-from .trainer import accuracy
 from .linalg import eigen_variance, eigen_hessian
+import torch
 
 
 
@@ -40,18 +40,29 @@ def get_nonuniformity(net, criterion, dataloader, n_iters=10, tol=1e-2, verbose=
 
 
 def eval_accuracy(model, criterion, dataloader):
-    model.eval()
+    # model.eval()
     n_batchs = len(dataloader)
     dataloader.idx = 0
 
     loss_t, acc_t = 0.0, 0.0
+
+    # with torch.no_grad():
+
     for i in range(n_batchs):
         inputs,targets = next(dataloader)
         #inputs, targets = inputs.cuda(), targets.cuda()
-        inputs, targets = inputs, targets
 
-        logits = model(inputs)
-        loss_t += criterion(logits,targets).item()
-        acc_t += accuracy(logits.data,targets)
+        targets_indices = torch.argmax(targets,1)
+
+        y_hat = model(inputs)
+        loss_t += criterion(y_hat,targets_indices)#.item()
+        acc_t += accuracy(y_hat,targets_indices)
 
     return loss_t/n_batchs, acc_t/n_batchs
+
+def accuracy(y_hat, targets):
+
+    y_hat_indices = torch.argmax(y_hat,1)
+    acc = (targets==y_hat_indices).float()
+
+    return torch.mean(acc)*100.0

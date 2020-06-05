@@ -36,7 +36,7 @@ def get_optimizer(net, optimizer, learning_rate, momentum):
 def compute(n_samples, batch_size, learning_rate, optimizerName):
     dataset='fashionmnist'
     momentum=0.0
-    n_iters=10000
+    n_iters=10
     logFrequency=200
     number_of_diagnose_iterations = 10
 
@@ -67,7 +67,7 @@ def compute(n_samples, batch_size, learning_rate, optimizerName):
 
     torch.save(net.state_dict(), optimizerName+'.pkl')
 
-    sharpness, non_uniformity = diagnose(optimizerName+'.pkl', number_of_diagnose_iterations)
+    sharpness, non_uniformity = diagnose(optimizerName+'.pkl', number_of_diagnose_iterations, n_samples=n_samples, batch_size=batch_size)
 
     print("sharpness = ", sharpness)
     print("non_uniformity = ", non_uniformity)
@@ -75,10 +75,13 @@ def compute(n_samples, batch_size, learning_rate, optimizerName):
     return num_iter, sharpness, non_uniformity
 
 def main():
+
+    torch.set_grad_enabled(True)
+
     n_samples=1000
-    learning_rate_list = [.01, .05, .1, .5]
+    learning_rate_list = [.01]#, .05, .1, .5
     # gpuid ='0,'
-    batch_size_list= [n_samples, n_samples//2, n_samples//4, n_samples//8, n_samples//16]
+    batch_size_list= [n_samples//2]#, n_samples//2, n_samples//4, n_samples//8, n_samples//16]
 
     full_optim_list = []
     full_rate_list = []

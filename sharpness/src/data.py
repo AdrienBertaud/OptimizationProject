@@ -34,6 +34,20 @@ class DataLoader:
 
         return batch_X,batch_y
 
+    # def __next_all__(self):
+    #     if self.idx >= self.n_samples:
+    #         self.idx = 0
+    #         rnd_idx = torch.randperm(self.n_samples)
+    #         self.X = self.X[rnd_idx]
+    #         self.y = self.y[rnd_idx]
+
+    #     idx_end = min(self.idx+self.batch_size, self.n_samples)
+    #     batch_X = self.X[self.idx:idx_end]
+    #     batch_y = self.y[self.idx:idx_end]
+    #     self.idx = idx_end
+
+        # return batch_X,batch_y
+
 
 def load_fmnist(training_size, batch_size=100):
     train_set = dsets.FashionMNIST('data/fashionmnist', train=True, download=True)
