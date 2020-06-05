@@ -29,11 +29,6 @@ def train(model, criterion, optimizer, optimizerName, dataloader, batch_size, n_
         else:
             optimizer.zero_grad()
 
-            # if optimizerName == 'gd':
-            #     batch_size_used = dataloader.n_samples
-            # else:
-            #     batch_size_used = batch_size
-
             loss,acc = compute_minibatch_gradient(model, criterion, dataloader, batch_size)
             optimizer.step()
 
@@ -57,32 +52,25 @@ def compute_minibatch_gradient(model, criterion, dataloader, batch_size):
 
     #inputs, targets = inputs.cuda(), targets.cuda()
     inputs,targets = next(dataloader)
-    logits = model(inputs)
-    
 
-    for logit, target in zip(logits, targets):
-        
-        E = criterion(logit,target)
-        E.backward(retain_graph=True)
-    
-        loss += E.item()
-        acc += accuracy(logit.data,target)
+    targets_indices = torch.argmax(targets,1)
 
-    # TODO: ?
-    for p in model.parameters():
-        p.grad.data /= batch_size
+    y_hat = model(inputs)
 
-    return loss/batch_size, acc/batch_size
+    E = criterion(y_hat,targets_indices)
+    E.backward(retain_graph=True)
 
-def accuracy(logit, target):
+    loss = E.item()
+    acc = accuracy(y_hat,targets_indices)
 
-    y_trues = torch.argmax(target)
-    y_preds = torch.argmax(logit)
-    acc = (y_trues==y_preds).float()*100.0
-    
-    return acc
+    return loss, acc
 
+def accuracy(y_hat, targets):
 
+    y_hat_indices = torch.argmax(y_hat,1)
+    acc = (targets==y_hat_indices).float()
+
+    return torch.mean(acc)*100.0
 
 
 
