@@ -46,39 +46,39 @@ def train(model, criterion, optimizer, optimizerName, dataloader, batch_size, n_
                     iter_now+1, n_iters, now-since, loss_avg, acc_avg))
             since = time.time()
 
-        if acc == 100:
+        if acc == 100.:
             break;
 
-        return iter_now
+    return iter_now
 
 def compute_minibatch_gradient(model, criterion, dataloader, batch_size):
     loss,acc = 0,0
 
     #inputs, targets = inputs.cuda(), targets.cuda()
     inputs,targets = next(dataloader)
-
     logits = model(inputs)
-    E = criterion(logits,targets)
-    E.backward()
+    
 
-    loss = E.item()
-    acc = accuracy(logits.data,targets)
+    for logit, target in zip(logits, targets):
+        
+        E = criterion(logit,target)
+        E.backward(retain_graph=True)
+    
+        loss += E.item()
+        acc += accuracy(logit.data,target)
 
     # TODO: ?
-    # for p in model.parameters():
-    #     p.grad.data /= batch_size
+    for p in model.parameters():
+        p.grad.data /= batch_size
 
-    return loss, acc
+    return loss/batch_size, acc/batch_size
 
-def accuracy(logits, targets):
-    n = logits.shape[0]
-    if targets.ndimension() == 2:
-        _, y_trues = torch.max(targets,1)
-    else:
-        y_trues = targets
-    _, y_preds = torch.max(logits,1)
+def accuracy(logit, target):
 
-    acc = (y_trues==y_preds).float().sum()*100.0/n
+    y_trues = torch.argmax(target)
+    y_preds = torch.argmax(logit)
+    acc = (y_trues==y_preds).float()*100.0
+    
     return acc
 
 
