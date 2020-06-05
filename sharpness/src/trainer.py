@@ -46,10 +46,11 @@ def train(model, criterion, optimizer, optimizerName, dataloader, batch_size, n_
                     iter_now+1, n_iters, now-since, loss_avg, acc_avg))
             since = time.time()
 
-        if acc == 100:
+        if acc == 100.0:
+            print("accuracy of 100, we stop learning")
             break;
 
-        return iter_now
+    return iter_now
 
 def compute_minibatch_gradient(model, criterion, dataloader, batch_size):
     loss,acc = 0,0

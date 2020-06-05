@@ -36,15 +36,15 @@ def get_optimizer(net, optimizer, learning_rate, momentum):
 def compute(n_samples, batch_size, learning_rate, optimizerName):
     dataset='fashionmnist'
     momentum=0.0
-    n_iters=1000
+    n_iters=10000
     logFrequency=200
     number_of_diagnose_iterations = 10
 
     print("optimizer = ", optimizerName)
 
     # criterion = torch.nn.MSELoss().cuda()
-    #criterion = torch.nn.MSELoss()
-    criterion = torch.nn.CrossEntropyLoss
+    criterion = torch.nn.MSELoss()
+    # criterion = torch.nn.CrossEntropyLoss()
 
     train_loader, test_loader = load_data(dataset,
                                           training_size=n_samples,
