@@ -43,7 +43,8 @@ def compute(n_samples, batch_size, learning_rate, optimizerName):
     print("optimizer = ", optimizerName)
 
     # criterion = torch.nn.MSELoss().cuda()
-    criterion = torch.nn.MSELoss()
+    #criterion = torch.nn.MSELoss()
+    criterion = torch.CrossEntropyLoss
 
     train_loader, test_loader = load_data(dataset,
                                           training_size=n_samples,
