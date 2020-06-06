@@ -34,7 +34,11 @@ def get_sharpness(net, criterion, dataloader, n_iters=10, tol=1e-2, verbose=Fals
 def get_nonuniformity(net, criterion, dataloader, n_iters=10, tol=1e-2, verbose=False):
     v = eigen_variance(net, criterion, dataloader, \
                       n_iters=n_iters, tol=tol, verbose=verbose)
-    return math.sqrt(v)
+    ifv<0:
+        print("ERROR: eigen variance is negative : ", v)
+        return 0
+    else:
+        return math.sqrt(v)
 
 
 def eval_accuracy(model, criterion, dataloader):
