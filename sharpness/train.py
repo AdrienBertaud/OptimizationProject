@@ -43,8 +43,6 @@ def compute(n_samples, batch_size, learning_rate, optimizerName):
 
     print("optimizer = ", optimizerName)
 
-    # criterion = torch.nn.MSELoss().cuda()
-    #criterion = torch.nn.MSELoss()
     criterion = torch.nn.CrossEntropyLoss()
 
     train_loader, test_loader = load_data(dataset,
@@ -66,8 +64,6 @@ def compute(n_samples, batch_size, learning_rate, optimizerName):
     print('\t train loss: %.2e, acc: %.2f' % (train_loss, train_accuracy))
     print('\t test loss: %.2e, acc: %.2f' % (test_loss, test_accuracy))
 
-    # torch.save(net.state_dict(), optimizerName+'.pkl')
-
     sharpness, non_uniformity = diagnose(net, criterion, optimizer, train_loader,test_loader, n_iters=n_iters_diagnose, n_samples=n_samples, batch_size=batch_size, tol=tol_diagnose, verbose=True)
 
     print("sharpness = ", sharpness)
@@ -80,9 +76,8 @@ def main():
     torch.set_grad_enabled(True)
 
     n_samples=1000
-    learning_rate_list = [.01]#, .05, .1, .5
-    # gpuid ='0,'
-    batch_size_list= [n_samples//2]#, n_samples//2, n_samples//4, n_samples//8, n_samples//16]
+    learning_rate_list = [.01, .05, .1, .5]
+    batch_size_list= [n_samples, n_samples//2, n_samples//4, n_samples//8, n_samples//16]
 
     full_optim_list = []
     full_rate_list = []
@@ -98,8 +93,6 @@ def main():
 
         if batch_size == 0:
             raise ValueError('batch size should superior to zero')
-
-        # os.environ["CUDA_VISIBLE_DEVICES"] = gpuid
 
         for learning_rate in learning_rate_list:
 
