@@ -34,7 +34,7 @@ def get_sharpness(net, criterion, dataloader, n_iters=10, tol=1e-2, verbose=Fals
 def get_nonuniformity(net, criterion, dataloader, n_iters=10, tol=1e-2, verbose=False):
     v = eigen_variance(net, criterion, dataloader, \
                       n_iters=n_iters, tol=tol, verbose=verbose)
-    ifv<0:
+    if v<0:
         print("ERROR: eigen variance is negative : ", v)
         return 0
     else:
