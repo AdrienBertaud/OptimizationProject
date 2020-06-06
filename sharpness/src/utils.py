@@ -5,9 +5,7 @@ from .data import load_fmnist,load_cifar10
 from .linalg import eigen_variance, eigen_hessian
 import torch
 
-
-
-def load_net(dataset):
+def load_net(dataset = 'fashionmnist'):
     if dataset == 'fashionmnist':
             #return fnn().cuda()
             return fnn()
@@ -18,7 +16,7 @@ def load_net(dataset):
         raise ValueError('Dataset %s is not supported'%(dataset))
 
 
-def load_data(dataset, training_size, test_size, batch_size):
+def load_data(dataset='fashionmnist', training_size=60000, test_size=10000, batch_size=1000):
     if dataset == 'fashionmnist':
             return load_fmnist(training_size=training_size, test_size=test_size, batch_size=batch_size)
     elif dataset == 'cifar10':
@@ -40,23 +38,23 @@ def get_nonuniformity(net, criterion, dataloader, n_iters=10, tol=1e-2, verbose=
 
 
 def eval_accuracy(model, criterion, dataloader):
-    # model.eval()
+    model.eval()
     n_batchs = len(dataloader)
     dataloader.idx = 0
 
     loss_t, acc_t = 0.0, 0.0
 
-    # with torch.no_grad():
+    with torch.no_grad():
 
-    for i in range(n_batchs):
-        inputs,targets = next(dataloader)
-        #inputs, targets = inputs.cuda(), targets.cuda()
+        for i in range(n_batchs):
+            #TODO: this is not correct because data are taken randomly, and can be reuse
+            inputs,targets = next(dataloader)
 
-        targets_indices = torch.argmax(targets,1)
+            targets_indices = torch.argmax(targets,1)
 
-        y_hat = model(inputs)
-        loss_t += criterion(y_hat,targets_indices)#.item()
-        acc_t += accuracy(y_hat,targets_indices)
+            y_hat = model(inputs)
+            loss_t += criterion(y_hat,targets_indices)
+            acc_t += accuracy(y_hat,targets_indices)
 
     return loss_t/n_batchs, acc_t/n_batchs
 

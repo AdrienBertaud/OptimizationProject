@@ -19,21 +19,19 @@ def plot_lr(lr):
 
     df = pd.read_csv('results2.csv', sep = ',')
 
-    plt.legend(loc='best')
-    plt.title('$learning learning_rate = {r}$'.format(r=lr))
-    plt.xlabel('sharpness')
-    plt.ylabel('non_uniformity')
-
-    plt.scatter(df[df['optimizer'] == 'SGD']['sharpness'], df[df['optimizer'] == 'SGD']['non uniformity'])
-
-    plt.scatter(df[df['optimizer'] == 'GD']['sharpness'], df[df['optimizer'] == 'GD']['non uniformity'])
+    plt.scatter(df[df['lr'] == 0.01]['sharpness'], df[df['optimizer'] == 'sgd']['non uniformity'])
 
     plt.xlabel('sharpness')
     plt.ylabel('non uniformity')
 
+    # plt.legend(loc='best')
+    plt.title('$learning learning_rate = {r}$'.format(r=lr))
+
     # Save the figure as a PNG
     plt.savefig('fig')
     plt.savefig('learning_learning_rate_{r}.png'.format(r=lr))
+
+    plt.show()
 
 if __name__ == '__main__':
     main()
