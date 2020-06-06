@@ -7,6 +7,7 @@ import diagnose
 import src.trainer
 import src.utils
 import csv
+import pandas as pd
 
 from importlib import reload
 reload(src.trainer)
@@ -47,9 +48,7 @@ def compute(n_samples_train, batch_size, learning_rate, optimizerName):
     criterion = torch.nn.CrossEntropyLoss()
 
     train_loader, test_loader = load_data(dataset,
-                                          training_size=n_samples_train,
-                                          testing_size=n_samples_test
-                                          batch_size=batch_size)
+                                          training_size=n_samples_train, testing_size=n_samples_test,                               batch_size=batch_size)
 
     net = load_net(dataset)
     optimizer = get_optimizer(net, optimizerName, learning_rate, momentum)
@@ -72,7 +71,9 @@ def compute(n_samples_train, batch_size, learning_rate, optimizerName):
     print("sharpness = ", sharpness)
     print("non_uniformity = ", non_uniformity)
 
-    return num_iter, sharpness, non_uniformity
+    return num_iter, train_loss, train_accuracy, test_loss, test_accuracy, sharpness, non_uniformity
+
+
 
 def main():
 
@@ -82,12 +83,15 @@ def main():
     learning_rate_list = [.01]#, .05, .1, .5]
     batch_size_list= [n_samples_train]#, n_samples_train//2, n_samples_train//4, n_samples_train//8, n_samples_train//16]
 
+
     full_optim_list = []
     full_rate_list = []
     full_batch_list = []
     num_iter_size_list = []
     full_sharpness_list = []
     full_non_unifor_list = []
+
+    df = pd.DataFrame(n)
 
     for batch_size in batch_size_list:
 
@@ -112,7 +116,7 @@ def main():
             # optimizerList.append('adamw')
 
             for optimizerName in optimizerList:
-                num_iter, sharpness, non_uniformity = compute(n_samples_train, batch_size, learning_rate, optimizerName)
+                num_iter, train_loss, train_accuracy, test_loss, test_accuracy, sharpness, non_uniformity = compute(n_samples_train, batch_size, learning_rate, optimizerName)
                 plt.scatter(sharpness, non_uniformity, label=optimizerName)
                 full_optim_list.append(optimizerName)
                 full_rate_list.append(learning_rate)
