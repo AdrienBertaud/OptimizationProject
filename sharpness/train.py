@@ -33,21 +33,24 @@ def get_optimizer(net, optimizer, learning_rate, momentum):
     else:
         raise ValueError('optimizer %s is not supported'%(optimizer))
 
-def compute(n_samples, batch_size, learning_rate, optimizerName):
+def compute(n_samples_train, batch_size, learning_rate, optimizerName):
     dataset='fashionmnist'
     momentum=0.0
-    n_iters=10
-    logFrequency=200
+    n_iters=100
+    logFrequency=50
     n_iters_diagnose = 10
     tol_diagnose = 1e-4
+    n_samples_test = n_samples_train
 
     print("optimizer = ", optimizerName)
 
     criterion = torch.nn.CrossEntropyLoss()
 
     train_loader, test_loader = load_data(dataset,
-                                          training_size=n_samples,
+                                          training_size=n_samples_train,
+                                          testing_size=n_samples_test
                                           batch_size=batch_size)
+
     net = load_net(dataset)
     optimizer = get_optimizer(net, optimizerName, learning_rate, momentum)
     print(optimizer)
@@ -64,7 +67,7 @@ def compute(n_samples, batch_size, learning_rate, optimizerName):
     print('\t train loss: %.2e, acc: %.2f' % (train_loss, train_accuracy))
     print('\t test loss: %.2e, acc: %.2f' % (test_loss, test_accuracy))
 
-    sharpness, non_uniformity = diagnose(net, criterion, optimizer, train_loader,test_loader, n_iters=n_iters_diagnose, n_samples=n_samples, batch_size=batch_size, tol=tol_diagnose, verbose=True)
+    sharpness, non_uniformity = diagnose(net, criterion, optimizer, train_loader,test_loader, n_iters=n_iters_diagnose, tol=tol_diagnose, verbose=True)
 
     print("sharpness = ", sharpness)
     print("non_uniformity = ", non_uniformity)
@@ -75,9 +78,9 @@ def main():
 
     torch.set_grad_enabled(True)
 
-    n_samples=1000
-    learning_rate_list = [.01, .05, .1, .5]
-    batch_size_list= [n_samples, n_samples//2, n_samples//4, n_samples//8, n_samples//16]
+    n_samples_train=100
+    learning_rate_list = [.01]#, .05, .1, .5]
+    batch_size_list= [n_samples_train]#, n_samples_train//2, n_samples_train//4, n_samples_train//8, n_samples_train//16]
 
     full_optim_list = []
     full_rate_list = []
@@ -88,7 +91,7 @@ def main():
 
     for batch_size in batch_size_list:
 
-        if batch_size > n_samples:
+        if batch_size > n_samples_train:
             raise ValueError('batch size should not be larger than training set size')
 
         if batch_size == 0:
@@ -98,18 +101,18 @@ def main():
 
             optimizerList = []
 
-            if (batch_size == n_samples):
+            if (batch_size == n_samples_train):
                 optimizerList.append('gd')
-            else:
-                optimizerList.append('sgd')
-            optimizerList.append('adam')
-            optimizerList.append('adagrad')
-            if(batch_size == n_samples):
-                optimizerList.append('lbfgs')
+            # else:
+            #     optimizerList.append('sgd')
+            # optimizerList.append('adam')
+            # optimizerList.append('adagrad')
+            # if(batch_size == n_samples_train):
+            #     optimizerList.append('lbfgs')
             # optimizerList.append('adamw')
 
             for optimizerName in optimizerList:
-                num_iter, sharpness, non_uniformity = compute(n_samples, batch_size, learning_rate, optimizerName)
+                num_iter, sharpness, non_uniformity = compute(n_samples_train, batch_size, learning_rate, optimizerName)
                 plt.scatter(sharpness, non_uniformity, label=optimizerName)
                 full_optim_list.append(optimizerName)
                 full_rate_list.append(learning_rate)

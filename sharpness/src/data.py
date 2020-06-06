@@ -49,15 +49,15 @@ class DataLoader:
         # return batch_X,batch_y
 
 
-def load_fmnist(training_size, batch_size=100):
+def load_fmnist(training_size=60000, test_size=10000, batch_size=100):
     train_set = dsets.FashionMNIST('data/fashionmnist', train=True, download=True)
     train_X, train_y = train_set.data[0:training_size].float()/255, \
                      to_one_hot(train_set.targets[0:training_size])
     train_loader = DataLoader(train_X, train_y, batch_size)
     print("train_X size : ", train_X.size())
     test_set = dsets.FashionMNIST('data/fashionmnist', train=False,download=True)
-    test_X, test_y = test_set.data.float()/255, \
-                     to_one_hot(test_set.targets)
+    test_X, test_y = test_set.data[0:test_size].float()/255, \
+                     to_one_hot(test_set.targets[0:test_size])
     print("test_X size : ", test_X.size())
     test_loader = DataLoader(test_X, test_y, batch_size)
 

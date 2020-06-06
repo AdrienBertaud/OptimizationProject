@@ -43,7 +43,6 @@ def hessian_vec_prod(net, criterion, dataloader, v):
     dataloader.idx = 0
     for _ in range(n_batchs):
         bx, by = next(dataloader)
-        # Hv_t += Hv_batch(net, criterion, bx.cuda(), by.cuda(), v)
         Hv_t += Hv_batch(net, criterion, bx, by, v)
 
     return Hv_t/n_batchs
@@ -56,14 +55,12 @@ def Hv_batch(net, criterion, batch_x, batch_y, v):
     net.eval()
     logits = net(batch_x)
     batch_y_indices = torch.argmax(batch_y,1)
-    # loss = criterion(logits, batch_y)
     loss = criterion(logits, batch_y_indices)
 
     grads = autograd.grad(loss, net.parameters(), create_graph=True, retain_graph=True)
     idx, res = 0, 0
     for grad_i in grads:
         ng = torch.numel(grad_i)
-        # v_i = v[idx:idx+ng].cuda()
         v_i = v[idx:idx+ng]
         res += torch.dot(v_i, grad_i.view(-1))
         idx += ng
@@ -85,7 +82,7 @@ def power_method(v0, Av_func, n_iters=10, tol=1e-3, verbose=False):
         mu = torch.dot(Av,v).item()
         v = Av/Av.norm()
 
-        if abs(mu) <= 1e-3 or abs(mu-mu_pre)/abs(mu) < tol:
+        if abs(mu) <= 1e-7 or abs(mu-mu_pre)/abs(mu) < tol:
             break
         if verbose:
             print('%d-th step takes %.0f seconds, \t %.2e'%(i+1,time.time()-time_start,mu))
