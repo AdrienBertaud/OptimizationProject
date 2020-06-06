@@ -1,4 +1,4 @@
-# import os
+import os
 # import argparse
 # import json
 import matplotlib.pyplot as plt
@@ -47,8 +47,7 @@ def compute(n_samples_train, batch_size, learning_rate, optimizerName):
 
     criterion = torch.nn.CrossEntropyLoss()
 
-    train_loader, test_loader = load_data(dataset,
-                                          training_size=n_samples_train, testing_size=n_samples_test,                               batch_size=batch_size)
+    train_loader, test_loader = load_data(dataset, training_size=n_samples_train, test_size=n_samples_test, batch_size=batch_size)
 
     net = load_net(dataset)
     optimizer = get_optimizer(net, optimizerName, learning_rate, momentum)
@@ -73,26 +72,20 @@ def compute(n_samples_train, batch_size, learning_rate, optimizerName):
 
     return num_iter, train_loss, train_accuracy, test_loss, test_accuracy, sharpness, non_uniformity
 
-
-
 def main():
 
     torch.set_grad_enabled(True)
 
     n_samples_train=100
-    learning_rate_list = [.01]#, .05, .1, .5]
-    batch_size_list= [n_samples_train]#, n_samples_train//2, n_samples_train//4, n_samples_train//8, n_samples_train//16]
+    learning_rate_list = [.01, .05, .1, .5]
+    batch_size_list= [n_samples_train//2, n_samples_train//4, n_samples_train//8, n_samples_train//16]
 
-
-    full_optim_list = []
-    full_rate_list = []
-    full_batch_list = []
-    num_iter_size_list = []
-    full_sharpness_list = []
-    full_non_unifor_list = []
-
-    df = pd.DataFrame(n)
-
+    if os.path.exists('results2.csv'):
+        df = pd.read_csv('results2.csv', sep = ',')
+    else:
+        df = pd.DataFrame(columns=['optimizer', 'lr', 'batch size', 'num iteration',
+                                   'train loss', 'train accuracy', 'test loss', 'test accuracy',
+                                   'sharpness', 'non uniformity'])
     for batch_size in batch_size_list:
 
         if batch_size > n_samples_train:
@@ -107,50 +100,27 @@ def main():
 
             if (batch_size == n_samples_train):
                 optimizerList.append('gd')
-            # else:
-            #     optimizerList.append('sgd')
-            # optimizerList.append('adam')
-            # optimizerList.append('adagrad')
-            # if(batch_size == n_samples_train):
-            #     optimizerList.append('lbfgs')
-            # optimizerList.append('adamw')
+            else:
+                optimizerList.append('sgd')
+            optimizerList.append('adam')
+            optimizerList.append('adagrad')
+            if(batch_size == n_samples_train):
+                optimizerList.append('lbfgs')
+            optimizerList.append('adamw')
 
             for optimizerName in optimizerList:
                 num_iter, train_loss, train_accuracy, test_loss, test_accuracy, sharpness, non_uniformity = compute(n_samples_train, batch_size, learning_rate, optimizerName)
-                plt.scatter(sharpness, non_uniformity, label=optimizerName)
-                full_optim_list.append(optimizerName)
-                full_rate_list.append(learning_rate)
-                full_batch_list.append(batch_size)
-                full_optim_list.append(num_iter_size_list)
-                full_sharpness_list.append(sharpness)
-                full_non_unifor_list.append(non_uniformity)
 
-            plt.legend(loc='best')
-            plt.title('$learning learning_rate = {r}$'.format(r=learning_rate))
-            plt.xlabel('sharpness')
-            plt.ylabel('non_uniformity')
+                df = df.append({'optimizer': optimizerName, 'lr': learning_rate, 'batch size': batch_size, 'num iteration': num_iter,
+                                'train loss': train_loss.item(), 'train accuracy': train_accuracy.item(), 'test loss': test_loss.item(), 'test accuracy': test_accuracy.item(),
+                                'sharpness': sharpness, 'non uniformity': non_uniformity}, ignore_index = True)
 
-             # Save the figure as a PNG
-            plt.savefig('fig')
-            plt.savefig('batch_size_{b}_learning_learning_rate_{r}.png'.format(b=batch_size,r=learning_rate))
 
-            plt.show()
+            # plt.show()
 
-    print("oprim : ", full_optim_list)
-    print("lr : ", full_rate_list)
-    print("batch sizes : ", full_batch_list)
-    print("num_iter_size_list : ", num_iter_size_list)
-    print("sharpness : ", full_sharpness_list)
-    print("non uniformities: ", full_non_unifor_list)
 
-    with open('results.csv', 'w') as result_file:
-        csv_writer = csv.writer(result_file, delimiter=',')
-        csv_writer.writerow(full_optim_list)
-        csv_writer.writerow(full_rate_list)
-        csv_writer.writerow(full_batch_list)
-        csv_writer.writerow(num_iter_size_list)
-        csv_writer.writerow(full_sharpness_list)
-        csv_writer.writerow(full_non_unifor_list)
+    df.to_csv('results2.csv', sep = ',', index = False)
+
 
 if __name__ == '__main__':
     main()

@@ -18,9 +18,9 @@ def load_net(dataset):
         raise ValueError('Dataset %s is not supported'%(dataset))
 
 
-def load_data(dataset, training_size, batch_size):
+def load_data(dataset, training_size, test_size, batch_size):
     if dataset == 'fashionmnist':
-            return load_fmnist(training_size, batch_size)
+            return load_fmnist(training_size=training_size, test_size=test_size, batch_size=batch_size)
     elif dataset == 'cifar10':
             return load_cifar10(training_size, batch_size)
     else:
