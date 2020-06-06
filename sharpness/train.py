@@ -14,6 +14,7 @@ from src.utils import load_net, load_data, eval_accuracy
 from diagnose import diagnose
 from optimizers import get_optimizer
 
+
 def compute(n_samples_train=1000, n_samples_test=1000, batch_size=512, learning_rate=0.01, optimizer_name='sgd'):
 
     print('===> Parameters:')
@@ -55,13 +56,15 @@ def compute(n_samples_train=1000, n_samples_test=1000, batch_size=512, learning_
 
     return num_iter, train_loss, train_accuracy, test_loss, test_accuracy, sharpness, non_uniformity
 
+
 def compute_and_save(n_samples_train=1000, n_samples_test=1000, batch_size=512, learning_rate=0.01, optimizer_name='sgd'):
 
     num_iter, train_loss, train_accuracy, test_loss, test_accuracy, sharpness, non_uniformity = compute(n_samples_train, n_samples_test, batch_size, learning_rate, optimizer_name)
 
     save(optimizer_name, learning_rate, batch_size, num_iter, train_loss.item(), train_accuracy.item(), test_loss.item(), test_loss.item(), sharpness, non_uniformity)
 
-def compute_loop(n_samples_train=1024, learning_rate_list = [.01, .05, .1, .5],batch_size_list= [1024,512,256,128,64]):
+
+def compute_loop(n_samples_train=1024, n_samples_test=1000, learning_rate_list = [.01, .05, .1, .5],batch_size_list= [1024,512,256,128,64]):
 
     for batch_size in batch_size_list:
 
@@ -85,10 +88,15 @@ def compute_loop(n_samples_train=1024, learning_rate_list = [.01, .05, .1, .5],b
             for optimizer_name in optimizerList:
                 compute_and_save(n_samples_train, n_samples_train, batch_size, learning_rate, optimizer_name)
 
+
 def main():
     n_samples_train=1000
+    n_samples_test=n_samples_train
+    learning_rate_list = [.01, .05, .1, .5]
+    batch_size_list= [n_samples_train,n_samples_test, n_samples_train//2,n_samples_train//4,n_samples_train//8,n_samples_train//16]
 
-    compute_loop(n_samples_train=n_samples_train, learning_rate_list = [.01, .05, .1, .5],batch_size_list= [n_samples_train,n_samples_train//2,n_samples_train//4,n_samples_train//8,n_samples_train//16])
+    compute_loop(n_samples_train, n_samples_test, learning_rate_list, batch_size_list)
+
 
 if __name__ == '__main__':
     main()
