@@ -3,16 +3,19 @@ import diagnose
 import src.trainer
 import src.utils
 import optimizers
+import save
 
 from importlib import reload
 reload(src.trainer)
 reload(src.utils)
 reload(diagnose)
 reload(optimizers)
+reload(save)
 from src.trainer import train
 from src.utils import load_net, load_data, eval_accuracy
 from diagnose import diagnose
 from optimizers import get_optimizer
+from save import save
 
 
 def compute(n_samples_train=1000, n_samples_test=1000, batch_size=512, learning_rate=0.01, optimizer_name='sgd'):
@@ -93,7 +96,11 @@ def main():
     n_samples_train=1000
     n_samples_test=n_samples_train
     learning_rate_list = [.01, .05, .1, .5]
-    batch_size_list= [n_samples_train,n_samples_test, n_samples_train//2,n_samples_train//4,n_samples_train//8,n_samples_train//16]
+    batch_size_list= [n_samples_train,
+                      n_samples_train//2,
+                      n_samples_train//4,
+                      n_samples_train//8,
+                      n_samples_train//16]
 
     compute_loop(n_samples_train, n_samples_test, learning_rate_list, batch_size_list)
 
