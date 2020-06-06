@@ -59,7 +59,7 @@ def load_fmnist(training_size=60000, test_size=10000, batch_size=100):
     test_X, test_y = test_set.data[0:test_size].float()/255, \
                      to_one_hot(test_set.targets[0:test_size])
     print("test_X size : ", test_X.size())
-    test_loader = DataLoader(test_X, test_y, batch_size)
+    test_loader = DataLoader(test_X, test_y, test_size)#we don't want to batch test data
 
     return train_loader, test_loader
 

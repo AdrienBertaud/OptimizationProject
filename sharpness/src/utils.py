@@ -47,7 +47,6 @@ def eval_accuracy(model, criterion, dataloader):
     with torch.no_grad():
 
         for i in range(n_batchs):
-            #TODO: this is not correct because data are taken randomly, and can be reuse
             inputs,targets = next(dataloader)
 
             targets_indices = torch.argmax(targets,1)
