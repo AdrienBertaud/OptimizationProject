@@ -38,7 +38,8 @@ def compute(n_samples, batch_size, learning_rate, optimizerName):
     momentum=0.0
     n_iters=10
     logFrequency=200
-    number_of_diagnose_iterations = 10
+    n_iters_diagnose = 10
+    tol_diagnose = 1e-4
 
     print("optimizer = ", optimizerName)
 
@@ -65,9 +66,9 @@ def compute(n_samples, batch_size, learning_rate, optimizerName):
     print('\t train loss: %.2e, acc: %.2f' % (train_loss, train_accuracy))
     print('\t test loss: %.2e, acc: %.2f' % (test_loss, test_accuracy))
 
-    torch.save(net.state_dict(), optimizerName+'.pkl')
+    # torch.save(net.state_dict(), optimizerName+'.pkl')
 
-    sharpness, non_uniformity = diagnose(optimizerName+'.pkl', number_of_diagnose_iterations, n_samples=n_samples, batch_size=batch_size)
+    sharpness, non_uniformity = diagnose(net, criterion, optimizer, train_loader,test_loader, n_iters=n_iters_diagnose, n_samples=n_samples, batch_size=batch_size, tol=tol_diagnose, verbose=True)
 
     print("sharpness = ", sharpness)
     print("non_uniformity = ", non_uniformity)

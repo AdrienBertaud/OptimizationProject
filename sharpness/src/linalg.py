@@ -55,7 +55,9 @@ def Hv_batch(net, criterion, batch_x, batch_y, v):
     """
     net.eval()
     logits = net(batch_x)
-    loss = criterion(logits, batch_y)
+    batch_y_indices = torch.argmax(batch_y,1)
+    # loss = criterion(logits, batch_y)
+    loss = criterion(logits, batch_y_indices)
 
     grads = autograd.grad(loss, net.parameters(), create_graph=True, retain_graph=True)
     idx, res = 0, 0
