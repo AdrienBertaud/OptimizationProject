@@ -1,0 +1,2 @@
+optimizer,lr,batch size,num iteration,train loss,train accuracy,test loss,test accuracy,sharpness train,non uniformity trainsharpness testnon uniformity test,non uniformity test,non uniformity train,sharpness test
+sgd,0.001,10,2050,0.0009609703556634486,100.0,1.508933663368225,81.05000305175781,32.36953353881836,,4817.2687282317975,189.04126946912942,864.8065185546875

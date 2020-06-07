@@ -22,7 +22,6 @@ from utils.save import save
 def compute(n_samples_train=1000, n_samples_test=1000, batch_size=512, learning_rate=0.01, optimizer_name='sgd'):
 
     print('===> Parameters:')
-    print("optimizer = ", optimizer_name)
     print("n_samples_train = ", n_samples_train)
     print("n_samples_test = ", n_samples_test)
 

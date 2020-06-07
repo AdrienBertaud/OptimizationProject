@@ -13,6 +13,9 @@ from importlib import reload
 reload(utils.utils)
 
 def get_optimizer(net, optimizer, learning_rate):
+
+    print("optimizer = ", optimizer_name)
+
     if optimizer == 'gd':
         return torch.optim.SGD(net.parameters(), lr=learning_rate)
     elif optimizer == 'sgd':

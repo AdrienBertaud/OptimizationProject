@@ -29,8 +29,8 @@ def save(optimizer_name, learning_rate, batch_size, num_iter, train_loss, train_
                                    'test loss',
                                    'test accuracy',
                                    'sharpness train',
-                                   'non uniformity train'
-                                   'sharpness test'
+                                   'non uniformity train',
+                                   'sharpness test',
                                    'non uniformity test'])
 
     df = df.append({'optimizer': optimizer_name,
