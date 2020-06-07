@@ -64,7 +64,6 @@ def train(model, criterion, optimizer, optimizerName, dataloader, batch_size, n_
 def compute_minibatch_gradient(model, criterion, dataloader, batch_size):
     loss,acc = 0,0
 
-    #inputs, targets = inputs.cuda(), targets.cuda()
     inputs,targets = next(dataloader)
 
     targets_indices = torch.argmax(targets,1)
