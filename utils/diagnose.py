@@ -30,7 +30,7 @@ def diagnose(net, criterion, optimizer, train_loader,test_loader, n_iters=10, to
     print("non uniformity train = ", non_uniformity_train)
     print("sharpness test = ", sharpness_test)
     print("non uniformity test = ", non_uniformity_test)
-    print('\n'
+    print('\n')
 
     return sharpness_train, non_uniformity_train, sharpness_test, non_uniformity_test
 
