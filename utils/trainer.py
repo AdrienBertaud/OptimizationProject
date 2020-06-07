@@ -25,7 +25,6 @@ def train(model, criterion, optimizer, optimizerName, dataloader, batch_size, n_
 
             n_batchs = len(dataloader)
             dataloader.idx = 0
-            total_loss = .0
 
             for i in range(n_batchs):
 

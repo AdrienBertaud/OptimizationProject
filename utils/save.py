@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sat Jun  6 18:26:52 2020
-
-@author: berta
-"""
 
 import os
 import utils.trainer
