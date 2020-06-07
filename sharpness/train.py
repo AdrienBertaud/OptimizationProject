@@ -48,14 +48,12 @@ def compute(n_samples_train=1000, n_samples_test=1000, batch_size=512, learning_
 
     print('===> Results: ')
     train_loss, train_accuracy = eval_accuracy(net, criterion, train_loader)
-    print('\t train loss: %.2e, acc: %.2f' % (train_loss, train_accuracy))
     test_loss, test_accuracy = eval_accuracy(net, criterion, test_loader)
+    print('\t train loss: %.2e, acc: %.2f' % (train_loss, train_accuracy))
     print('\t test loss: %.2e, acc: %.2f' % (test_loss, test_accuracy))
 
     print('===> Diagnose: ')
-    sharpness, non_uniformity = diagnose(net, criterion, optimizer, train_loader,test_loader)
-    print("sharpness = ", sharpness)
-    print("non_uniformity = ", non_uniformity)
+    sharpness_train, non_uniformity_train, sharpness_test, non_uniformity_test = diagnose(net, criterion, optimizer, train_loader,test_loader)
 
     return num_iter, train_loss, train_accuracy, test_loss, test_accuracy, sharpness, non_uniformity
 
