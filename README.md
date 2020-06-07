@@ -13,7 +13,9 @@ python plot.py
 ```
 
 ### Run toy examples
+```
 python toy_examples.py
+```
 
 ### Dependencies
 - pytorch >= 0.4
