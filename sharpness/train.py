@@ -44,7 +44,7 @@ def compute(n_samples_train=1000, n_samples_test=1000, batch_size=512, learning_
     print(optimizer)
 
     print('===> Start training')
-    num_iter = train(net, criterion, optimizer, optimizer_name, train_loader, batch_size, n_iters=10000, logFrequency=200)
+    num_iter = train(net, criterion, optimizer, optimizer_name, train_loader, batch_size, n_epochs=10000, log_frequency=200)
 
     print('===> Results: ')
     train_loss, train_accuracy = eval_accuracy(net, criterion, train_loader)
@@ -67,7 +67,7 @@ def compute_and_save(n_samples_train=1000, n_samples_test=1000, batch_size=512, 
     save(optimizer_name, learning_rate, batch_size, num_iter, train_loss.item(), train_accuracy.item(), test_loss.item(), test_accuracy.item(), sharpness, non_uniformity)
 
 
-def compute_loop(n_samples_train=1024, n_samples_test=1000, learning_rate_list = [.01, .05, .1, .5],batch_size_list= [1024,512,256,128,64]):
+def compute_loop(n_samples_train=1024, n_samples_test=1000, learning_rate_list = [.05, .1, .5],batch_size_list= [1024,512,256,128,64]):
 
     for batch_size in batch_size_list:
 
