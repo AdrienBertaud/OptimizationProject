@@ -1,16 +1,10 @@
 /__pycache__
-Methods/__pycache__
-Methods/UnitTests/__pycache__
-Methods/Utils/__pycache__
-Data/__pycache__
-Data/MNIST
-Satellite/__pycache__
-Satellite/.ipynb_checkpoints
 */__pycache__
-sharpness/__pycache__
-sharpness/data
-sharpness/src/__pycache__
-sharpness/src/data
+__pycache__
+data
+utils/__pycache__
+utils/data
+utils/models/__pycache__
 
 
 # Jupyter Notebook
