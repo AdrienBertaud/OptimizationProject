@@ -12,7 +12,6 @@ def train(model, criterion, optimizer, optimizerName, dataloader, batch_size, n_
     with torch.set_grad_enabled(True):
 
         model.train()
-        acc_avg, loss_avg = 0, 0
 
         since = time.time()
 
