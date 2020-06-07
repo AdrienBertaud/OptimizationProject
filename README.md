@@ -18,10 +18,3 @@ python toy_examples.py
 ### Dependencies
 - pytorch >= 0.4
 
-### Citation
-
-	@inproceedings{
-		title={How Deep Learning Selects the Global Minima},
-		author={drien Bertaud, Yanis Bendali, Danya Li},
-		year={2020}
-	}
