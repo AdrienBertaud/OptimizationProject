@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import torch
 
-def get_optimizer(net, optimizer_name, learning_rate):
+def load_optimizer(net, optimizer_name, learning_rate):
 
     print("optimizer_name = ", optimizer_name)
 

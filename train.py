@@ -19,7 +19,7 @@ reload(utils.non_uniformity)
 reload(utils.save)
 
 from utils.net import load_net
-from utils.optimizers import get_optimizer
+from utils.optimizers import load_optimizer
 from utils.data import load_data
 from utils.trainer import train
 from utils.accuracy import eval_accuracy
@@ -42,7 +42,7 @@ def compute(train_size=1000, test_size=5000, batch_size=100, learning_rate=0.01,
 
     net = load_net()
 
-    optimizer = get_optimizer(net, optimizer_name, learning_rate)
+    optimizer = load_optimizer(net, optimizer_name, learning_rate)
 
     num_iter = train(net, loss_function, optimizer, optimizer_name, train_loader, batch_size)
 

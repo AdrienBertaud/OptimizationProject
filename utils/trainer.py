@@ -12,7 +12,7 @@ def train(model, loss_function, optimizer, optimizer_name, data_loader, batch_si
     n_batchs = len(data_loader)
     eval_frequency=400//n_batchs
     loss_condition = 1e-3
-    n_epochs=10000
+    max_epochs=1
 
     print("optimizer.type = ", optimizer_name)
 
@@ -24,7 +24,7 @@ def train(model, loss_function, optimizer, optimizer_name, data_loader, batch_si
 
         epoch_now = 0
 
-        for epoch_now in range(n_epochs):
+        for epoch_now in range(max_epochs):
 
             data_loader.idx = 0
 
@@ -52,7 +52,7 @@ def train(model, loss_function, optimizer, optimizer_name, data_loader, batch_si
                 loss_train, acc_train = eval_accuracy(model, loss_function, data_loader)
 
                 now = time.time()
-                print('%d/%d, took %.0f seconds, train_loss: %.1e, train_acc: %.2f'%(epoch_now+1, n_epochs, now-since, loss_train, acc_train))
+                print('%d/%d, took %.0f seconds, train_loss: %.1e, train_acc: %.2f'%(epoch_now+1, max_epochs, now-since, loss_train, acc_train))
 
                 if loss_train <= loss_condition:
                     print("loss is egal inferior to %d, we stop learning at epoch %d"%(loss_condition, epoch_now))
