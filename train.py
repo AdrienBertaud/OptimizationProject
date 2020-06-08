@@ -19,14 +19,14 @@ reload(utils.sharpness)
 reload(utils.non_uniformity)
 reload(utils.save)
 
-from utils.net import load_net
+from utils.net import load_net, save_net, reload_net
 from utils.optimizers import load_optimizer
 from utils.data import load_data
 from utils.trainer import train
 from utils.accuracy import eval_accuracy
 from utils.sharpness import eval_sharpness
 from utils.non_uniformity import eval_non_uniformity
-from utils.save import save_model, save_results_to_csv
+from utils.save import save_results_to_csv
 
 
 def train_and_eval(train_size=1000, test_size=2000, batch_size=100, learning_rate=0.01, optimizer_name='sgd'):
@@ -51,7 +51,10 @@ def train_and_eval(train_size=1000, test_size=2000, batch_size=100, learning_rat
 
     num_iter, duration = train(net, loss_function, optimizer, optimizer_name, train_loader, batch_size)
 
-    save_model(net, '%s_lr%d_batch%d_on_%d'%(optimizer_name, learning_rate, batch_size, train_size))
+    save_path = save_net(net, '%s_lr%d_batch%d_on_%d'%(optimizer_name, learning_rate, batch_size, train_size))
+
+    # activating this line, allow to ensure that the network can be reloaded
+    # net= reload_net(save_path)
 
     train_loss, train_accuracy = eval_accuracy(net, loss_function, train_loader)
     test_loss, test_accuracy = eval_accuracy(net, loss_function, test_loader)

@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
+import torch
 import torch.nn as nn
+import time
+import os
 
 class NN(nn.Module):
     def __init__(self):
@@ -20,3 +23,28 @@ class NN(nn.Module):
 
 def load_net():
     return NN()
+
+
+def save_net(model, name):
+
+    directory = 'saved_net/'
+    t = time.localtime()
+    timestamp = time.strftime('_%b-%d-%Y_%H%M', t)
+    file_name = (name + timestamp)
+    save_path = (directory + file_name + '.pkl')
+
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
+    print("save model to {}".format(save_path))
+
+    output = open(save_path, mode="wb")
+    torch.save(model.state_dict(), output)
+
+    return save_path
+
+
+def reload_net(save_path):
+    net = load_net()
+    net.load_state_dict(torch.load(save_path))
+    return net
