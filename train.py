@@ -28,7 +28,7 @@ from utils.non_uniformity import eval_non_uniformity
 from utils.save import save_to_csv
 
 
-def compute(train_size=1000, test_size=5000, batch_size=100, learning_rate=0.01, optimizer_name='sgd'):
+def compute(train_size=1000, test_size=2000, batch_size=100, learning_rate=0.01, optimizer_name='sgd'):
 
     if batch_size > train_size:
         raise ValueError('batch size should not be larger than training set size')
@@ -55,11 +55,11 @@ def compute(train_size=1000, test_size=5000, batch_size=100, learning_rate=0.01,
     print('train loss: %.2e, acc: %.2f' % (train_loss, train_accuracy))
     print('test loss: %.2e, acc: %.2f' % (test_loss, test_accuracy))
 
+    print("compute sharpness with train data")
     sharpness_train = eval_sharpness(net, loss_function, optimizer, train_loader)
-    print("sharpness train = ", sharpness_train)
 
+    print("compute sharpness with test data")
     non_uniformity_train = eval_non_uniformity(net, loss_function, optimizer, train_loader)
-    print("non uniformity train = ", non_uniformity_train)
 
     sharpness_test = eval_sharpness(net, loss_function, optimizer, test_loader)
     print("sharpness test = ", sharpness_test)
@@ -82,7 +82,7 @@ def compute(train_size=1000, test_size=5000, batch_size=100, learning_rate=0.01,
                 non_uniformity_test)
 
 
-def compute_loop(train_size=1000, test_size=1000, learning_rate_list = [.001, .01, .1], batch_size_list= [10,100,1000]):
+def compute_loop(train_size=1000, test_size=2000, learning_rate_list = [.001, .01, .1], batch_size_list= [10,100,1000]):
 
     for batch_size in batch_size_list:
         for learning_rate in learning_rate_list:
