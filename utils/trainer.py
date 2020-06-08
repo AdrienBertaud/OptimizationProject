@@ -12,7 +12,7 @@ def train(model, loss_function, optimizer, optimizer_name, data_loader, batch_si
     begin = time.time()
 
     n_batchs = len(data_loader)
-    max_epochs=10000//n_batchs
+    max_epochs=10000
     eval_frequency=400//n_batchs
     loss_condition = .0001
 
