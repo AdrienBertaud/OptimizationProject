@@ -35,26 +35,18 @@ class DataLoader:
         return batch_X,batch_y
 
 
-def load_data(dataset='fashionmnist', training_size=60000, test_size=10000, batch_size=1000):
-    if dataset == 'fashionmnist':
-            return load_fmnist(training_size=training_size, test_size=test_size, batch_size=batch_size)
-    else:
-        raise ValueError('Dataset %s is not supported'%(dataset))
+def load_data(data_size=1000, batch_size=100):
 
+    train_set = dsets.FashionMNIST('fashionmnist', train=True, download=True)
 
-def load_fmnist(training_size=60000, test_size=10000, batch_size=100):
-    train_set = dsets.FashionMNIST('data/fashionmnist', train=True, download=True)
-    train_X, train_y = train_set.data[0:training_size].float()/255, \
-                     to_one_hot(train_set.targets[0:training_size])
-    train_loader = DataLoader(train_X, train_y, batch_size)
-    print("train_X size : ", train_X.size())
-    test_set = dsets.FashionMNIST('data/fashionmnist', train=False,download=True)
-    test_X, test_y = test_set.data[0:test_size].float()/255, \
-                     to_one_hot(test_set.targets[0:test_size])
-    print("test_X size : ", test_X.size())
-    test_loader = DataLoader(test_X, test_y, test_size)#we don't want to batch test data
+    train_X, train_y = train_set.data[0:data_size].float()/255, \
+                     to_one_hot(train_set.targets[0:data_size])
 
-    return train_loader, test_loader
+    print("data size : ", train_X.size())
+
+    data_loader = DataLoader(train_X, train_y, batch_size)
+
+    return data_loader
 
 
 def to_one_hot(labels):

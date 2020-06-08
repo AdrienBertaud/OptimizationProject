@@ -38,7 +38,8 @@ def compute(train_size=1000, test_size=5000, batch_size=100, learning_rate=0.01,
 
     loss_function = torch.nn.CrossEntropyLoss()
 
-    train_loader, test_loader = load_data(training_size=train_size, test_size=test_size, batch_size=batch_size)
+    train_loader  = load_data(data_size=train_size, batch_size=batch_size)
+    test_loader = load_data(data_size=test_size, batch_size=test_size)
 
     net = load_net()
 

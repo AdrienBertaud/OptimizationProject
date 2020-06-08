@@ -12,7 +12,7 @@ def train(model, loss_function, optimizer, optimizer_name, data_loader, batch_si
     n_batchs = len(data_loader)
     eval_frequency=400//n_batchs
     loss_condition = 1e-3
-    max_epochs=1
+    max_epochs=10000
 
     print("optimizer.type = ", optimizer_name)
 
