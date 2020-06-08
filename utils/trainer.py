@@ -14,7 +14,7 @@ def train(model, loss_function, optimizer, optimizer_name, data_loader, batch_si
     n_batchs = len(data_loader)
     max_epochs=10000//n_batchs
     eval_frequency=400//n_batchs
-    loss_condition = .001
+    loss_condition = .0001
 
     with torch.set_grad_enabled(True):
 
