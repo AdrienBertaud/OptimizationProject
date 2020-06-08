@@ -81,7 +81,7 @@ def plot_lr(df, batch_size = 10, n = 1000, ymax = 32):
     plt.savefig('Sharpness vs Nonuniformity for different learning rate (bs='+str(batch_size)+'.pdf')
     plt.show()
 
-def main():
+if __name__ == '__main__':
 
     file_name = 'results.csv'
 
@@ -92,6 +92,3 @@ def main():
 
     plot_B(df, lr = 0.5, n = 1000, ymax = 15)
     plot_lr(df, batch_size = 10, n = 1000, ymax = 32)
-
-if __name__ == '__main__':
-    main()

@@ -144,13 +144,9 @@ def toy_example_sgd():
     plt.title('SGD'+', Learning Rate='+str(LEARNINGRATE)+', Start at='+str(STARTING))
     plt.show()
 
-def main():
-
+if __name__ == '__main__':
     toy_example_gd(f, h, start_value=1.2, learning_rate=0.2)
     toy_example_gd(f, h, start_value=1.3, learning_rate=0.19)
 
     toy_example_sgd(f, h, start_value=1.2, learning_rate=0.2)
     toy_example_sgd(f, h, start_value=1.3, learning_rate=0.19)
-
-if __name__ == '__main__':
-    main()
