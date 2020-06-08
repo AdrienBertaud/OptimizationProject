@@ -58,14 +58,14 @@ def compute(train_size=1000, test_size=2000, batch_size=100, learning_rate=0.01,
     print("compute sharpness with train data")
     sharpness_train = eval_sharpness(net, loss_function, optimizer, train_loader)
 
-    print("compute sharpness with test data")
+    print("compute non-uniformity with train data")
     non_uniformity_train = eval_non_uniformity(net, loss_function, optimizer, train_loader)
 
+    print("compute sharpness with test data")
     sharpness_test = eval_sharpness(net, loss_function, optimizer, test_loader)
-    print("sharpness test = ", sharpness_test)
 
-    non_uniformity_test = eval_non_uniformity(net, loss_function, optimizer, test_loader)
-    print("non uniformity test = ", non_uniformity_test)
+    print("compute non-uniformity with test data")
+    non_uniformity_test = eval_non_uniformity(net, loss_function, optimizer,
 
     save_to_csv(optimizer_name, \
                 learning_rate, \
