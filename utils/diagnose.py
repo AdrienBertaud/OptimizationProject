@@ -4,35 +4,23 @@ from importlib import reload
 reload(utils.linalg)
 from utils.linalg import eigen_variance, eigen_hessian
 
-def diagnose(net, criterion, optimizer, train_loader,test_loader, n_iters=10, tol=1e-4, verbose=True):
 
-    print('===> Compute sharpness on train data:')
-    sharpness_train = get_sharpness(net, criterion, train_loader, \
-                                n_iters=n_iters, tol=tol, verbose=verbose)
-    print('Sharpness train is %.2e\n'%(sharpness_train))
+def diagnose(net, criterion, optimizer, data_loader):
 
-    print('===> Compute sharpness on test data:')
-    sharpness_test = get_sharpness(net, criterion, test_loader, \
-                                n_iters=n_iters, tol=tol, verbose=verbose)
-    print('Sharpness test is %.2e\n'%(sharpness_test))
+    n_iters=10
+    tol=1e-4
 
-    print('===> Compute non-uniformity on train data:')
-    non_uniformity_train = get_nonuniformity(net, criterion, train_loader, \
-                                        n_iters=n_iters, tol=tol, verbose=verbose)
-    print('Non-uniformity train is %.2e\n'%(non_uniformity_train))
+    print('Compute sharpness :')
+    sharpness = get_sharpness(net, criterion, data_loader, \
+                              n_iters=n_iters, tol=tol)
+    print('Sharpness is %.2e\n'%(sharpness))
 
-    print('===> Compute non-uniformity on test data:')
-    non_uniformity_test = get_nonuniformity(net, criterion, test_loader, \
-                                        n_iters=n_iters, tol=tol, verbose=verbose)
-    print('Non-uniformity test is %.2e\n'%(non_uniformity_test))
+    print('Compute non-uniformity :')
+    non_uniformity = get_nonuniformity(net, criterion, data_loader, \
+                                       n_iters=n_iters, tol=tol)
+    print('Non-uniformity is %.2e\n'%(non_uniformity))
 
-    print("sharpness train = ", sharpness_train)
-    print("non uniformity train = ", non_uniformity_train)
-    print("sharpness test = ", sharpness_test)
-    print("non uniformity test = ", non_uniformity_test)
-    print('\n')
-
-    return sharpness_train, non_uniformity_train, sharpness_test, non_uniformity_test
+    return sharpness, non_uniformity
 
 
 def get_sharpness(net, criterion, dataloader, n_iters=10, tol=1e-2, verbose=False):

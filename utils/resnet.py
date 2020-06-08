@@ -1,18 +1,8 @@
-import os
 import math
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 import torch.nn.init as init
 
-def get_cifar_mean_std():
-    mean = torch.Tensor([x/255 for x in [125.3,123.0, 113.9]]).view(1,3,1,1)
-    std  = torch.Tensor([x/255 for x in [63.0, 62.1, 66.7]]).view(1,3,1,1)
-    # mean_var = mean.cuda()
-    # std_var = std.cuda()
-    mean_var = mean
-    std_var = std
-    return mean_var,std_var
 
 #====================================
 # ResNet

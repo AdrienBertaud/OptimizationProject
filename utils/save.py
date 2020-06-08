@@ -1,14 +1,21 @@
 # -*- coding: utf-8 -*-
 
 import os
-import utils.trainer
-import utils.utils
 import pandas as pd
 
-from importlib import reload
-reload(utils.utils)
 
-def save(optimizer_name, learning_rate, batch_size, num_iter, train_loss, train_accuracy, test_loss, test_accuracy, sharpness_train, non_uniformity_train, sharpness_test, non_uniformity_test):
+def save_to_csv(optimizer_name, \
+                learning_rate, \
+                batch_size, \
+                num_iter, \
+                train_loss, \
+                train_accuracy, \
+                test_loss, \
+                test_accuracy, \
+                sharpness_train, \
+                non_uniformity_train, \
+                sharpness_test, \
+                non_uniformity_test):
 
     file_name = 'results.csv'
 

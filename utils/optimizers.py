@@ -1,32 +1,21 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sat Jun  6 18:29:55 2020
-
-@author: berta
-"""
-
 import torch
-import utils.trainer
-import utils.utils
 
-from importlib import reload
-reload(utils.utils)
+def get_optimizer(net, optimizer_name, learning_rate):
 
-def get_optimizer(net, optimizer, learning_rate):
+    print("optimizer_name = ", optimizer_name)
 
-    print("optimizer = ", optimizer_name)
-
-    if optimizer == 'gd':
+    if optimizer_name == 'gd':
         return torch.optim.SGD(net.parameters(), lr=learning_rate)
-    elif optimizer == 'sgd':
+    elif optimizer_name == 'sgd':
         return torch.optim.SGD(net.parameters(), lr=learning_rate)
-    elif optimizer == 'adam':
+    elif optimizer_name == 'adam':
         return torch.optim.Adam(net.parameters(), lr=learning_rate)
-    elif optimizer == 'adagrad':
+    elif optimizer_name == 'adagrad':
          return torch.optim.Adagrad(net.parameters(), lr=learning_rate)
-    elif optimizer == 'lbfgs':
+    elif optimizer_name == 'lbfgs':
          return torch.optim.LBFGS(net.parameters(), lr=learning_rate)
-    elif optimizer == 'adamw':
+    elif optimizer_name == 'adamw':
          return torch.optim.AdamW(net.parameters(), lr=learning_rate)
     else:
-        raise ValueError('optimizer %s is not supported'%(optimizer))
+        raise ValueError('optimizer_name %s is not supported'%(optimizer_name))

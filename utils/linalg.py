@@ -2,6 +2,7 @@ import time
 import torch
 import torch.autograd as autograd
 
+
 def eigen_variance(net, criterion, dataloader, n_iters=10, tol=1e-2, verbose=False):
     n_parameters = num_parameters(net)
     v0 = torch.randn(n_parameters)
