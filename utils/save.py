@@ -4,7 +4,7 @@ import os
 import pandas as pd
 
 
-def save_to_csv(optimizer_name, \
+def save_results_to_csv(optimizer_name, \
                 learning_rate, \
                 batch_size, \
                 num_iter, \
@@ -43,9 +43,9 @@ def save_to_csv(optimizer_name, \
                     'num iteration': num_iter,
                     'duration': round(duration),
                     'train loss': round(train_loss,5),
-                    'train accuracy': train_accuracy,
+                    'train accuracy': round(train_accuracy,1),
                     'test loss': round(test_loss,5),
-                    'test accuracy': test_accuracy,
+                    'test accuracy': round(test_accuracy,1),
                     'sharpness train': round(sharpness_train),
                     'non uniformity train': round(non_uniformity_train),
                     'sharpness test': round(sharpness_test),

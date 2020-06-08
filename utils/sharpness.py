@@ -7,7 +7,7 @@ from utils.linalg import eigen_hessian
 
 def eval_sharpness(net, criterion, optimizer, data_loader):
 
-    n_iters=10
+    n_iters=20
     tol=1e-4
 
     print('Compute sharpness :')

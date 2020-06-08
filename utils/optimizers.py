@@ -3,7 +3,8 @@ import torch
 
 def load_optimizer(net, optimizer_name, learning_rate):
 
-    print("optimizer_name = ", optimizer_name)
+    print("optimizer name = ", optimizer_name)
+    print("learning rate = ", learning_rate)
 
     if optimizer_name == 'gd':
         return torch.optim.SGD(net.parameters(), lr=learning_rate)
