@@ -106,8 +106,8 @@ def compute_loop(train_size=1000, test_size=2000, learning_rate_list = [.001, .0
 if __name__ == '__main__':
     train_size=1000
     test_size=2000
-    learning_rate_list = [ .01, .1, .001]
-    batch_size_list= [1000,100,10]
+    learning_rate_list = [ .1, .01, .001]
+    batch_size_list= [100,10,1000]
 
     compute_loop(train_size, test_size, learning_rate_list, batch_size_list)
 
