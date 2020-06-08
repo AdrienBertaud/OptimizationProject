@@ -46,6 +46,10 @@ def load_data(data_size=1000, batch_size=100):
 
     data_loader = DataLoader(train_X, train_y, batch_size)
 
+    print("batch size : ", data_loader.batch_size)
+
+    print("number of batch : ", len(data_loader))
+
     return data_loader
 
 

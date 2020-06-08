@@ -38,7 +38,10 @@ def compute(train_size=1000, test_size=5000, batch_size=100, learning_rate=0.01,
 
     loss_function = torch.nn.CrossEntropyLoss()
 
+    print("load data for training")
     train_loader  = load_data(data_size=train_size, batch_size=batch_size)
+
+    print("load data for testing")
     test_loader = load_data(data_size=test_size, batch_size=test_size)
 
     net = load_net()
@@ -96,7 +99,7 @@ def compute_loop(train_size=1000, test_size=1000, learning_rate_list = [.001, .0
                 optimizerList.append('sgd')
 
             for optimizer_name in optimizerList:
-                compute(train_size, train_size, batch_size, \
+                compute(train_size, test_size, batch_size, \
                                  learning_rate, optimizer_name)
 
 
