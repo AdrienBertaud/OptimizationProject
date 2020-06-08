@@ -65,7 +65,7 @@ def compute(train_size=1000, test_size=2000, batch_size=100, learning_rate=0.01,
     sharpness_test = eval_sharpness(net, loss_function, optimizer, test_loader)
 
     print("compute non-uniformity with test data")
-    non_uniformity_test = eval_non_uniformity(net, loss_function, optimizer,
+    non_uniformity_test = eval_non_uniformity(net, loss_function, optimizer, test_loader)
 
     save_to_csv(optimizer_name, \
                 learning_rate, \
@@ -81,16 +81,15 @@ def compute(train_size=1000, test_size=2000, batch_size=100, learning_rate=0.01,
                 sharpness_test, \
                 non_uniformity_test)
 
-
-def compute_loop(train_size=1000, test_size=2000, learning_rate_list = [.001, .01, .1], batch_size_list= [10,100,1000]):
+def compute_loop(train_size, test_size, learning_rate_list, batch_size_list):
 
     for batch_size in batch_size_list:
         for learning_rate in learning_rate_list:
 
             optimizerList = []
 
-            optimizerList.append('adam')
             optimizerList.append('adagrad')
+            optimizerList.append('adam')
 
             if (batch_size == train_size):
                 optimizerList.append('gd')
@@ -106,8 +105,7 @@ def compute_loop(train_size=1000, test_size=2000, learning_rate_list = [.001, .0
 if __name__ == '__main__':
     train_size=1000
     test_size=2000
-    learning_rate_list = [ .1, .01, .001]
-    batch_size_list= [100,10,1000]
-
+    learning_rate_list = [.001, .1, .01]
+    batch_size_list = [1000, 100, 10]
     compute_loop(train_size, test_size, learning_rate_list, batch_size_list)
 

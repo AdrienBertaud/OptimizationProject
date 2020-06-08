@@ -41,15 +41,15 @@ def save_to_csv(optimizer_name, \
                     'lr': learning_rate,
                     'batch size': batch_size,
                     'num iteration': num_iter,
-                    'duration': duration,
-                    'train loss': train_loss,
+                    'duration': round(duration),
+                    'train loss': round(train_loss,5),
                     'train accuracy': train_accuracy,
-                    'test loss': test_loss,
+                    'test loss': round(test_loss,5),
                     'test accuracy': test_accuracy,
-                    'sharpness train': sharpness_train,
-                    'non uniformity train': non_uniformity_train,
-                    'sharpness test': sharpness_test,
-                    'non uniformity test': non_uniformity_test},
+                    'sharpness train': round(sharpness_train),
+                    'non uniformity train': round(non_uniformity_train),
+                    'sharpness test': round(sharpness_test),
+                    'non uniformity test': round(non_uniformity_test)},
                    ignore_index = True)
 
     df.to_csv(file_name, sep = ',', index = False)
