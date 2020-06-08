@@ -1,34 +1,31 @@
 import torch
-import utils.diagnose
-import utils.trainer
-import utils.optimizers
-import utils.save
-import utils.data
-import utils.accuracy
 import utils.net
+import utils.optimizers
+import utils.data
+import utils.trainer
+import utils.accuracy
 import utils.sharpness
 import utils.non_uniformity
+import utils.save
 
 from importlib import reload
-reload(utils.trainer)
-reload(utils.diagnose)
-reload(utils.optimizers)
-reload(utils.save)
-reload(utils.data)
-reload(utils.accuracy)
 reload(utils.net)
+reload(utils.optimizers)
+reload(utils.data)
+reload(utils.trainer)
+reload(utils.accuracy)
 reload(utils.sharpness)
 reload(utils.non_uniformity)
+reload(utils.save)
 
-from utils.trainer import train
-from utils.data import load_data
 from utils.net import load_net
-from utils.accuracy import eval_accuracy
-from utils.diagnose import diagnose
 from utils.optimizers import get_optimizer
-from utils.save import save_to_csv
+from utils.data import load_data
+from utils.trainer import train
+from utils.accuracy import eval_accuracy
 from utils.sharpness import compute_sharpness
 from utils.non_uniformity import compute_non_uniformity
+from utils.save import save_to_csv
 
 
 def compute(train_size=1000, test_size=5000, batch_size=100, learning_rate=0.01, optimizer_name='sgd'):

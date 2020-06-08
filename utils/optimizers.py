@@ -15,7 +15,5 @@ def get_optimizer(net, optimizer_name, learning_rate):
          return torch.optim.Adagrad(net.parameters(), lr=learning_rate)
     elif optimizer_name == 'lbfgs':
          return torch.optim.LBFGS(net.parameters(), lr=learning_rate)
-    elif optimizer_name == 'adamw':
-         return torch.optim.AdamW(net.parameters(), lr=learning_rate)
     else:
         raise ValueError('optimizer_name %s is not supported'%(optimizer_name))
