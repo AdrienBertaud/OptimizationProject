@@ -9,10 +9,12 @@ from utils.accuracy import eval_accuracy
 
 def train(model, loss_function, optimizer, optimizer_name, data_loader, batch_size):
 
+    begin = time.time()
+
     n_batchs = len(data_loader)
     eval_frequency=400//n_batchs
-    loss_condition = 1e-3
-    max_epochs=10000
+    loss_condition = 1e-2
+    max_epochs=1//n_batchs
 
     print("optimizer.type = ", optimizer_name)
 
@@ -52,7 +54,7 @@ def train(model, loss_function, optimizer, optimizer_name, data_loader, batch_si
                 loss_train, acc_train = eval_accuracy(model, loss_function, data_loader)
 
                 now = time.time()
-                print('%d/%d, took %.0f seconds, train_loss: %.1e, train_acc: %.2f'%(epoch_now+1, max_epochs, now-since, loss_train, acc_train))
+                print('%d/%d, took %.0f/%.0f seconds, train_loss: %.1e, train_acc: %.2f'%(epoch_now+1, max_epochs, now-since, now-begin, loss_train, acc_train))
 
                 if loss_train <= loss_condition:
                     print("loss is egal inferior to %d, we stop learning at epoch %d"%(loss_condition, epoch_now))
@@ -60,7 +62,7 @@ def train(model, loss_function, optimizer, optimizer_name, data_loader, batch_si
 
                 since = time.time()
 
-    return epoch_now
+    return epoch_now, time.time()-begin
 
 def compute_minibatch_gradient(model, loss_function, data_loader, batch_size):
     loss = .0

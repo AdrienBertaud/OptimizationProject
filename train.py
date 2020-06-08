@@ -45,7 +45,7 @@ def compute(train_size=1000, test_size=5000, batch_size=100, learning_rate=0.01,
 
     optimizer = load_optimizer(net, optimizer_name, learning_rate)
 
-    num_iter = train(net, loss_function, optimizer, optimizer_name, train_loader, batch_size)
+    num_iter, duration = train(net, loss_function, optimizer, optimizer_name, train_loader, batch_size)
 
     train_loss, train_accuracy = eval_accuracy(net, loss_function, train_loader)
     test_loss, test_accuracy = eval_accuracy(net, loss_function, test_loader)
@@ -68,6 +68,7 @@ def compute(train_size=1000, test_size=5000, batch_size=100, learning_rate=0.01,
                 learning_rate, \
                 batch_size, \
                 num_iter, \
+                duration, \
                 train_loss.item(), \
                 train_accuracy.item(), \
                 test_loss.item(), \
@@ -101,9 +102,9 @@ def compute_loop(train_size=1000, test_size=1000, learning_rate_list = [.001, .0
 
 if __name__ == '__main__':
     train_size=1000
-    test_size=5000
+    test_size=2000
     learning_rate_list = [ .01, .1, .001]
-    batch_size_list= [10,100,1000]
+    batch_size_list= [1000,100,10]
 
     compute_loop(train_size, test_size, learning_rate_list, batch_size_list)
 

@@ -8,6 +8,7 @@ def save_to_csv(optimizer_name, \
                 learning_rate, \
                 batch_size, \
                 num_iter, \
+                duration, \
                 train_loss, \
                 train_accuracy, \
                 test_loss, \
@@ -26,6 +27,7 @@ def save_to_csv(optimizer_name, \
                                    'lr',
                                    'batch size',
                                    'num iteration',
+                                   'duration',
                                    'train loss',
                                    'train accuracy',
                                    'test loss',
@@ -39,6 +41,7 @@ def save_to_csv(optimizer_name, \
                     'lr': learning_rate,
                     'batch size': batch_size,
                     'num iteration': num_iter,
+                    'duration': duration,
                     'train loss': train_loss,
                     'train accuracy': train_accuracy,
                     'test loss': test_loss,

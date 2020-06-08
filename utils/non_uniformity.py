@@ -4,7 +4,7 @@ import math
 import utils.linalg
 from importlib import reload
 reload(utils.linalg)
-from utils.linalg import eigen_variance, eigen_hessian
+from utils.linalg import eigen_variance
 
 
 def eval_non_uniformity(net, criterion, optimizer, data_loader):
@@ -16,7 +16,7 @@ def eval_non_uniformity(net, criterion, optimizer, data_loader):
     v = eigen_variance(net, criterion, data_loader, \
                       n_iters=n_iters, tol=tol, verbose=True)
 
-    print('non_uniformity is %.2e\n'%(non_uniformity))
+    print('non_uniformity is %.2e\n'%(v))
 
     if v<0:
         print("ERROR: eigen variance is negative : ", v)

@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-import math
 import utils.linalg
 from importlib import reload
 reload(utils.linalg)
-from utils.linalg import eigen_variance, eigen_hessian
+from utils.linalg import eigen_hessian
 
 
 def eval_sharpness(net, criterion, optimizer, data_loader):
