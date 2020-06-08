@@ -1,6 +1,10 @@
 # data
 fashionmnist
 
+# saved networks
+saved_net/
+*.pkl
+
 # Jupyter Notebook
 */.ipynb_checkpoints
 
