@@ -23,8 +23,8 @@ from utils.optimizers import get_optimizer
 from utils.data import load_data
 from utils.trainer import train
 from utils.accuracy import eval_accuracy
-from utils.sharpness import compute_sharpness
-from utils.non_uniformity import compute_non_uniformity
+from utils.sharpness import eval_sharpness
+from utils.non_uniformity import eval_non_uniformity
 from utils.save import save_to_csv
 
 
@@ -51,16 +51,16 @@ def compute(train_size=1000, test_size=5000, batch_size=100, learning_rate=0.01,
     print('train loss: %.2e, acc: %.2f' % (train_loss, train_accuracy))
     print('test loss: %.2e, acc: %.2f' % (test_loss, test_accuracy))
 
-    sharpness_train = compute_sharpness(net, loss_function, optimizer, train_loader)
+    sharpness_train = eval_sharpness(net, loss_function, optimizer, train_loader)
     print("sharpness train = ", sharpness_train)
 
-    non_uniformity_train = compute_non_uniformity(net, loss_function, optimizer, train_loader)
+    non_uniformity_train = eval_non_uniformity(net, loss_function, optimizer, train_loader)
     print("non uniformity train = ", non_uniformity_train)
 
-    sharpness_test = compute_sharpness(net, loss_function, optimizer, test_loader)
+    sharpness_test = eval_sharpness(net, loss_function, optimizer, test_loader)
     print("sharpness test = ", sharpness_test)
 
-    non_uniformity_test = compute_non_uniformity(net, loss_function, optimizer, test_loader)
+    non_uniformity_test = eval_non_uniformity(net, loss_function, optimizer, test_loader)
     print("non uniformity test = ", non_uniformity_test)
 
     save_to_csv(optimizer_name, \

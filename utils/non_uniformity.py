@@ -7,7 +7,7 @@ reload(utils.linalg)
 from utils.linalg import eigen_variance, eigen_hessian
 
 
-def compute_non_uniformity(net, criterion, optimizer, data_loader):
+def eval_non_uniformity(net, criterion, optimizer, data_loader):
 
     n_iters=10
     tol=1e-4
