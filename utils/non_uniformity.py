@@ -9,7 +9,7 @@ from utils.linalg import eigen_variance
 
 def eval_non_uniformity(net, criterion, optimizer, data_loader):
 
-    n_iters=10
+    n_iters=8
     tol=1e-4
 
     print('Compute non_uniformity :')
