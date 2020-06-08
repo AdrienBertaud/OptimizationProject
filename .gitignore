@@ -4,6 +4,9 @@ fashionmnist
 # Jupyter Notebook
 */.ipynb_checkpoints
 
+# PyCharm
+*.idea/
+
 # Byte-compiled / optimized / DLL files
 */__pycache__/
 *.py[cod]

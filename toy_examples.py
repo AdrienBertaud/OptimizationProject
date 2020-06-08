@@ -139,7 +139,7 @@ def plot(xlist, ylist, llim, rlim, n_epoch, lr, start_value, optimizer):
     plt.legend(loc='best')
     plt.ylim(0,1)
     plt.title(title)
-    plt.savefig(title+'+TRAJACTORY.pdf')
+    plt.savefig(title+'+TRAJECTORY.pdf')
     plt.show()
     
     plt.plot(range(n_epoch+1), ylist, color = 'red')
