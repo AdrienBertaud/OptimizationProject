@@ -12,9 +12,9 @@ def train(model, loss_function, optimizer, optimizer_name, data_loader, batch_si
     begin = time.time()
 
     n_batchs = len(data_loader)
-    max_epochs=10000//n_batchs
+    max_epochs=1//n_batchs
     eval_frequency=400//n_batchs
-    loss_condition = 1e-3
+    loss_condition = .001
 
     with torch.set_grad_enabled(True):
 

@@ -2,7 +2,8 @@
 
 import os
 import pandas as pd
-
+import torch
+import time
 
 def save_results_to_csv(optimizer_name, \
                 learning_rate, \
@@ -53,3 +54,19 @@ def save_results_to_csv(optimizer_name, \
                    ignore_index = True)
 
     df.to_csv(file_name, sep = ',', index = False)
+
+
+def save_model(model, name):
+
+    directory = 'saved_net/'
+    t = time.localtime()
+    timestamp = time.strftime('_%b-%d-%Y_%H%M', t)
+    file_name = (name + timestamp)
+    save_path = (directory + file_name)
+
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
+    print("save model to {}".format(save_path))
+    output = open(save_path, mode="wb")
+    torch.save(model.state_dict(), output)

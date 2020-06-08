@@ -26,10 +26,10 @@ from utils.trainer import train
 from utils.accuracy import eval_accuracy
 from utils.sharpness import eval_sharpness
 from utils.non_uniformity import eval_non_uniformity
-from utils.save import save_results_to_csv
+from utils.save import save_model, save_results_to_csv
 
 
-def compute(train_size=1000, test_size=2000, batch_size=100, learning_rate=0.01, optimizer_name='sgd'):
+def train_and_eval(train_size=1000, test_size=2000, batch_size=100, learning_rate=0.01, optimizer_name='sgd'):
 
     if batch_size > train_size:
         raise ValueError('batch size should not be larger than training set size')
@@ -50,6 +50,8 @@ def compute(train_size=1000, test_size=2000, batch_size=100, learning_rate=0.01,
     optimizer = load_optimizer(net, optimizer_name, learning_rate)
 
     num_iter, duration = train(net, loss_function, optimizer, optimizer_name, train_loader, batch_size)
+
+    save_model(net, '%s_lr%d_batch%d_on_%d'%(optimizer_name, learning_rate, batch_size, train_size))
 
     train_loss, train_accuracy = eval_accuracy(net, loss_function, train_loader)
     test_loss, test_accuracy = eval_accuracy(net, loss_function, test_loader)
@@ -82,7 +84,7 @@ def compute(train_size=1000, test_size=2000, batch_size=100, learning_rate=0.01,
                 sharpness_test, \
                 non_uniformity_test)
 
-def compute_loop(train_size, test_size, learning_rate_list, batch_size_list):
+def train_and_eval_loop(train_size, test_size, learning_rate_list, batch_size_list):
 
     for i in range(4):
 
@@ -107,7 +109,7 @@ def compute_loop(train_size, test_size, learning_rate_list, batch_size_list):
                 np.random.shuffle(optimizerList)
 
                 for optimizer_name in optimizerList:
-                    compute(train_size, test_size, batch_size, \
+                    train_and_eval(train_size, test_size, batch_size, \
                                      learning_rate, optimizer_name)
 
 
@@ -121,8 +123,10 @@ if __name__ == '__main__':
     # list of the learning rates we want to compare
     learning_rate_list = [.1, .01, 1, .001]
 
-    # List of the batch sizes we want to compare. One is equal to train size for L-FGBS and GD.
+    # List of the batch sizes we want to compare.
+    # One is equal to train size for L-FGBS and GD.
     batch_size_list = [1000, 100, 10, 5, 25]
 
-    compute_loop(train_size, test_size, learning_rate_list, batch_size_list)
+    # train and evaluate
+    train_and_eval_loop(train_size, test_size, learning_rate_list, batch_size_list)
 
