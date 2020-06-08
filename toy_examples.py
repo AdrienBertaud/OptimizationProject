@@ -40,11 +40,9 @@ def h2(x):
         return 20
 
 def h(x):
-    return 0.5*(h1(x)+h2(x))
+    return 0.5*(h1(x) + h2(x))
 
-def condition(x):
-    return 2/h(x)
-    
+
 def toy_example_gd(f, h, start_value, learning_rate, n_epoch = 100):
     '''
     Parameters
@@ -79,14 +77,19 @@ def toy_example_gd(f, h, start_value, learning_rate, n_epoch = 100):
         ylist.append(f(x).item())
 
     plot(xlist, ylist, -1, 2, n_epoch, learning_rate, start_value, 'gd')
+    
+    hessian1 = h(1.0)
+    hessian0 = h(.0)
+    hessian = h(xlist[-1])
+    print("**** GD ****")
+    print("Hessian at x=0: ", hessian0)
+    print("Hessian at x=1: ", hessian1)
+    print("Hessian at optimal: ", hessian)
 
-
-    condition_0 = condition(.0)
-    condition_1 = condition(1.0)
-    condition_optimal = condition(xlist[-1])
-    print("Condition at x=0: ", condition_0)
-    print("Condition at x=1: ", condition_1)
-    print("Condition at optimal: ", condition_optimal)
+    condition0 = 2 / hessian0
+    condition1 = 2 / hessian1
+    print("Condition at x=0: ", condition0)
+    print("Condition at x=1: ", condition1)
 
 
 def toy_example_sgd(f, h, start_value, learning_rate, n_epoch = 100):
@@ -119,8 +122,6 @@ def toy_example_sgd(f, h, start_value, learning_rate, n_epoch = 100):
 
 
 def plot(xlist, ylist, llim, rlim, n_epoch, lr, start_value, optimizer):
-    
-    # plot f, f1, f2
     x_axis = [i for i in np.linspace(llim, rlim, 1000)]
     f_axis = [f(i) for i in np.linspace(llim, rlim, 1000)]
     f1_axis = [f1(i) for i in np.linspace(llim, rlim, 1000)]
@@ -130,7 +131,6 @@ def plot(xlist, ylist, llim, rlim, n_epoch, lr, start_value, optimizer):
     plt.plot(x_axis, f2_axis, label = 'f2(x)', color = 'blue', linestyle = '--')
     plt.plot(x_axis, f_axis, label = 'f(x)', color = 'black')
     
-    # plot trajactory
     for i in range(len(xlist)-1):
         plt.annotate('', xy=(xlist[i+1], ylist[i+1]), xytext=(xlist[i], ylist[i]), arrowprops=dict(arrowstyle="->", edgecolor = 'red'))
         
@@ -142,7 +142,6 @@ def plot(xlist, ylist, llim, rlim, n_epoch, lr, start_value, optimizer):
     plt.savefig(title+'+TRAJACTORY.pdf')
     plt.show()
     
-    # plot changes of loss
     plt.plot(range(n_epoch+1), ylist, color = 'red')
     plt.xlabel('iterations')
     plt.ylabel('loss')
@@ -152,19 +151,8 @@ def plot(xlist, ylist, llim, rlim, n_epoch, lr, start_value, optimizer):
 
 
 if __name__ == '__main__':
-    start_value = 1-1e-3
-    lrs_gd = [0.1, 0.2, 0.3]
-    lrs_sgd = [0.05, 0.1, 0.2]
-    
-    for lr in lrs_gd:
-        toy_example_gd(f, h, start_value, lr, 300)
-    
-    for lr in lrs_sgd:
-        toy_example_sgd(f, h, start_value, lr)
-        
-    
-    # toy_example_gd(f, h, start_value=1.2, learning_rate=0.2)
-    # toy_example_gd(f, h, start_value=1.3, learning_rate=0.19)
+    toy_example_gd(f, h, start_value=1.2, learning_rate=0.2)
+    toy_example_gd(f, h, start_value=1.3, learning_rate=0.19)
 
-    # toy_example_sgd(f, h, start_value=1.2, learning_rate=0.2)
-    # toy_example_sgd(f, h, start_value=1.3, learning_rate=0.19)
+    toy_example_sgd(f, h, start_value=1.2, learning_rate=0.2)
+    toy_example_sgd(f, h, start_value=1.3, learning_rate=0.19)
