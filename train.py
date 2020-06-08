@@ -5,6 +5,7 @@ import utils.optimizers
 import utils.save
 import utils.data
 import utils.accuracy
+import utils.net
 
 from importlib import reload
 reload(utils.trainer)
@@ -13,6 +14,7 @@ reload(utils.optimizers)
 reload(utils.save)
 reload(utils.data)
 reload(utils.accuracy)
+reload(utils.net)
 
 from utils.trainer import train
 from utils.data import load_data
