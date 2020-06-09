@@ -116,6 +116,9 @@ def train_and_eval_loop(train_size, test_size, learning_rate_list, batch_size_li
 
 
 if __name__ == '__main__':
+    '''
+    Train and evaluate various optimizers, learning rates and batch sizes.
+    '''
     # we only take a subset of the 60'000 data of fashion MNIST for faster computation
     train_size=1000
 
