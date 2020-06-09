@@ -30,6 +30,9 @@ from utils.save import save_results_to_csv
 
 
 def train_and_eval(train_size=1000, test_size=2000, batch_size=100, learning_rate=0.01, optimizer_name='sgd'):
+    '''
+    Train and evaluate with a given set of optimizer, learning rate and batch size.
+    '''
 
     if batch_size > train_size:
         raise ValueError('batch size should not be larger than training set size')
@@ -87,6 +90,9 @@ def train_and_eval(train_size=1000, test_size=2000, batch_size=100, learning_rat
 
 
 def train_and_eval_loop(train_size, test_size, learning_rate_list, batch_size_list):
+    '''
+    Loops to train and evaluate with various learning rates, batch sizes and optimizers.
+    '''
 
     for i in range(4):
 
@@ -117,7 +123,7 @@ def train_and_eval_loop(train_size, test_size, learning_rate_list, batch_size_li
 
 if __name__ == '__main__':
     '''
-    Train and evaluate various optimizers, learning rates and batch sizes.
+    Train and evaluate with various learning rates, batch sizes and optimizers.
     '''
     # we only take a subset of the 60'000 data of fashion MNIST for faster computation
     train_size=1000
