@@ -123,11 +123,11 @@ if __name__ == '__main__':
     test_size=10000
 
     # list of the learning rates we want to compare
-    learning_rate_list = [.1, .01, .05, .001]
+    learning_rate_list = [.01, .025, .05, 0.75, .1]
 
     # List of the batch sizes we want to compare.
     # One is equal to train size for L-FGBS and GD.
-    batch_size_list = [1000, 100, 10, 5, 25]
+    batch_size_list = [1000, 100, 50, 25, 10, 5]
 
     # train and evaluate
     train_and_eval_loop(train_size, test_size, learning_rate_list, batch_size_list)

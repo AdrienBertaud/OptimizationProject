@@ -83,7 +83,7 @@ def power_method(v0, Av_func, n_iters=10, tol=1e-3, verbose=False):
         mu = torch.dot(Av,v).item()
         v = Av/Av.norm()
 
-        if abs(mu) <= 1e-7 or abs(mu-mu_pre)/abs(mu) < tol:
+        if abs(mu) <= 1e-10 or abs(mu-mu_pre)/abs(mu) < tol:
             break
         if verbose:
             print('%d-th step takes %.0f seconds, \t %.2e'%(i+1,time.time()-time_start,mu))
