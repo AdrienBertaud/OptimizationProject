@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # -*- coding: utf-8 -*-
+import numpy as np
 import math
 import utils.linalg
 from importlib import reload
@@ -23,3 +24,14 @@ def eval_non_uniformity(net, criterion, optimizer, data_loader):
         return 0
     else:
         return math.sqrt(v)
+
+
+def get_nonuniformity_theorical_limit(learning_rate, data_size = 1000, batch_size = 1000):
+    '''
+    return theorical limit of non-uniformity depending on given learning rate, data size and batch size
+
+    learning_rate: learning rate
+    data_size: number of data
+    batch_size: batch size
+    '''
+    return np.sqrt(batch_size*(data_size-1)/(data_size-batch_size+1))/learning_rate

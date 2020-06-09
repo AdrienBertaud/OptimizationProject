@@ -16,3 +16,9 @@ def eval_sharpness(net, criterion, optimizer, data_loader):
     print('Sharpness is %.2e\n'%(sharpness))
     return sharpness
 
+
+def get_sharpness_theorical_limit(learning_rate):
+    '''
+    return theorical limit of sharpness depending on given learning rate
+    '''
+    return 2/learning_rate

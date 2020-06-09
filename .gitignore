@@ -1,8 +1,5 @@
-# pdf
-*.pdf
-
 # data
-fashionmnist
+fashionmnist/
 
 # saved networks
 saved_net/

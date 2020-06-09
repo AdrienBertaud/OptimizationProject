@@ -7,7 +7,7 @@ import utils.trainer
 import utils.accuracy
 import utils.sharpness
 import utils.non_uniformity
-import utils.save
+import utils.results
 
 from importlib import reload
 reload(utils.net)
@@ -17,7 +17,7 @@ reload(utils.trainer)
 reload(utils.accuracy)
 reload(utils.sharpness)
 reload(utils.non_uniformity)
-reload(utils.save)
+reload(utils.results)
 
 from utils.net import load_net, save_net
 from utils.optimizers import load_optimizer
@@ -26,7 +26,7 @@ from utils.trainer import train
 from utils.accuracy import eval_accuracy
 from utils.sharpness import eval_sharpness
 from utils.non_uniformity import eval_non_uniformity
-from utils.save import save_results_to_csv
+from utils.results import save_results_to_csv
 
 
 def train_and_eval(train_size=1000, test_size=2000, batch_size=100, learning_rate=0.01, optimizer_name='sgd'):
@@ -89,7 +89,7 @@ def train_and_eval(train_size=1000, test_size=2000, batch_size=100, learning_rat
                 non_uniformity_test)
 
 
-def train_and_eval_loop(train_size, test_size, learning_rate_list, batch_size_list):
+def train_and_eval_loop(train_size, test_size, learning_rate_list, batch_size_list, optimizer_list):
     '''
     Loops to train and evaluate with various learning rates, batch sizes and optimizers.
     '''
@@ -99,24 +99,17 @@ def train_and_eval_loop(train_size, test_size, learning_rate_list, batch_size_li
         # we shuffle, because it is launched on other computer in parallel, and we want to consolidate data uniformly if loop computation is not finished
         np.random.shuffle(batch_size_list)
         np.random.shuffle(learning_rate_list)
+        np.random.shuffle(optimizer_list)
 
         for batch_size in batch_size_list:
             for learning_rate in learning_rate_list:
+                for optimizer_name in optimizer_list:
 
-                optimizerList = []
+                    # some optimizers have conditions on batch size
+                    if optimizer_name == 'lbfgs':
+                        if batch_size != train_size:
+                            break
 
-                if (batch_size == train_size):
-                    optimizerList.append('gd')
-                    optimizerList.append('lbfgs')
-                else:
-                    optimizerList.append('sgd')
-
-                optimizerList.append('adagrad')
-                # optimizerList.append('adam')
-
-                np.random.shuffle(optimizerList)
-
-                for optimizer_name in optimizerList:
                     train_and_eval(train_size, test_size, batch_size, \
                                      learning_rate, optimizer_name)
 
@@ -131,13 +124,11 @@ if __name__ == '__main__':
     # The full test data  of fashion MNIST is 10'000
     test_size=10000
 
-    # list of the learning rates we want to compare
+    # list of the parameters we want to compare
     learning_rate_list = [.01, .025, .05, 0.75, .1]
-
-    # List of the batch sizes we want to compare.
-    # One is equal to train size for L-FGBS and GD.
     batch_size_list = [1000, 100, 50, 25, 10, 5]
+    optimizer_list = ['sgd', 'adagrad', 'lbfgs']
 
     # train and evaluate
-    train_and_eval_loop(train_size, test_size, learning_rate_list, batch_size_list)
+    train_and_eval_loop(train_size, test_size, learning_rate_list, batch_size_list, optimizer_list)
 

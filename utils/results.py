@@ -4,6 +4,8 @@ import os
 import pandas as pd
 
 
+DEFAULT_FILE_NAME = 'results.csv'
+
 def save_results_to_csv(optimizer_name, \
                 learning_rate, \
                 batch_size, \
@@ -18,7 +20,7 @@ def save_results_to_csv(optimizer_name, \
                 sharpness_test, \
                 non_uniformity_test):
 
-    file_name = 'results.csv'
+    file_name = DEFAULT_FILE_NAME
 
     if os.path.exists(file_name):
         df = pd.read_csv(file_name, sep = ',')
@@ -54,3 +56,29 @@ def save_results_to_csv(optimizer_name, \
 
     df.to_csv(file_name, sep = ',', index = False)
 
+
+def filter_not_relevant_data(results_data_frame):
+    '''
+    filter the evaluations, so as to use only the relevant ones
+    '''
+    return results_data_frame[(results_data_frame['train loss'] <= 1e-3) &
+                     (results_data_frame['lr'] > 1e-4) &
+                     (results_data_frame['optimizer'] != 'adam') &
+                     (results_data_frame['batch size'] <= 50)]
+
+
+def load_results(results_file = DEFAULT_FILE_NAME):
+    '''
+    read stored evaluations and return a data frame
+    '''
+
+    if not os.path.exists(results_file):
+        print((results_file + ' does not exist, not possible to plot graphs'))
+        return pd.DataFrame.empty()
+
+    print(('Loading results from ' + results_file))
+
+    results_data_frame = pd.read_csv(results_file, sep = ',')
+
+    # return filter_not_relevant_data(results_data_frame)
+    return results_data_frame
