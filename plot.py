@@ -79,12 +79,13 @@ def plot_lr_nonu_sharp(df, batch_size = 10, data_size = 1000, ymax = 32):
         i += 1
         if i > 9:
             raise ValueError('color out of range')
+    
     plt.xlabel('sharpness', fontsize = 15)
     plt.ylabel('non-uniformity', fontsize = 15)
     plt.ylim(0, ymax)
     plt.xlim(0, get_sharpness_ub(learning_rate)+1)
     plt.legend(loc = 'best')
-    plt.savefig('Sharpness vs Nonuniformity for different learning rate (bs='+str(batch_size)+'.pdf')
+    # plt.savefig('Sharpness vs Nonuniformity for different learning rate (bs='+str(batch_size)+'.pdf')
     plt.title('batch size = %d'%(batch_size))
     plt.show()
 
@@ -119,6 +120,58 @@ def plot_batch_sharp(df, batch_size = 10, data_size = 1000, ymax = 200):
     plt.title('batch size = %d'%(batch_size))
     plt.show()
 
+def plot_s_lr(df, batch_size = None):
+    '''
+    plot sharpness against learning rate with one or many batch size for different algorithms
+
+    '''
+    if batch_size == None:
+        df_plot = df.groupby(['optimizer'])
+    if batch_size not in df['batch size']:
+        raise ValueError('No results for such a batch_size')
+    else:
+        df_plot = df[df['batch size'] == batch_size].groupby(['optimizer'])
+        
+    for optimizer, values in df_plot:
+        plt.scatter(values['lr'], values['sharpness'], label = optimizer)#, s = values['batch size'])
+    
+    lr_max = df_plot['lr'].max()
+    ymax = df_plot['sharpness'].max().max() + 5
+    plt.plot([lr for lr in np.linspace(.0005, lr_max)], [get_sharpness_ub(lr) for lr in np.linspace(.0005, lr_max)], 'k--', label = 'condition')
+    plt.ylim(0, ymax)
+    plt.xlabel('learning rate', fontsize = 12)
+    plt.ylabel('sharpness', fontsize = 12)
+    plt.savefig('sharpness against learning rate')
+    plt.legend()
+    
+def plot_s_bs(df):
+    '''
+    plot sharpness against batch size with different learning rate for only sgd and gd data
+    '''
+    
+    df_sgd = df[(df['optimizer'] == 'sgd') | (df['optimizer'] == 'gd')]
+    df_plot = pd.DataFrame(columns = ['lr', 'bs', 'sharpness'])
+    for lr_bs, value in df_sgd.groupby(['lr', 'batch size']):
+        df_plot = df_plot.append({'lr': lr_bs[0], 'bs': int(lr_bs[1]), 'sharpness': round(value.mean()['sharpness train'],1)}, ignore_index=True)
+        
+    df_plot['bs'] = df_plot['bs'].astype(int)
+    bs_order = [str(i) for i in sorted(list(set(df_plot['bs'])))]
+    df_plot['bs'] = df_plot['bs'].astype(str)
+    
+    lrs = sorted(list(set(df_plot['lr'])))
+
+    plt.plot(bs_order, [0 for i in range(len(bs_order))], color = 'white')
+    for lr in lrs:
+        data = df_plot[df_plot['lr'] == lr]
+        plt.plot(data['bs'], data['sharpness'], marker='o', label = 'lr=' + str(lr))
+    plt.xlabel('batch size', fontsize = 12)
+    plt.ylabel('sharpness', fontsize = 12)
+    plt.legend()
+    plt.savefig('sharpness vs batch size.pdf')
+    plt.show()
+        
+    
+
 if __name__ == '__main__':
 
     file_name = 'results.csv'
@@ -132,3 +185,7 @@ if __name__ == '__main__':
         # plot_lr_nonu_sharp(df, batch_size = 10, data_size = 1000, ymax = 32)
 
         plot_batch_sharp(df, batch_size = 10, data_size = 1000, ymax = 200)
+        
+        plot_s_bs(df)
+        plot_s_lr(df)
+        plot_s_lr(df, 1000)
