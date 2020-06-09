@@ -125,7 +125,7 @@ if __name__ == '__main__':
     test_size=10000
 
     # list of the parameters we want to compare
-    learning_rate_list = [.01, .025, .05, 0.75, .1]
+    learning_rate_list = [.01, .025, .05, 0.075, .1]
     batch_size_list = [1000, 100, 50, 25, 10, 5]
     optimizer_list = ['sgd', 'adagrad', 'lbfgs']
 
