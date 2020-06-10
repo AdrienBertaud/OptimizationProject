@@ -17,13 +17,13 @@ def eval_non_uniformity(net, criterion, optimizer, data_loader):
     v = eigen_variance(net, criterion, data_loader, \
                       n_iters=n_iters, tol=tol, verbose=True)
 
-    print('non_uniformity is %.2e\n'%(v))
-
     if v<0:
         print("ERROR: eigen variance is negative : ", v)
         return 0
     else:
-        return math.sqrt(v)
+        v = math.sqrt(v)
+        print('non_uniformity is %.2e\n'%(v))
+        return v
 
 
 def get_nonuniformity_theorical_limit(learning_rate, data_size = 1000, batch_size = 1000):
