@@ -1,4 +1,8 @@
+# figures
+*.png
+
 # data
+data/*
 fashionmnist/
 
 # saved networks
@@ -334,9 +338,7 @@ TSWLatexianTemp*
 
 experiments/
 slurm/
-data/*
 nohup.out
-*.PNG
 *.DS_Store
 *._*
 

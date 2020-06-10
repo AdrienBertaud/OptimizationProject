@@ -61,10 +61,10 @@ def filter_not_relevant_data(results_data_frame):
     '''
     filter the evaluations, so as to use only the relevant ones
     '''
-    return results_data_frame[(results_data_frame['train loss'] <= 1e-3) &
-                     (results_data_frame['lr'] > 1e-4) &
-                     (results_data_frame['optimizer'] != 'adam') &
-                     (results_data_frame['batch size'] <= 50)]
+    return results_data_frame[(results_data_frame['train loss'] <= 5e-3) &
+                              # (results_data_frame['batch size'] <= 50) &
+                            (results_data_frame['lr'] > 1e-3) &
+                            (results_data_frame['optimizer'] != 'adam')]
 
 
 def load_results(results_file = DEFAULT_FILE_NAME):
@@ -80,5 +80,4 @@ def load_results(results_file = DEFAULT_FILE_NAME):
 
     results_data_frame = pd.read_csv(results_file, sep = ',')
 
-    # return filter_not_relevant_data(results_data_frame)
-    return results_data_frame
+    return filter_not_relevant_data(results_data_frame)
