@@ -211,3 +211,47 @@ def plot_nonuniformity_limit(results_data_frame, legend='optimizer', batch_size=
     df_plot = results_data_frame[results_data_frame[type_of_fixed] == batch_size]
 
     plot_save_and_show(df_plot, title, abscissa, ordinate, legend, type_of_fixed)
+    
+
+def optimizer_vs_duration__bs(df, lr):
+    df_plot = df[df['lr'] == lr]
+    
+    # Initialize the figure
+    f, ax = plt.subplots()
+    sns.despine(bottom=True, left=True)
+
+    # Show each observation with a scatterplot
+    sns.stripplot(x="duration", y="optimizer", hue="batch size",
+                  data=df_plot, dodge=True, alpha=.5, zorder=1)
+
+    # Show the conditional means
+    sns.pointplot(x="duration", y="optimizer", hue="batch size",
+                  data=df_plot, dodge=.532, join=False, palette="dark", 
+                  markers="d", scale=.75, ci=None)
+
+    # Improve the legend 
+    handles, labels = ax.get_legend_handles_labels()
+    ax.legend(handles[3:], labels[3:], title="batch size",
+              handletextpad=0, columnspacing=1,
+              loc="best", ncol=3, frameon=True)
+
+
+def optimizer_vs_duration__lr(df, batch_size):
+    
+    df_plot = df[df['batch size'] == batch_size]
+    title = 'optimizer vs duration (batch size='+str(batch_size)+')'
+    
+    f, ax = plt.subplots()
+    sns.despine(bottom=True, left=True)
+
+    sns.stripplot(x="duration", y="optimizer", hue="lr",
+                  data=df_plot, dodge=True, alpha=.5, zorder=1).set_title(title)
+
+    sns.pointplot(x="duration", y="optimizer", hue="lr",
+                  data=df_plot, dodge=.532, join=False, palette="dark", 
+                  markers="d", scale=.75, ci=None)
+
+    handles, labels = ax.get_legend_handles_labels()
+    ax.legend(handles[3:], labels[3:], title="lr",
+              handletextpad=0, columnspacing=1,
+              loc="best", ncol=3, frameon=True)
