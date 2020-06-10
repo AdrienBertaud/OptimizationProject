@@ -61,7 +61,7 @@ def filter_not_relevant_data(results_data_frame):
     '''
     filter the evaluations, so as to use only the relevant ones
     '''
-    return results_data_frame[(results_data_frame['train loss'] <= 5e-3) &
+    return results_data_frame[(results_data_frame['train loss'] <= 5e-4) &
                             (results_data_frame['lr'] > 1e-3) &
                             (results_data_frame['optimizer'] != 'adam')]
 
