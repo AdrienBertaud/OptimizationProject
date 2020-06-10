@@ -17,7 +17,9 @@ from utils.sharpness import get_sharpness_theorical_limit
 from utils.non_uniformity import get_nonuniformity_theorical_limit
 
 
-COLOR_LIST = ['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C6', 'C7', 'C7', 'C8', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9', 'C9']
+COLOR_LIST = ['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C6', 'C7', 'C7', 'C8', 'C9']
+TITLE_FONT_SIZE = 13
+ABSIS_FONT_SIZE = 12
 
 
 def save_fig(fig_name, save_directory = "figures", extension='.png'):
@@ -35,7 +37,7 @@ def save_fig(fig_name, save_directory = "figures", extension='.png'):
 
 
 def save_and_show(title):
-    plt.title(title)
+    plt.title(title, fontsize = TITLE_FONT_SIZE)
     save_fig(title)
     plt.show()
 
@@ -61,44 +63,10 @@ def plot_results(results_data_frame, abscissa='batch size', ordinate='sharpness 
         data = df_plot[df_plot[legend] == versus_legend_iter]
         plt.plot(data[abscissa], data[ordinate], marker='o', label = legend+'=' + str(versus_legend_iter))
 
-    plt.xlabel(abscissa, fontsize = 12)
-    plt.ylabel(ordinate, fontsize = 12)
+    plt.xlabel(abscissa, fontsize = ABSIS_FONT_SIZE)
+    plt.ylabel(ordinate, fontsize = ABSIS_FONT_SIZE)
     plt.legend()
     save_and_show(fixed + ' ' + ordinate + ' vs ' + abscissa)
-
-
-def plot_sharpness_vs_learning_rate(df, batch_size = 'all'):
-
-    eval_algo='sharpness train'
-
-    if batch_size == 'all':
-        df_plot = df.groupby(['optimizer'])
-        title = ('sharpness vs learning rate with all batch sizes')
-    # elif batch_size not in df['batch size']:
-    #     raise ValueError('No results for such a batch_size')
-    else:
-        df_plot = df[df['batch size'] == batch_size].groupby(['optimizer'])
-        title = ('sharpness vs learning rate with batch size = %d'%(batch_size))
-
-    for optimizer, values in df_plot:
-        plt.scatter(values['lr'], values[(eval_algo)], label = optimizer)#, s = values['batch size'])
-
-    lr_max = df_plot['lr'].max()
-
-    ymax = df_plot[(eval_algo)].max().max() * 5
-    if math.isnan(ymax) :
-        return
-
-    if eval_algo == 'sharpness':
-        plt.plot([lr for lr in np.linspace(.0005, lr_max)], [get_sharpness_theorical_limit(lr) for lr in np.linspace(.0005, lr_max)], 'k--')
-    elif eval_algo == 'non uniformity' and batch_size != 'all':
-        plt.plot([lr for lr in np.linspace(.0005, lr_max)], [get_nonuniformity_theorical_limit(lr, data_size = 1000, batch_size = batch_size) for lr in np.linspace(.0005, lr_max)], 'k--')
-
-    plt.ylim(0, ymax)
-    plt.xlabel('learning rate', fontsize = 12)
-    plt.ylabel(eval_algo, fontsize = 14)
-    plt.legend()
-    save_and_show(title)
 
 
 def plot_sharpness_vs_batch_size(df, optim_1 = 'adagrad'):
@@ -122,8 +90,7 @@ def plot_sharpness_nonuniformity(results_data_frame, batch_size = 10, data_size 
     df_filter = results_data_frame[(results_data_frame['batch size'] == batch_size) &
                                (results_data_frame['optimizer'] == optimizer_name)]
 
-
-    df_filter.sort_values(by = 'lr', inplace = True)
+    df_filter = df_filter.sort_values(by = 'lr')
 
     i = 0
 
@@ -168,14 +135,17 @@ def plot_sharpness_nonuniformity(results_data_frame, batch_size = 10, data_size 
 
         plt.vlines(nu_lim, 0, sharpness_lim, colors = COLOR_LIST[i], linestyles = '--', linewidth = 3)
 
-    plt.xlabel(abscissa, fontsize = 14)
-    plt.ylabel(ordinate, fontsize = 14)
+    plt.xlabel(abscissa, fontsize = ABSIS_FONT_SIZE)
+    plt.ylabel(ordinate, fontsize = ABSIS_FONT_SIZE)
+
+    print('min_nu_lim, min_sharpness_lim :')
+    print(min_nu_lim, min_sharpness_lim)
 
     plt.ylim(0, min_nu_lim*2)
     plt.xlim(0, min_sharpness_lim*2)
 
     plt.legend(loc = 'best')
-    save_and_show('Sharpness vs Nonuniformity for different lr and batch size '+str(batch_size))
+    save_and_show('Sharpness vs non-uniformity for batch size = '+str(batch_size))
 
 
 def plot_sharpness_limit(results_data_frame, legend='optimizer'):
@@ -196,7 +166,7 @@ def plot_sharpness_limit(results_data_frame, legend='optimizer'):
 
     plt.ylim(0, ymax)
 
-    title = 'sharpness vs lr with all batch sizes'
+    title = 'Sharpness vs lr with all batch sizes'
 
     plot_save_and_show(results_data_frame, title, abscissa, ordinate, legend)
 
@@ -206,8 +176,8 @@ def plot_data_frame(df_plot, abscissa, ordinate, legend):
     for legend, values in df_plot:
         plt.scatter(values[abscissa], values[(ordinate)], label = legend)
 
-    plt.xlabel(abscissa, fontsize = 12)
-    plt.ylabel(ordinate, fontsize = 12)
+    plt.xlabel(abscissa, fontsize = ABSIS_FONT_SIZE)
+    plt.ylabel(ordinate, fontsize = ABSIS_FONT_SIZE)
     plt.legend(loc = 'best')
 
 
@@ -236,7 +206,7 @@ def plot_nonuniformity_limit(results_data_frame, legend='optimizer', batch_size=
     plt.ylim(0, ymax * 3)
     plt.plot([lr for lr in np.linspace(.0005, lr_max)], [get_nonuniformity_theorical_limit(lr, data_size = 1000, batch_size = batch_size) for lr in np.linspace(.0005, lr_max)], 'k--')
 
-    title = 'non uniformity limit vs {2} with {0} = {1}'.format(type_of_fixed, batch_size, abscissa)
+    title = 'Non uniformity limit vs {2} with {0} = {1}'.format(type_of_fixed, batch_size, abscissa)
 
     df_plot = results_data_frame[results_data_frame[type_of_fixed] == batch_size]
 

@@ -25,9 +25,9 @@ def main():
     plot_sharpness_vs_batch_size(results_data_frame, 'sgd')
     plot_sharpness_vs_batch_size(results_data_frame, 'adagrad')
 
-    plot_sharpness_limit(results_data_frame, legend='optimizer')
+    plot_sharpness_limit(results_data_frame)
 
-    plot_nonuniformity_limit(results_data_frame, legend='optimizer', batch_size=10)
+    plot_nonuniformity_limit(results_data_frame, batch_size=10)
 
 
 if __name__ == '__main__':
