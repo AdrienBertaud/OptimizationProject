@@ -96,7 +96,7 @@ def train_and_eval_loop(train_size, test_size, learning_rate_list, batch_size_li
 
     for i in range(4):
 
-        # we shuffle, because it is launched on other computer in parallel, and we want to consolidate data uniformly if loop computation is not finished
+        # We shuffle, because it is launched on other computers in parallel, and we want to consolidate data uniformly if loop computation is not finished.
         np.random.shuffle(batch_size_list)
         np.random.shuffle(learning_rate_list)
         np.random.shuffle(optimizer_list)
