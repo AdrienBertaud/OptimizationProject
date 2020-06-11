@@ -1,10 +1,10 @@
-## How Deep Learning Selects the Global Minima
+## How Neural Networks Selects the Global Minima
 by drien Bertaud, Yanis Bendali and Danya Li
 
 
 ### Training and computing sharpness and non-uniformity
 ```
-python train.py
+python train_and_eval.py
 ```
 
 ### Plot results
