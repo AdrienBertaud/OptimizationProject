@@ -11,8 +11,8 @@ def save_results_to_csv(optimizer_name, \
                 batch_size, \
                 num_iter, \
                 duration, \
-               _loss, \
-               _accuracy, \
+                train_loss, \
+                train_accuracy, \
                 test_loss, \
                 test_accuracy, \
                 sharpness_train, \
