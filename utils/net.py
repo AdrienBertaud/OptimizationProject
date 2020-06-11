@@ -4,6 +4,10 @@ import torch.nn as nn
 import time
 import os
 
+
+directory = 'saved_net/'
+
+
 class NN(nn.Module):
     def __init__(self):
         super(NN,self).__init__()
@@ -27,7 +31,6 @@ def load_net():
 
 def save_net(model, name):
 
-    directory = 'saved_net/'
     t = time.localtime()
     timestamp = time.strftime('_%b-%d-%Y_%H%M', t)
     file_name = (name + timestamp)
@@ -48,3 +51,6 @@ def reload_net(save_path):
     net = load_net()
     net.load_state_dict(torch.load(save_path))
     return net
+
+
+# def get_all_stored_net():
