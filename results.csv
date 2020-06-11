@@ -1,4 +1,4 @@
-optimizer,lr,batch size,num iteration,duration,train loss,train accuracy,test loss,test accuracy,sharpness train,non uniformity train,sharpness test,non uniformity test,non uniformity,sharpness
+optimizer,lr,batch size,num iteration,duration,train loss,train accuracy,test loss,test accuracy,sharpness,non uniformity,sharpness test,non uniformity test,non uniformity,sharpness
 sgd,0.001,10,2050,0,0.00096,100.0,1.50893,81.05000305,32.0,4817.0,189,865,,
 adagrad,0.001,10,1850,0,0.00098,100.0,1.18753,82.90000153,13.0,94.0,391,2780,,
 sgd,0.01,10,250,0,0.0007,100.0,1.40029,82.5,7.0,82.0,151,1402,,
