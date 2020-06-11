@@ -55,7 +55,7 @@ def train_and_eval(train_size=1000, test_size=2000, batch_size=100, learning_rat
     num_iter, duration = train(net, loss_function, optimizer, optimizer_name, train_loader, batch_size)
 
     # save network, in case of future need
-    save_net(net, '%s_lr%d_batch%d_on_%d'%(optimizer_name, learning_rate, batch_size, train_size))
+    save_net(net, '{0}_{1}%d_batch%d_on_{2}'.format(optimizer_name, learning_rate, batch_size, train_size))
 
     train_loss, train_accuracy = eval_accuracy(net, loss_function, train_loader)
     test_loss, test_accuracy = eval_accuracy(net, loss_function, test_loader)
@@ -87,6 +87,10 @@ def train_and_eval(train_size=1000, test_size=2000, batch_size=100, learning_rat
                 non_uniformity_train, \
                 sharpness_test, \
                 non_uniformity_test)
+
+
+
+
 
 
 def train_and_eval_loop(train_size, test_size, learning_rate_list, batch_size_list, optimizer_list):

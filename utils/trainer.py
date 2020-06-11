@@ -23,8 +23,6 @@ def train(model, loss_function, optimizer, optimizer_name, data_loader, batch_si
 
         since = time.time()
 
-        epoch_now = 0
-
         for epoch_now in range(max_epochs):
 
             data_loader.idx = 0
@@ -61,7 +59,7 @@ def train(model, loss_function, optimizer, optimizer_name, data_loader, batch_si
                     break;
 
                 elif loss_train <= loss_condition:
-                    print('loss is egal or inferior to %d, we stop learning at epoch %d'%(loss_condition, epoch_now))
+                    print('loss is egal or inferior to {0}, we stop learning at epoch {1}'.format(loss_condition, epoch_now))
                     break;
 
                 since = time.time()
