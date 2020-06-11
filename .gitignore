@@ -20,7 +20,6 @@ fashionmnist/
 *.py[cod]
 *$py.class
 checkpoints/*
-*.pkl
 
 # C extensions
 *.so
