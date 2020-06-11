@@ -48,7 +48,7 @@ def save_results_to_csv(optimizer_name, \
                     'train accuracy': round(train_accuracy,1),
                     'test loss': round(test_loss,5),
                     'test accuracy': round(test_accuracy,1),
-                    'sharpness': round(sharpness_train,1),
+                    'sharpness': round(sharpness_train,2),
                     'non uniformity': round(non_uniformity_train),
                     'sharpness test': round(sharpness_test),
                     'non uniformity test': round(non_uniformity_test)},
