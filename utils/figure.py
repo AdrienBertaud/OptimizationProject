@@ -37,12 +37,12 @@ def save_fig(fig_name, save_directory = "figures", extension='.png'):
 
 
 def save_and_show(title):
-    plt.title(title, fontsize = TITLE_FONT_SIZE)
+    # plt.title(title, fontsize = TITLE_FONT_SIZE)
     save_fig(title)
     plt.show()
 
 
-def plot_results(results_data_frame, abscissa='batch size', ordinate='sharpness train', legend='lr', type_of_fixed='optimizer', fixed = 'adagrad'):
+def plot_results(results_data_frame, abscissa='batch size', ordinate='sharpness', legend='lr', type_of_fixed='optimizer', fixed = 'adagrad'):
 
     df_optimizer = results_data_frame[(results_data_frame[type_of_fixed] == fixed)]
 
@@ -72,21 +72,29 @@ def plot_results(results_data_frame, abscissa='batch size', ordinate='sharpness 
     save_and_show(fixed + ' ' + ordinate + ' vs ' + abscissa)
 
 
-def plot_sharpness_vs_batch_size(df, optim_1 = 'adagrad'):
+def plot_sharpness_vs_batch_size(df, optimizer = 'adagrad'):
 
     plot_results(results_data_frame = df,
                  abscissa='batch size',
-                 ordinate='sharpness train',
+                 ordinate='sharpness',
                  legend='lr',
                  type_of_fixed='optimizer',
-                 fixed = optim_1)
+                 fixed = optimizer)
 
 
+def plot_sharpness_vs_learning_rate(df, optimizer = 'adagrad'):
+
+    plot_results(results_data_frame = df,
+                 abscissa='lr',
+                 ordinate='sharpness',
+                 legend='batch size',
+                 type_of_fixed='optimizer',
+                 fixed = optimizer)
 
 def plot_sharpness_limit(results_data_frame, legend='optimizer'):
 
     abscissa = 'lr'
-    ordinate = 'sharpness train'
+    ordinate = 'sharpness'
 
     df_plot = results_data_frame.groupby([legend])
 
@@ -116,7 +124,7 @@ def plot_data_frame(df_plot, abscissa, ordinate, legend):
     plt.legend(loc = 'best')
 
 
-def plot_save_and_show(results_data_frame, title, abscissa='lr', ordinate='sharpness train',  legend='optimizer', all_values='batch size'):
+def plot_save_and_show(results_data_frame, title, abscissa='lr', ordinate='sharpness',  legend='optimizer', all_values='batch size'):
 
     df_plot = results_data_frame.groupby([legend])
 
@@ -127,7 +135,7 @@ def plot_save_and_show(results_data_frame, title, abscissa='lr', ordinate='sharp
 def plot_nonuniformity_limit(results_data_frame, legend='optimizer', batch_size=100):
 
     abscissa='lr'
-    ordinate='non uniformity train'
+    ordinate='non uniformity'
     type_of_fixed='batch size'
 
     df_plot = results_data_frame[results_data_frame[type_of_fixed] == batch_size].groupby([legend])
@@ -158,7 +166,7 @@ def plot_sharpness_nonuniformity_fixed_lr(df, lr = 0.1, data_size = 1000, optimi
     i = 0
     for batch_size in sorted(list(set(df_lr['batch size']))):
         data = df_lr[df_lr['batch size'] == batch_size]
-        plt.scatter(data['sharpness train'], data['non uniformity train'],
+        plt.scatter(data['sharpness'], data['non uniformity'],
                     c = COLOR_LIST[i], label = 'B='+str(batch_size))
         plt.hlines(get_nonuniformity_theorical_limit(lr, data_size = data_size, batch_size = batch_size), 0, get_sharpness_theorical_limit(lr),
                    color = COLOR_LIST[i], linestyles = '--', linewidth = 3)
@@ -176,8 +184,8 @@ def plot_sharpness_nonuniformity_fixed_lr(df, lr = 0.1, data_size = 1000, optimi
 
 def plot_sharpness_nonuniformity_fixed_batch_size(results_data_frame, batch_size = 10, data_size = 1000, optimizer_name='sgd'):
 
-    ordinate='sharpness train'
-    abscissa='non uniformity train'
+    ordinate='sharpness'
+    abscissa='non uniformity'
 
     if batch_size == 'all':
         return
@@ -242,3 +250,31 @@ def plot_sharpness_nonuniformity_fixed_batch_size(results_data_frame, batch_size
     plt.legend(loc = 'best')
     save_and_show(optimizer_name + ' sharpness vs non-uniformity for batch size = '+str(batch_size))
 
+
+def plot_sharpness_vs_lr(df, optimizer = 'sgd', abscissa='lr', ordinate='sharpness', legend='batch size'):
+
+    df_optimizer = df[(df['optimizer'] == optimizer)]
+
+    df_plot = pd.DataFrame(columns = [legend, abscissa, ordinate])
+
+    for versus, value in df_optimizer.groupby([legend, abscissa]):
+        df_plot = df_plot.append({legend: int(versus[0]), abscissa: versus[1], ordinate: round(value.mean()[(ordinate)],1)}, ignore_index=True)
+
+    lr_order = [str(i) for i in sorted(list(set(df_plot[abscissa])))]
+    df_plot[abscissa] = df_plot[abscissa].astype(str)
+
+    versus_legends = sorted(list(set(df_plot[legend])))
+
+    plt.plot(lr_order, [0 for i in range(len(lr_order))], color = 'white')
+
+    for versus_legend_iter in versus_legends:
+        data = df_plot[df_plot[legend] == versus_legend_iter]
+        plt.plot(data[abscissa], data[ordinate], marker='o', label = legend+'=' + str(versus_legend_iter))
+        scatter_data = df_optimizer[df_optimizer[legend] == versus_legend_iter]
+        scatter_data[abscissa] = scatter_data[abscissa].astype(str)
+        plt.scatter(scatter_data[abscissa], scatter_data[ordinate], marker='.', alpha=0.3)
+
+    plt.xlabel(abscissa, fontsize = ABSIS_FONT_SIZE)
+    plt.ylabel(ordinate, fontsize = ABSIS_FONT_SIZE)
+    plt.legend()
+    save_and_show(optimizer + ' ' + ordinate + ' vs ' + abscissa)

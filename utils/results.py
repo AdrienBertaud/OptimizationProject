@@ -11,8 +11,8 @@ def save_results_to_csv(optimizer_name, \
                 batch_size, \
                 num_iter, \
                 duration, \
-                train_loss, \
-                train_accuracy, \
+               _loss, \
+               _accuracy, \
                 test_loss, \
                 test_accuracy, \
                 sharpness_train, \
@@ -34,8 +34,8 @@ def save_results_to_csv(optimizer_name, \
                                    'train accuracy',
                                    'test loss',
                                    'test accuracy',
-                                   'sharpness train',
-                                   'non uniformity train',
+                                   'sharpness',
+                                   'non uniformity',
                                    'sharpness test',
                                    'non uniformity test'])
 
@@ -48,8 +48,8 @@ def save_results_to_csv(optimizer_name, \
                     'train accuracy': round(train_accuracy,1),
                     'test loss': round(test_loss,5),
                     'test accuracy': round(test_accuracy,1),
-                    'sharpness train': round(sharpness_train,1),
-                    'non uniformity train': round(non_uniformity_train),
+                    'sharpness': round(sharpness_train,1),
+                    'non uniformity': round(non_uniformity_train),
                     'sharpness test': round(sharpness_test),
                     'non uniformity test': round(non_uniformity_test)},
                    ignore_index = True)
@@ -79,6 +79,7 @@ def filter_not_relevant_data(results_data_frame):
     '''
     return results_data_frame[(results_data_frame['train loss'] <= 5e-4) &
                             (results_data_frame['lr'] > 1e-3) &
+                            (results_data_frame['lr'] != 0.75) &
                             (results_data_frame['optimizer'] != 'adam')]
 
 
