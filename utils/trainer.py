@@ -59,7 +59,7 @@ def train(model, loss_function, optimizer, optimizer_name, data_loader, batch_si
                 if math.isnan(loss_train):
                     print('loss is not a number, we stop training at epoch %d'%(epoch_now))
                     break;
-at epoch %d'%(loss_condition, epoch_now)
+
                 elif loss_train <= loss_condition:
                     print('loss is egal or inferior to %d, we stop learning at epoch %d'%(loss_condition, epoch_now))
                     break;
