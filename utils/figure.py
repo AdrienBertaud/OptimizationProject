@@ -23,7 +23,7 @@ AXIS_FONT_SIZE = 16
 TICKS_FONT_SIZE = 16
 LEGEND_FONT_SIZE= 16
 
-SAVE_FIGURE = True
+SAVE_FIGURE = False
 PLOT_TITLE = not SAVE_FIGURE #We will add title on the  LATEX report
 
 
