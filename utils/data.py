@@ -4,6 +4,9 @@ import torchvision.datasets as dsets
 
 
 class DataLoader:
+    '''
+    Source: https://github.com/leiwu1990/sgd.stability
+    '''
 
     def __init__(self,X,y,batch_size):
         self.X, self.y = X, y
@@ -54,6 +57,9 @@ def load_data(data_size=1000, batch_size=100):
 
 
 def to_one_hot(labels):
+    '''
+    Source: https://github.com/leiwu1990/sgd.stability
+    '''
     if labels.ndimension()==1:
         labels.unsqueeze_(1)
     n_samples = labels.shape[0]

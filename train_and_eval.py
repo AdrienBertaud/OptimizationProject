@@ -3,7 +3,7 @@ import numpy as np
 import utils.net
 import utils.optimizers
 import utils.data
-import utils.trainer
+import utils.train
 import utils.accuracy
 import utils.sharpness
 import utils.non_uniformity
@@ -13,7 +13,7 @@ from importlib import reload
 reload(utils.net)
 reload(utils.optimizers)
 reload(utils.data)
-reload(utils.trainer)
+reload(utils.train)
 reload(utils.accuracy)
 reload(utils.sharpness)
 reload(utils.non_uniformity)
@@ -22,7 +22,7 @@ reload(utils.results)
 from utils.net import load_net, save_net
 from utils.optimizers import load_optimizer
 from utils.data import load_data
-from utils.trainer import train
+from utils.train import train
 from utils.accuracy import eval_accuracy
 from utils.sharpness import eval_sharpness
 from utils.non_uniformity import eval_non_uniformity
@@ -40,6 +40,7 @@ def train_and_eval(train_size=1000, test_size=2000, batch_size=100, learning_rat
     if batch_size == 0:
         raise ValueError('batch size should be superior to zero')
 
+    # use of cross entropy for classification
     loss_function = torch.nn.CrossEntropyLoss()
 
     print("load data for training")
@@ -89,16 +90,12 @@ def train_and_eval(train_size=1000, test_size=2000, batch_size=100, learning_rat
                 non_uniformity_test)
 
 
-
-
-
-
 def train_and_eval_loop(train_size, test_size, learning_rate_list, batch_size_list, optimizer_list):
     '''
     Loops to train and evaluate with various learning rates, batch sizes and optimizers.
     '''
 
-    for i in range(4):
+    for i in range(10):
 
         # We shuffle, because it is launched on other computers in parallel, and we want to consolidate data uniformly if loop computation is not finished.
         np.random.shuffle(batch_size_list)
@@ -129,8 +126,8 @@ if __name__ == '__main__':
     test_size=10000
 
     # list of the parameters we want to compare
-    learning_rate_list = [.01, .025, .05, 0.075, .1, .5]
-    batch_size_list = [1000, 500, 100, 50, 25, 10, 5]
+    learning_rate_list = [.01, .025, .05, .075, .1]
+    batch_size_list = [5, 10, 25, 50, 100, 500, 1000]
     optimizer_list = ['sgd', 'adagrad', 'lbfgs']
 
     # train and evaluate

@@ -26,7 +26,7 @@ def save_results_to_csv(optimizer_name, \
         df = pd.read_csv(file_name, sep = ',')
     else:
         df = pd.DataFrame(columns=['optimizer',
-                                   'lr',
+                                   'learning rate',
                                    'batch size',
                                    'num iteration',
                                    'duration',
@@ -40,7 +40,7 @@ def save_results_to_csv(optimizer_name, \
                                    'non uniformity test'])
 
     df = df.append({'optimizer': optimizer_name,
-                    'lr': learning_rate,
+                    'learning rate': learning_rate,
                     'batch size': batch_size,
                     'num iteration': num_iter,
                     'duration': round(duration),
@@ -48,7 +48,7 @@ def save_results_to_csv(optimizer_name, \
                     'train accuracy': round(train_accuracy,1),
                     'test loss': round(test_loss,5),
                     'test accuracy': round(test_accuracy,1),
-                    'sharpness': round(sharpness_train,2),
+                    'sharpness': round(sharpness_train,3),
                     'non uniformity': round(non_uniformity_train),
                     'sharpness test': round(sharpness_test),
                     'non uniformity test': round(non_uniformity_test)},
@@ -78,8 +78,12 @@ def filter_not_relevant_data(results_data_frame):
     filter the evaluations, so as to use only the relevant ones
     '''
     return results_data_frame[(results_data_frame['train loss'] <= 5e-4) &
-                            (results_data_frame['lr'] > 1e-3) &
-                            (results_data_frame['lr'] != 0.75) &
-                            (results_data_frame['optimizer'] != 'adam')]
+                            (results_data_frame['learning rate'] > 1e-3) &
+                            (results_data_frame['learning rate'] != 0.75) & # not enough tests
+                            (results_data_frame['learning rate'] < 0.5) & # not enough tests
+                            (results_data_frame['sharpness'] < 1000)&
+                            (results_data_frame['sharpness']%1 != 0.0) & # remove rounded values
+                            (results_data_frame['optimizer'] != 'adam')# not enough tests
+                            ]
 
 

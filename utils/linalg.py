@@ -4,6 +4,9 @@ import torch.autograd as autograd
 
 
 def eigen_variance(net, criterion, dataloader, n_iters=10, tol=1e-2, verbose=False):
+    '''
+    Source: https://github.com/leiwu1990/sgd.stability
+    '''
     n_parameters = num_parameters(net)
     v0 = torch.randn(n_parameters)
 
@@ -13,6 +16,9 @@ def eigen_variance(net, criterion, dataloader, n_iters=10, tol=1e-2, verbose=Fal
 
 
 def eigen_hessian(net, criterion, dataloader, n_iters=10, tol=1e-2, verbose=False):
+    '''
+    Source: https://github.com/leiwu1990/sgd.stability
+    '''
     n_parameters = num_parameters(net)
     v0 = torch.randn(n_parameters)
 
@@ -22,6 +28,9 @@ def eigen_hessian(net, criterion, dataloader, n_iters=10, tol=1e-2, verbose=Fals
 
 
 def variance_vec_prod(net, criterion, dataloader, v):
+    '''
+    Source: https://github.com/leiwu1990/sgd.stability
+    '''
     X, y = dataloader.X, dataloader.y
     Av, Hv, n_samples = 0, 0, len(y)
 
@@ -39,6 +48,9 @@ def variance_vec_prod(net, criterion, dataloader, v):
 
 
 def hessian_vec_prod(net, criterion, dataloader, v):
+    '''
+    Source: https://github.com/leiwu1990/sgd.stability
+    '''
     Hv_t = 0
     n_batchs = len(dataloader)
     dataloader.idx = 0
@@ -50,9 +62,12 @@ def hessian_vec_prod(net, criterion, dataloader, v):
 
 
 def Hv_batch(net, criterion, batch_x, batch_y, v):
-    """
+    '''
     Hessian vector multiplication
-    """
+
+    Source: https://github.com/leiwu1990/sgd.stability
+    '''
+
     net.eval()
     logits = net(batch_x)
     batch_y_indices = torch.argmax(batch_y,1)
@@ -73,6 +88,9 @@ def Hv_batch(net, criterion, batch_x, batch_y, v):
 
 
 def power_method(v0, Av_func, n_iters=10, tol=1e-3, verbose=False):
+    '''
+    Source: https://github.com/leiwu1990/sgd.stability
+    '''
     mu = 0
     v = v0/v0.norm()
     for i in range(n_iters):
@@ -91,9 +109,12 @@ def power_method(v0, Av_func, n_iters=10, tol=1e-3, verbose=False):
 
 
 def num_parameters(net):
-    """
+    '''
     return the number of parameters for given model
-    """
+
+    Source: https://github.com/leiwu1990/sgd.stability
+    '''
+
     n_parameters = 0
     for para in net.parameters():
         n_parameters += para.data.numel()
