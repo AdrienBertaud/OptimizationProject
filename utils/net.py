@@ -11,13 +11,15 @@ directory = 'saved_net/'
 class NN(nn.Module):
     def __init__(self):
         super(NN,self).__init__()
-        self.net = nn.Sequential(nn.Linear(784,500),
-                            nn.ReLU(),
-                            nn.Linear(500,500),
-                            nn.ReLU(),
-                            nn.Linear(500,500),
-                            nn.ReLU(),
-                            nn.Linear(500,10))
+        self.net = nn.Sequential(nn.Linear(784,256),
+                                nn.ReLU(),
+                                nn.Linear(256,256),
+                                nn.ReLU(),
+                                nn.Linear(256,256),
+                                nn.ReLU(),
+                                nn.Linear(256,256),
+                                nn.ReLU(),
+                                nn.Linear(256,10))
 
     def forward(self,x):
         x = x.view(x.shape[0],-1)
