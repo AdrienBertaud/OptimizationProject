@@ -1,5 +1,5 @@
 ## Local Minima Shape for Artificial Neural Network
-by drien Bertaud, Yanis Bendali and Danya Li
+by Adrien Bertaud, Yanis Bendali and Danya Li
 
 
 ### Training and evaluating sharpness and non-uniformity, results are stored in resutls.csv.
@@ -17,4 +17,13 @@ python plot_results.py
 python toy_examples.py
 ```
 
+### Report
+```
+OML_project.pdf
+```
+
+### Feedbacks from teachers
+```
+Feedbacks.pdf
+```
 
