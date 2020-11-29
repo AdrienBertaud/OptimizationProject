@@ -1,0 +1,7 @@
+importlib-metadata @ file:///tmp/build/80754af9/importlib-metadata_1602276842396/work
+matplotlib @ file:///C:/ci/matplotlib-base_1603356257853/work
+mkl-random==1.1.1
+numpy @ file:///C:/ci/numpy_and_numpy_base_1603468620949/work
+pandas @ file:///C:/ci/pandas_1602088205210/work
+torch==1.5.0
+torchvision==0.6.0
